@@ -11,12 +11,22 @@ This website currently uses the [Universal Hugo Theme](https://github.com/devcow
   - This was built with the `extended` version of Hugo, but may not be required
 - Git
 
+### Clone with Submodules
+
+```bash
+git clone --recursive <git-repo>
+```
+
+If repo is already clones down, you can pull down submodules with:
+
+```bash
+cd salt-project-website
+git submodule update --init --recursive
+```
+
 ### Build Locally
 
-```
-# Requires Universal theme
-git clone git@github.com:devcows/hugo-universal-theme.git themes/hugo-universal-theme
-
+```bash
 # Serves for viewing changes locally
 # Dynamically loads when changes happen in repo
 hugo serve
