@@ -1,0 +1,32 @@
+---
+stages:
+  #- test
+  #- build
+  - publish
+
+#include:
+  #- project: saltstack/pop/cicd/ci-templates
+  #  file: /docswork/url-tester-brok.yml
+
+workflow:
+  rules:
+    - if: $CI_MERGE_REQUEST_ID == null
+
+variables:
+  CICD_UPSTREAM_PATH: "saltstack/open/docs/salt-project-website"
+  GIT_DEPTH: 0
+
+#url-tester-brok:
+#  stage: test
+
+pages:
+  stage: publish
+  image: "${CI_TEMPLATE_REGISTRY_HOST}/pages/hugo:latest"
+  variables:
+    GIT_SUBMODULE_STRATEGY: recursive
+  script:
+    - hugo --baseURL "${CI_PAGES_URL}/"
+    - 'echo "Gitlab Pages available at: ${CI_PAGES_URL}"'
+  artifacts:
+    paths:
+      - public
