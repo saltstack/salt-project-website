@@ -423,3 +423,99 @@ section.podcast-banner {
     justify-content: center;
     align-items: center;
 }
+
+@media (max-width: 1250px) {
+    header.header .uk-navbar li a {
+        padding: .7rem .3rem;
+    }
+}
+
+@media (max-width: 1200px) {
+    .uk-offcanvas-bar .uk-navbar-nav {
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+
+    .uk-offcanvas-bar .uk-navbar-nav>li>a {
+        text-transform: inherit;
+        color: white;
+    }
+
+    .uk-navbar-item, .uk-navbar-nav>li>a, .uk-navbar-toggle {
+        justify-content: start;
+    }
+}
+
+@media (max-width: 960px) {
+    section.banner .text {
+        position: static !important;
+        padding: 2em;
+    }
+    section.banner .text h1 {
+        font-size: 48px !important;
+        line-height: 52px !important;
+        color: black !important;
+    }
+    section.banner .text p {
+        color: black !important;
+    }
+}
+
+@media (max-width: 600px) {
+    section.video-hero .video-text h1 {
+        font-size: 64px;
+        line-height: 64px;
+    }
+    section.youtube-embed {
+        margin-top: 0;
+        padding-top: 4em;
+    }
+    section.youtube-embed .video-details {
+        grid-template-columns: 100%;
+        gap: 1rem;
+        margin-top: 20px;
+    }
+    section.youtube-embed .panel {
+        padding: 2rem;
+    }
+
+    section.two-columns .grid.right,
+    section.two-columns .grid.left {
+        grid-template-columns: 100%;
+        gap: 2rem;
+    }
+    section.two-columns .has-text.is-left,
+    section.two-columns .has-text.is-right {
+        padding: 0;
+    }
+    section.two-columns {
+        padding: 5rem 0;
+    }
+    section.icon-links {
+        padding: 2em 0;
+    }
+    section.cover-image {
+        padding: 4em 0;
+    }
+    .all-pod > div, .recommend-pod > div {
+        grid-template-columns: 100% !important;
+        gap: 1rem !important
+    }
+    .posts {
+        grid-template-columns: 100% !important;
+        gap: 1rem !important;
+        display: block !important;
+    }
+    .blog-wrap {
+        display: block !important;
+    }
+    .arch-col.sticky > a {
+        grid-template-columns: 100% !important;
+    }
+    .arch-col.sticky img {
+        min-height: 240px !important;
+    }
+    section.working-groups .panel img {
+        height: 200px !important;
+    }
+}
