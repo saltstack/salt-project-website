@@ -1,0 +1,153 @@
+<footer>
+    <div class="wrapper">
+        <div class="grid">
+            <div class="footer-text">
+                <div class="menu-footer-container"><ul id="menu-footer" class="footer-nav"><li id="menu-item-34808" class="menu-item"><a href="/" aria-current="page">Home</a></li>
+                    <li id="menu-item-34809" class="menu-item"><a href="/blog/">Blog</a></li>
+                    <li id="menu-item-34807" class="menu-item"><a href="/legal/">Legal</a></li>
+                    <li id="menu-item-34962" class="menu-item"><a href="https://www.vmware.com/help/privacy.html">Privacy Policy</a></li>
+                </ul></div>
+                <div class="footer-social">
+                    <ul class="social">
+                        <li>
+                            <a class="facebook" href="https://www.facebook.com/SaltProjectOSS" target="_blank">
+                                <span uk-icon="icon: facebook"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="linked-in" href="https://www.linkedin.com/company/saltproject" target="_blank">
+                                <span uk-icon="icon: linkedin"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="youtube" href="https://www.youtube.com/channel/UCpveTIucFx9ljGelW63-BWg" target="_blank">
+                                <span uk-icon="icon: youtube"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="twitter" href="https://twitter.com/salt_project_oss" target="_blank">
+                                <span uk-icon="icon: twitter"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="instagram" href="https://www.instagram.com/saltproject_os/" target="_blank">
+                                <span uk-icon="icon: instagram"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-copyright">
+                    <div class="flex">
+                        <p>© 2023 VMware, Inc</p>
+                        <img src="/images/vmlogo.png" alt="VMware Logo" width="100">
+                    </div>
+                </div>
+            </div>
+            <div class="footer-logo">
+                <img src="/images/logo.svg">
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        $(document).ready(function() {
+            $('.post-player').each(function() {
+                var this_audio =  $(this).find('source').attr('src') ;
+                var audio = new Audio(this_audio);
+                
+                audio.addEventListener(
+                "loadeddata",
+                () => {
+                    $(this).find(".time .length")[0].textContent = getTimeCodeFromNum(
+                    audio.duration
+                    );
+                    audio.volume = .75;
+                },
+                false
+                );
+                
+                //click on timeline to skip around
+                var timeline = $(this).find(".timeline")[0];
+                timeline.addEventListener("click", e => {
+                    var timelineWidth = window.getComputedStyle(timeline).width;
+                    var timeToSeek = e.offsetX / parseInt(timelineWidth) * audio.duration;
+                    audio.currentTime = timeToSeek;
+                }, false);
+                
+                //click volume slider to change volume
+                
+                //check audio percentage and update time accordingly
+                setInterval(() => {
+                    var progressBar =  $(this).find(".progress")[0];
+                    progressBar.style.width = audio.currentTime / audio.duration * 100 + "%";
+                    $(this).find(".time .current")[0].textContent = getTimeCodeFromNum(
+                    audio.currentTime
+                    );
+                }, 100);
+                
+                //toggle between playing and pausing on button click
+                var playBtn =  $(this).find(".controls .toggle-play")[0];
+                playBtn.addEventListener(
+                "click",
+                () => {
+                    if (audio.paused) {
+                        playBtn.classList.remove("play");
+                        playBtn.classList.add("pause");
+                        audio.play();
+                    } else {
+                        playBtn.classList.remove("pause");
+                        playBtn.classList.add("play");
+                        audio.pause();
+                    }
+                },
+                false
+                );
+                
+                // Add 15 seconds
+                var fwdBtn = $(this).find(".controls .forward-fifteen")[0];
+                fwdBtn.addEventListener(
+                "click",
+                () => {
+                    if (audio.paused) {
+                        audio.currentTime += 15.0;
+                    } else {
+                        audio.pause();
+                        audio.currentTime += 15.0;
+                        audio.play();
+                    }
+                },
+                );
+                
+                // Remove 15 seconds
+                var revBtn = $(this).find(".controls .rewind-fifteen")[0];
+                revBtn.addEventListener(
+                "click",
+                () => {
+                    if (audio.paused) {
+                        audio.currentTime -= 15.0;
+                    } else {
+                        audio.pause();
+                        audio.currentTime -= 15.0;
+                        audio.play();
+                    }
+                },
+                );
+                
+                
+                //turn 128 seconds into 2:08
+                function getTimeCodeFromNum(num) {
+                    let seconds = parseInt(num);
+                    let minutes = parseInt(seconds / 60);
+                    seconds -= minutes * 60;
+                    var hours = parseInt(minutes / 60);
+                    minutes -= hours * 60;
+                    
+                    if (hours === 0) return `${minutes}:${String(seconds % 60).padStart(2, 0)}`;
+                    return `${String(hours).padStart(2, 0)}:${minutes}:${String(
+                        seconds % 60
+                        ).padStart(2, 0)}`;
+                    }
+                });
+            });
+        </script>
+    </footer>
