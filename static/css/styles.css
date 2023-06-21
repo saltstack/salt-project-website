@@ -69,6 +69,7 @@ a, p, li {
     font-family: Work Sans,Helvetica,Roboto,Arial,sans-serif;
 }
 
+
 .uk-navbar-item, .uk-navbar-nav>li>a, .uk-navbar-toggle {
     min-height: inherit;
 }
@@ -83,6 +84,8 @@ a, p, li {
 
 .uk-container-large {
     padding: 0 3em;
+    margin: 0 auto;
+    max-width: 1600px;
 }
 
 .btn {

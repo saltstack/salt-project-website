@@ -7,8 +7,6 @@ summary: Legal
 
 # Legal
 
-**JANUARY 19, 2021**
-
 [SaltStack Enterprise licence terms](https://www.vmware.com/download/eula/saltstack-eula.html)  
 [SaltStack master services agreement](/assets/SaltStack-Master-Services-Agreement-2020v1.pdf)  
 [SaltStack training services policies]()  

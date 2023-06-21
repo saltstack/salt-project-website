@@ -1,0 +1,63 @@
+---
+title: "Open Hour 2023-JAN-19"
+date: 2023-01-19T22:25:54-06:00
+---
+
+# Open Hour 2023-JAN-19
+
+**January 19, 2023 - Alyssa Rock**
+
+## Agenda
+- General updates and announcements
+- Salt Project user group meetups
+- Check out Idem Project
+- Community forum updates
+- Q&A plus discussion
+
+[Open Hour YouTube playlist](https://www.youtube.com/playlist?list=PL9svBjLDUl_-XfmQSCgE_uislHD_rRKfu) | Contact us! [saltproject@vmware.com](saltproject@vmware.com)
+
+### General updates and announcements
+- Open Hours are held every 1st and 3rd Thursday from 10a.m. to 11a.m. Pacific.
+- Our next Open Hour will be February 2.
+- Join a Salt Project working group! https://saltproject.io/home/working-groups/
+
+#### Events
+- [HTML](https://outlook.office365.com/owa/calendar/105f69bacd4541baa849529aed37eb2d@vmware.com/434ec2155b2b4cce90144c87f0dd03d56626754050155294962/calendar.html)
+- [ICS/Outlook](https://outlook.office365.com/owa/calendar/105f69bacd4541baa849529aed37eb2d@vmware.com/434ec2155b2b4cce90144c87f0dd03d56626754050155294962/calendar.ics)
+- [All Community Events](https://saltproject.io/community-events/)
+- [Community Events RSS Feed](https://saltproject.io/community-events/feed/)
+
+### Salt Project user group meetups
+- Nicholas Hughes is working on a community-led effort to host some more in-person Salt events. These would be:
+- Single-day events.
+- Within a reasonable distance.
+- Speakers giving sessions that are possibly recorded so that people who can’t intend in person can still participate.
+- And of course: food and chances to do some social networking.
+- Go to [spugm.com](spugm.com) to join a mailing list for updates and let us know you are interested.
+
+### Check out Idem Project
+- Created by Tom Hatch, creator of Salt.
+- Idem is not Salt! It’s a powerful new sibling to Salt.
+- Idem can scan your current cloud deployments and generate all the data needed to manage them.
+- Go to [idemproject.io](https://www.idemproject.io/) to take a look and get started!
+
+### Community forums update
+- Today’s issue: use the wheel.
+- A lot of people use the wheel for automating minion keys, but there is more to the wheel that you should consider using. The wheel can configure pillar roots, inject pillar files into the pillar roots, and inject master configurations. It can basically have control over the master and can be accessed though the master through the wheel. There’s also salt util.wheel with lots of utilities.
+- For more information, see:
+- - [https://docs.saltproject.io/en/latest/ref/wheel/all/salt.wheel.key.html](https://docs.saltproject.io/en/latest/ref/wheel/all/salt.wheel.key.html)
+- - [https://docs.saltproject.io/en/latest/ref/wheel/all/index.html](https://docs.saltproject.io/en/latest/ref/wheel/all/index.html)
+
+### Q&A plus discussion
+- Q: Why did the Salt team give up on Tiamat?
+- - A: It’s not so much that we gave up on Tiamat. We found some technical issues and limitations that were specific to using it with Salt. In particular, people had issues with using pyinstaller to install modules. The relenv approach has a much better solution for that by allowing people to pip install easily. So we decided to go with relenv for 3006. Tiamat is still a great tool. Idem and other tools still use it, but it didn’t make sense for Salt specifically.
+- Q: I’d like to ask about the future of the network module. In my environment, we use 200-300 nodes with a mix of CentOS and other OSes and we’ve run into some network challenges with Salt, such as with bridging and other crucial problems. The network module needs some improvements to help us fix overcome some of these challenges. What is the future of the network module?
+- - A: This is an area of Salt that we have unfortunately neglected and which needs work. There is an open issue for adding support and is assigned to Gareth and will be an area of focus for 3007.
+- Q: Is 3006 locked down for pull requests yet?
+- - A: We’re still accepting PRs.
+- Q: Can someone take a look at this PR: [https://github.com/saltstack/salt/pull/63354](https://github.com/saltstack/salt/pull/63354)
+- - A: There was a discussion about the approach in this PR.
+- Q: We had a question about a PR in the pepper repository: [https://github.com/saltstack/pepper/pull/226](https://github.com/saltstack/pepper/pull/226) . Can someone take a look?
+- - A: The core team doesn’t have the bandwidth to work on it and we turned it over a community member to maintain it: Matt Philips. He is the one who has merge access to the repository.
+- Q: Would his merge rights have been changed per VMware’s maintainer policy changes last year?
+- - A: Matt still has merge rights, but it appears he isn’t keeping watch over it.

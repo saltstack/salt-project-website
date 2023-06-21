@@ -7714,26 +7714,26 @@ body>.wrap.container {
 .single-post .main {
  padding:140px 0 100px
 }
-.blog-article {
+.single-content {
  padding-bottom:80px;
  width:95%;
  margin:0 auto;
  max-width:1000px
 }
-.blog-article a {
+.single-content a {
  color:#0091da
 }
-.blog-article h1 span {
+.single-content h1 span {
  font-size:14px;
  font-weight:100;
  line-height:28px;
  display:block
 }
-.blog-article p,
-.blog-article ul {
+.single-content p,
+.single-content ul {
  font-weight:100
 }
-.blog-article p {
+.single-content p {
  font-size:16px;
  line-height:24px
 }
