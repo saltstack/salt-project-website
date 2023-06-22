@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {{- partial "head" . -}}
+    </head>
+    <body class="blog">
+        {{- partial "header" . -}}
+        
+            {{ partial "blog/banner" }}
+            {{ partial "blog/posts" }}
+
+        {{- partial "footer" . -}}
+    </body>
+</html>

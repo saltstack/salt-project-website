@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {{- partial "head" . -}}
+    </head>
+    <body class="the-hacks">
+        {{- partial "header" . -}}
+        
+            {{ partial "hacks/banner" }}
+
+            <div class="episode-container">
+                {{ partial "hacks/recent-episode" }}
+                {{ partial "hacks/recommended-episodes" }}
+            </div>
+
+            <!-- <div class="all-episodes">
+                {{ partial "hacks/all-episodes" }}
+            </div> -->
+
+        {{- partial "footer" . -}}
+    </body>
+</html>

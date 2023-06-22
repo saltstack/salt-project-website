@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {{- partial "head" . -}}
+    </head>
+    <body class="single">
+        {{- partial "header" . -}}
+        <div class="uk-container">
+            <section class="single-content">
+                {{ .Content }}
+            </section>
+        </div>
+        {{- partial "footer" . -}}
+    </body>
+</html>
