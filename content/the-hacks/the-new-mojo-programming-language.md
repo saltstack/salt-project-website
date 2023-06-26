@@ -3,6 +3,8 @@ title: "The New Mojo Programming Language."
 subtitle: "Tom loves learning new programming languages, always has. He even likes learning about the ones that he thinks are--in a word--crap!"
 date: 2023-05-30T22:25:54-06:00
 url: "/the-hacks/the-new-mojo-programming-language"
+tags:
+    - recommended
 ---
 
 # The New Mojo Programming Language.

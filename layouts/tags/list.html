@@ -5,11 +5,9 @@
     </head>
     <body class="blog">
         {{- partial "header" . -}}
-            <section class="blog-banner">
-                <img src="/images/blog-banner-e1666724181870.jpg" alt="">
-                <h1>The Blog</h1>
-            </section>
-            <section class="arch-blog">
+        <div class="uk-container">
+            <section class="tag-content">
+                <h1>Tag: {{ .Title | humanize | lower }}</h1>
                 <div class="all-posts">
                     <div class="row blog-wrap">
                         <div class="posts">
@@ -19,9 +17,10 @@
                             {{ end }}
                         </div>
                     </div>
-                    {{ partial "pagination" $post_paginator }}
                 </div>
+                {{ partial "pagination" $post_paginator }}
             </section>
+        </div>
         {{- partial "footer" . -}}
     </body>
 </html>

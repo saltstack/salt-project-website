@@ -1,0 +1,9 @@
+{{ if .Params.tags }}
+    <div class="tags">
+        {{ range .GetTerms "tags" }}
+            <a href="{{ .Permalink }}" class="btn green">
+                {{ .LinkTitle }}
+            </a>
+        {{ end }}
+    </div>
+{{ end }}

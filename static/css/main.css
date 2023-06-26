@@ -7742,6 +7742,13 @@ body>.wrap.container {
  font-size:16px;
  line-height:24px
 }
+.tag-content {
+ padding: 140px 0 100px;
+ padding-bottom:80px;
+ width:95%;
+ margin:0 auto;
+ max-width:1000px
+}
 .episode-audio-and-share {
  margin-top:20px
 }
@@ -8400,4 +8407,22 @@ body>.wrap.container {
 	background: #11BEAC;
 	color: white;
 	box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+.tags {
+    margin-top: 80px;
+}
+.single-media-player {
+    background-color: #f2f2f2;
+    padding: 20px 10px;
+    margin-top: 50px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+}
+
+.post-list {
+    max-width: 700px;
+}
+.post-list .post-meta {
+    margin-bottom: 50px;
 }

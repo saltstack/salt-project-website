@@ -8,6 +8,9 @@
         <div class="uk-container">
             <section class="single-content">
                 {{ .Content }}
+                <div class="single-media-player">
+                    {{ partial "media-player" . }}
+                </div>
                 {{ partial "tags" . }}
             </section>
         </div>

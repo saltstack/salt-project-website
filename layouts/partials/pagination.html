@@ -1,0 +1,21 @@
+<section class="pagination">
+    <div class="row">
+        <div class="columns">
+            <nav class="navigation posts-navigation" aria-label="Posts">
+                <h2 class="screen-reader-text">Posts navigation</h2>
+                <div class="nav-links">
+                    {{ if .HasPrev }}
+                        <div class="nav-previous">
+                            <a href="{{ .Prev.URL }}">Newer posts</a>
+                        </div>
+                    {{ end }}
+                    {{ if .HasNext }}
+                        <div class="nav-next">
+                            <a href="{{ .Next.URL }}">Older posts</a>
+                        </div>
+                    {{ end }}
+                </div>
+            </nav>
+        </div>
+    </div>
+</section>
