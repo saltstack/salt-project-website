@@ -1,0 +1,18 @@
+<div class="post-meta">
+    <h2>
+        <a href="{{ .Permalink }}">
+            {{ .Params.title }}
+        </a>
+    </h2>
+    <div class="flex">
+        {{ if .Params.date }}
+            <span>{{ dateFormat "Jan 2, 2006" .Params.date }}</span>
+        {{ end }}
+    </div>
+    <p>{{ .Summary }}</p>
+    <p class="link">
+        <a href="{{ .Permalink }}">
+            Read More
+        </a>
+    </p>
+</div>

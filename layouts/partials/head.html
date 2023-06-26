@@ -9,10 +9,11 @@
 <link rel="stylesheet" type="text/css" href="/css/main.css" />
 
 <script
-  src="https://code.jquery.com/jquery-3.7.0.min.js"
-  integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
-  crossorigin="anonymous"></script>
+    src="https://code.jquery.com/jquery-3.7.0.min.js"
+    integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+    crossorigin="anonymous">
+</script>
 <script src="/js/uikit.min.js"></script>
 <script src="/js/uikit-icons.min.js"></script>
 
-<title>Saltproject.io</title>
+<title>Saltproject.io{{ if .Params.title }} - {{ .Params.title }}{{ end }}</title>

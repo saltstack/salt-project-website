@@ -1,6 +1,10 @@
 ---
 title: "New Salt Extension: Salt Analytics (Salt managed data processing pipelines)"
 date: 2023-04-28T22:25:54-06:00
+tags:
+    - salt
+    - extensions
+    - analytics
 ---
 
 # New Salt Extension: Salt Analytics (Salt managed data processing pipelines)

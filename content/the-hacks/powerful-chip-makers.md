@@ -3,6 +3,11 @@ title: "The Most Powerful Chip Makers Are??? (Tom Takes a Victory Lap)"
 subtitle: "Chunga is doing this episode of The Hacks for one reason and one reason only. It's purely so Tom can take a victory lap!"
 date: 2023-06-21T22:25:54-06:00
 url: "/the-hacks/powerful-chip-makers"
+podcast_url: https://traffic.libsyn.com/thehacks/HACKS_AMD_INFOGRAPHIC.m4a
+length: 41:45
+image: "/images/hacks/TheHacks_meta-1024x400.jpg"
+tags:
+    - recommended
 ---
 # The Most Powerful Chip Makers Are??? (Tom Takes a Victory Lap)
 

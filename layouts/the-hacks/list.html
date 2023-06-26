@@ -5,17 +5,49 @@
     </head>
     <body class="the-hacks">
         {{- partial "header" . -}}
-        
-            {{ partial "hacks/banner" }}
+        <section
+            class="podcast-banner"
+            style="background: url(/images/code-bg.jpg) no-repeat center center / cover;">
+            <img src="/images/hacks-logo.png">
+        </section>
 
-            <div class="episode-container">
-                {{ partial "hacks/recent-episode" }}
-                {{ partial "hacks/recommended-episodes" }}
+        <div class="episode-container">
+            <div class="recent-pod row">
+                <h2>Most Recent Episode</h2>
+                <div class="recent-pod-wrap">
+                    <!-- Example podcast item for main overview page -->
+                    {{ range (first 1 .Pages.ByDate.Reverse) }}
+                        {{ partial "hacks/post" . }}
+                    {{ end }}
+                </div>
             </div>
+            <div class="recommend-pod row">
+                <h2>Recommended Episodes</h2>
+                <div>
+                    {{ range where .Pages ".Params.tags" "intersect" (slice "recommended") }}
+                        {{ partial "hacks/post" . }}
+                    {{ end }}
+                </div>
+            </div>
+        </div>
 
-            <!-- <div class="all-episodes">
-                {{ partial "hacks/all-episodes" }}
-            </div> -->
+        <div class="all-episodes">
+            <div class="wrapper">
+                <h2>All Episodes</h2>
+                <div class="all-pod">
+                    <div class="all-pod-pad">
+                        <!-- Example podcast item for main overview page -->
+                        {{ $post_paginator := .Paginate (.Pages.ByDate.Reverse) 6 }}
+                        {{ range $post_paginator.Pages }}
+                            {{ partial "hacks/post" . }}
+                        {{ end }}
+                    </div>
+                </div>
+            </div>
+            <section class="pagination">
+                {{ partial "pagination" $post_paginator }}
+            </section>
+        </div>
 
         {{- partial "footer" . -}}
     </body>

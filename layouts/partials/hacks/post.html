@@ -1,0 +1,20 @@
+<div class="pod">
+    <div class="pod-inner">
+        <div class="pod-img">
+            {{ if .Params.image }}
+                <div style="background-image:url({{ .Params.image }});"></div>
+            {{ else }}
+                <div style="background-image:url(/images/code-bg.jpg);"></div>
+            {{ end }}
+        </div>
+        <div class="pod-content">
+            <span>{{ dateFormat "Jan 2, 2006" .Params.date }}</span>
+            <h3><a href="{{ .Permalink }}">{{ .Params.title }}</a></h3>
+            <p>
+                {{ .Summary }}
+            </p>
+        </div>
+        {{ partial "media-player" . }}
+    </div>
+    <div class="pod-behind"></div>
+</div>

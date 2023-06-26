@@ -3,6 +3,10 @@ title: "Napster, Planting the Seeds of Chaos"
 subtitle: "Tom is back from phase one of his paternity leave!  Chunga couldn't be happier, to have Tom back."
 date: 2023-06-13T22:25:54-06:00
 url: "/the-hacks/napster-planting-the-seeds-of-chaos"
+tags:
+    - recommended
+    - podcast
+    - salt
 ---
 
 # Napster, Planting the Seeds of Chaos

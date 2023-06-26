@@ -38,6 +38,11 @@
                                 <span uk-icon="icon: instagram"></span>
                             </a>
                         </li>
+                        <li>
+                            <a class="instagram" href="/rss-feeds">
+                                <span uk-icon="icon: rss"></span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <div class="footer-copyright">
@@ -52,13 +57,13 @@
             </div>
         </div>
     </div>
-    
+
     <script>
         $(document).ready(function() {
             $('.post-player').each(function() {
                 var this_audio =  $(this).find('source').attr('src') ;
                 var audio = new Audio(this_audio);
-                
+
                 audio.addEventListener(
                 "loadeddata",
                 () => {
@@ -69,7 +74,7 @@
                 },
                 false
                 );
-                
+
                 //click on timeline to skip around
                 var timeline = $(this).find(".timeline")[0];
                 timeline.addEventListener("click", e => {
@@ -77,9 +82,9 @@
                     var timeToSeek = e.offsetX / parseInt(timelineWidth) * audio.duration;
                     audio.currentTime = timeToSeek;
                 }, false);
-                
+
                 //click volume slider to change volume
-                
+
                 //check audio percentage and update time accordingly
                 setInterval(() => {
                     var progressBar =  $(this).find(".progress")[0];
@@ -88,7 +93,7 @@
                     audio.currentTime
                     );
                 }, 100);
-                
+
                 //toggle between playing and pausing on button click
                 var playBtn =  $(this).find(".controls .toggle-play")[0];
                 playBtn.addEventListener(
@@ -106,7 +111,7 @@
                 },
                 false
                 );
-                
+
                 // Add 15 seconds
                 var fwdBtn = $(this).find(".controls .forward-fifteen")[0];
                 fwdBtn.addEventListener(
@@ -121,7 +126,7 @@
                     }
                 },
                 );
-                
+
                 // Remove 15 seconds
                 var revBtn = $(this).find(".controls .rewind-fifteen")[0];
                 revBtn.addEventListener(
@@ -136,8 +141,8 @@
                     }
                 },
                 );
-                
-                
+
+
                 //turn 128 seconds into 2:08
                 function getTimeCodeFromNum(num) {
                     let seconds = parseInt(num);
@@ -145,7 +150,7 @@
                     seconds -= minutes * 60;
                     var hours = parseInt(minutes / 60);
                     minutes -= hours * 60;
-                    
+
                     if (hours === 0) return `${minutes}:${String(seconds % 60).padStart(2, 0)}`;
                     return `${String(hours).padStart(2, 0)}:${minutes}:${String(
                         seconds % 60
@@ -153,5 +158,5 @@
                     }
                 });
             });
-        </script>
-    </footer>
+    </script>
+</footer>

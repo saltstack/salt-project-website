@@ -7,15 +7,15 @@
         {{- partial "header" . -}}
             <section class="blog-banner">
                 <img src="/images/blog-banner-e1666724181870.jpg" alt="">
-                <h1>The Blog</h1>
+                <h1>Security Announcements</h1>
             </section>
             <section class="arch-blog">
                 <div class="all-posts">
                     <div class="row blog-wrap">
-                        <div class="posts">
+                        <div class="post-list">
                             {{ $post_paginator := .Paginate (.Pages) 9 }}
                             {{ range $post_paginator.Pages }}
-                                {{ partial "blog/post" . }}
+                                {{ partial "post-list" . }}
                             {{ end }}
                         </div>
                     </div>

@@ -1,0 +1,22 @@
+<div class="arch-col">
+    <a href="{{ .Permalink }}">
+        <div class="post-thumbnail">
+            {{ if .Params.image }}
+                <img src="{{ .Params.image }}" alt="{{ .Params.image_alt }}">
+            {{ else }}
+                <img src="/images/logo.svg" alt="Salt Logo">
+            {{ end }}
+        </div>
+        <div class="post-meta">
+            <div class="flex">
+                {{ if .Params.date }}
+                    <span>{{ dateFormat "Jan 2, 2006" .Params.date }}</span>
+                {{ end }}
+                <span>{{ .Params.author }}</span>
+            </div>
+            <h2>{{ .Params.title }}</h2>
+            <p>{{ .Summary }}</p>
+            <p class="link">Read More</p>
+        </div>
+    </a>
+</div>
