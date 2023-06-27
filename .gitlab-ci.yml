@@ -25,7 +25,7 @@ pages:
   variables:
     GIT_SUBMODULE_STRATEGY: recursive
   script:
-    - hugo --baseURL "${CI_PAGES_URL}/"
+    - hugo
     - 'echo "Gitlab Pages available at: ${CI_PAGES_URL}"'
   artifacts:
     paths:
