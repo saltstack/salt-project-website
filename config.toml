@@ -1,7 +1,8 @@
-baseurl = "https://saltproject.io/" # OVERRIDE IN MERGE REQUESTS
+baseurl = "/"
 title = "Salt Project"
 languageCode = "en-us"
 summaryLength = 10
+relativeURLs = true
 
 [ taxonomies ]
     tag = 'tags'
