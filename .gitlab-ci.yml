@@ -1,12 +1,12 @@
 ---
 stages:
   #- test
-  #- build
+  - build
   - publish
 
-#include:
-  #- project: saltstack/pop/cicd/ci-templates
-  #  file: /docswork/url-tester-brok.yml
+include:
+  - project: saltstack/pop/cicd/ci-templates
+    file: /docswork/url-tester-brok.yml
 
 workflow:
   rules:
@@ -14,16 +14,28 @@ workflow:
 
 variables:
   CICD_UPSTREAM_PATH: "saltstack/open/docs/salt-project-website"
-  GIT_DEPTH: 0
+  GIT_DEPTH: 1
 
 #url-tester-brok:
-#  stage: test
+#  stage: publish
+
+the-hacks:
+  stage: build
+  image: python:3.11-slim
+  script:
+    - pip install -r tools/requirements.txt
+    - python tools/gen-the-hacks.py
+    - cp tools/_index.md content/the-hacks/
+  artifacts:
+    paths:
+      - content/the-hacks/
+
+url-tester-brok:
+  stage: publish
 
 pages:
   stage: publish
   image: "${CI_TEMPLATE_REGISTRY_HOST}/pages/hugo:latest"
-  variables:
-    GIT_SUBMODULE_STRATEGY: recursive
   script:
     - hugo
     - 'echo "Gitlab Pages available at: ${CI_PAGES_URL}"'
