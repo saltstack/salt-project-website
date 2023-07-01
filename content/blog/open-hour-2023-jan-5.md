@@ -20,11 +20,11 @@ date: 2023-01-05T22:25:54-06:00
 ### General updates and announcements
 - Open Hours are held every 1st and 3rd Thursday from 10a.m. to 11a.m. Pacific.
 - Our next Open Hour will be January 19th.
-- Join a Salt Project working group! [https://saltproject.io/home/working-groups/](https://saltproject.io/home/working-groups/)
+- Join a Salt Project working group! https://saltproject.io/working-groups/
 
 ### Events
-- [HTML](https://outlook.office365.com/owa/calendar/105f69bacd4541baa849529aed37eb2d@vmware.com/434ec2155b2b4cce90144c87f0dd03d56626754050155294962/calendar.html)
-- [ICS/Outlook](https://outlook.office365.com/owa/calendar/105f69bacd4541baa849529aed37eb2d@vmware.com/434ec2155b2b4cce90144c87f0dd03d56626754050155294962/calendar.ics)
+- ~~HTML~~ (HTML Outlook is no longer available)
+- ~~ICS/Outlook~~ (ICS/Outlook is no longer available)
 - [All Community Events](https://saltproject.io/community-events/)
 - [Community Events RSS Feed](https://saltproject.io/community-events/feed/)
 
