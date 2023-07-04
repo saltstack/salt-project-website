@@ -39,7 +39,8 @@ Example: create Salt formula for installing all packages that the remote system 
 
 Current describe modules include but are not limited to pkg, sysctl, cron, files, firewalld, host, iptables, pip, pkgrepo, service, timezone, users
 
-For more info, please see the docs at https://salt-describe.readthedocs.io/en/latest/index.html.
+For more info, please see the docs at:
+ - https://salt-describe.readthedocs.io/en/latest/index.html
 
 Links:
  - docs: https://salt-describe.readthedocs.io/en/latest/index.html

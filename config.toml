@@ -6,3 +6,10 @@ relativeURLs = true
 
 [ taxonomies ]
     tag = 'tags'
+
+[ the-hacks ]
+    recommended = [
+        "VR Headsets, Why Tech Won't Just Let Them Go.",
+        'The Evolution of Video Games',
+        'Putting the "A.I. Genie" Back In The Bottle'
+    ]

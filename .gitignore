@@ -1,3 +1,6 @@
 themes/
 public/
 .hugo_build.lock
+venv
+.venv
+content/the-hacks/
