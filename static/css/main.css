@@ -7605,9 +7605,6 @@ footer .footer-copyright img {
  -ms-flex-pack:justify;
  justify-content:space-between;
  -webkit-box-orient:horizontal;
- -webkit-box-direction:reverse;
- -ms-flex-direction:row-reverse;
- flex-direction:row-reverse
 }
 .nav-links .nav-previous {
  position:relative;

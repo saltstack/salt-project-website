@@ -1,15 +1,21 @@
 ---
-title: This is an example blog that can be used as a template
-date:
+draft: true
+title: "Title"
+summary: "Summary"
+date: "yyyy-mm-dd"
 author: Testy McTester
-image: 
+url: "/blog/title-shortened"
+image:
 image_alt:
 tags:
-    - example
-    - example2
-draft: true
+    - releases
+    - open hour
 ---
 
-#This is where you put the heading
+# This is where you put the heading
 
-This is where you put the content.
+Content
+
+Note: Make sure you remove "draft: true" from the front matter.
+
+Delete the tags that aren't relevant.

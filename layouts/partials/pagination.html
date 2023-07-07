@@ -8,11 +8,15 @@
                         <div class="nav-previous">
                             <a href="{{ .Prev.URL }}">Newer posts</a>
                         </div>
+                    {{ else }}
+                        <div></div>
                     {{ end }}
                     {{ if .HasNext }}
                         <div class="nav-next">
                             <a href="{{ .Next.URL }}">Older posts</a>
                         </div>
+                    {{ else }}
+                        <div></div>
                     {{ end }}
                 </div>
             </nav>
