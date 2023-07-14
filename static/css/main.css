@@ -1261,7 +1261,7 @@ blockquote {
 blockquote,
 blockquote p {
  line-height:28px;
- color:#8a8a8a
+ color:#000;
 }
 cite {
  display:block;
