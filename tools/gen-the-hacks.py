@@ -64,7 +64,7 @@ for episode in reversed(the_hacks_rss['entries']):
     post = frontmatter.load('tools/the-hacks-template.md')
 
     # All lowercase title with many special characters removed
-    episode_file_title = file_title_regex.sub('', episode['title'].replace('/','').replace(':','').replace('\\','').replace('*','').replace('&','').replace(' ', '-').replace('--', '-')).lower()
+    episode_file_title = file_title_regex.sub('', episode['title'].replace('/','').replace('+','').replace('=','').replace(':','').replace('\\','').replace('*','').replace('&','').replace(' ', '-').replace('--', '-')).lower()
     episode_subtitle = episode['subtitle'].replace('\xa0','')
 
     # Replace all frontmatter from RSS values, add title header, and content
