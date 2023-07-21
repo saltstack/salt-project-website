@@ -47,9 +47,20 @@ pages:
     paths:
       - public
 
-publish-docs:
+s3-upload:
   stage: trigger-upload
   tags:
-    - gitlab-saltstack-artifact-salt-upload-docker-machine
+    - gitlab-saltstack-salt-project-website-docker-machine
+  image: debian:11-slim
   variables:
     CICD_S3_DEST_PATH: "saltproject-io-459849221361/"
+  script:
+    - test -n "${CICD_S3_DEST_PATH}"
+    - echo "${CICD_S3_DEST_PATH}"
+    - apt update && apt install awscli -y
+    - aws s3 sync ${CI_PROJECT_DIR}/public s3://${CICD_S3_DEST_PATH} --delete
+    - unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN
+  rules:
+    - if: '$CI_COMMIT_REF_PROTECTED == "true" && $CI_COMMIT_TAG != null && $CI_PROJECT_PATH == $CICD_UPSTREAM_PATH'
+      when: on_success
+    - when: never
