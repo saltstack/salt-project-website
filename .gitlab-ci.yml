@@ -4,10 +4,13 @@ stages:
   - build
   - test-urls
   - publish
+  - trigger-upload
 
 include:
   - project: saltstack/pop/cicd/ci-templates
     file: /docswork/url-tester-brok.yml
+  - project: saltstack/pop/cicd/ci-templates
+    file: /docswork/salt-publish-docs-release.yml
 
 workflow:
   rules:
@@ -43,3 +46,10 @@ pages:
   artifacts:
     paths:
       - public
+
+publish-docs:
+  stage: trigger-upload
+  tags:
+    - gitlab-saltstack-artifact-salt-upload-docker-machine
+  variables:
+    CICD_S3_DEST_PATH: "saltproject-io-459849221361/"
