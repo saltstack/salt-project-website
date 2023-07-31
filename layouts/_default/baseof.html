@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-        {{- partial "head" . -}}
+        {{ partial "head" . }}
     </head>
     <body>
-        {{- partial "header" . -}}
-            {{- block "main" . }}{{- end }}
-            {{- block "groups" . }}{{- end }}
-        {{- partial "footer" . -}}
+        {{ partial "header" . }}
+        {{ block "main" . }}
+        {{ end }}
+        {{ partial "footer" . }}
     </body>
 </html>

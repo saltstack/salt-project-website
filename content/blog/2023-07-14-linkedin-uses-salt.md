@@ -4,8 +4,8 @@ summary: "Here at the Salt Project, we enjoyed reading this recent blog post fro
 Engineering about how their engineering team uses Salt to support their infrastructure growth."
 date: "2023-07-14"
 author: Alyssa Rock
-url: "/blog/linkedin-uses-salt-to-support-infrastructure-growth"
-image: /images/blog/person-phone-01.jpg
+url: "blog/linkedin-uses-salt-to-support-infrastructure-growth"
+image: images/blog/person-phone-01.jpg
 image_alt:
 tags:
     - case study

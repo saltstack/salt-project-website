@@ -3,8 +3,8 @@ title: "New Salt Extension: Salt Analytics (Salt managed data processing pipelin
 summary: "The Salt Project team is releasing salt-analytics-framework, a new Salt extension, to allow users to run data processing pipelines alongside Salt."
 date: "2023-04-28"
 author: Caleb Beard
-url: "/blog/new-salt-extension-salt-analytics"
-image: /images/blog/new-extension.png
+url: "blog/new-salt-extension-salt-analytics"
+image: images/blog/new-extension.png
 image_alt:
 tags:
     - salt extensions

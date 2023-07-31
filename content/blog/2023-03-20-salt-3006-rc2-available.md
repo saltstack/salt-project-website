@@ -3,8 +3,8 @@ title: "Salt 3006 RC2 is now available "
 summary: "The Salt Project has just released RC2 (release candidate 2) of the Salt 3006 LTS."
 date: "2023-03-20"
 author: Alyssa Rock
-url: "/blog/salt-3006-rc2-available"
-image: /images/blog/new-update.png
+url: "blog/salt-3006-rc2-available"
+image: images/blog/new-update.png
 image_alt:
 tags:
     - releases

@@ -1,0 +1,26 @@
+[
+    {{ range $index, $e := .Pages }}
+    {{ if $index }}, {{ end }}
+    {
+        "title": "{{ .Title }}",
+        {{ if .Params.allDay }}
+        "allDay": {{ .Params.allday }},
+        {{ end }}
+        {{ if .Params.recurring }}
+        "rrule": "{{ .Params.recurring }}",
+        {{ else }}
+        "start": "{{ dateFormat "2006-01-02" .Date }}",
+        {{ end }}
+        {{ if .Params.startTime }}
+        "startTime": "{{ .Params.startTime }}",
+        {{ end }}
+        {{ if .Params.endTime }}
+        "endTime": "{{ .Params.endTime }}",
+        {{ end }}
+        {{ if .Params.category }}
+        "classNames": [ "{{ .Params.category }}" ],
+        {{ end }}
+        "url": "{{ .Permalink }}"
+    }
+    {{ end }}
+]

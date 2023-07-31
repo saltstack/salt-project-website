@@ -1,27 +1,21 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        {{- partial "head" . -}}
-    </head>
-    <body class="blog">
-        {{- partial "header" . -}}
-            <section class="blog-banner">
-                <img src="/images/blog-banner-e1666724181870.jpg" alt="">
-                <h1>Community Events</h1>
-            </section>
-            <section class="arch-blog">
-                <div class="all-posts">
-                    <div class="row blog-wrap">
-                        <div class="posts">
-                            {{ $post_paginator := .Paginate (.Pages) 9 }}
-                            {{ range $post_paginator.Pages }}
-                                {{ partial "blog/post" . }}
-                            {{ end }}
-                        </div>
+{{ define "main" }}
+    <main class="blog">
+        <section class="blog-banner">
+            <img src="{{ "images/blog-banner-e1666724181870.jpg" | relURL }}" alt="">
+            <h1>Community Events</h1>
+        </section>
+        <section class="arch-blog">
+            <div class="all-posts">
+                <div class="row blog-wrap">
+                    <div class="posts">
+                        {{ $post_paginator := .Paginate (.Pages) 9 }}
+                        {{ range $post_paginator.Pages }}
+                            {{ partial "blog/post" . }}
+                        {{ end }}
                     </div>
-                    {{ partial "pagination" $post_paginator }}
                 </div>
-            </section>
-        {{- partial "footer" . -}}
-    </body>
-</html>
+                {{ partial "pagination" $post_paginator }}
+            </div>
+        </section>
+    </main>
+{{ end }}

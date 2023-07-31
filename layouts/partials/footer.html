@@ -4,9 +4,9 @@
             <div class="footer-text">
                 <div class="menu-footer-container">
                     <ul id="menu-footer" class="footer-nav">
-                        <li class="menu-item"><a href="/" aria-current="page">Home</a></li>
-                        <li id="menu-item-34809" class="menu-item"><a href="/blog/">Blog</a></li>
-                        <li id="menu-item-34807" class="menu-item"><a href="/legal/">Legal</a></li>
+                        <li class="menu-item"><a href="{{ .Site.BaseURL }}" aria-current="page">Home</a></li>
+                        <li id="menu-item-34809" class="menu-item"><a href="{{ "blog" | relURL }}">Blog</a></li>
+                        <li id="menu-item-34807" class="menu-item"><a href="{{ "legal" | relURL }}">Legal</a></li>
                         <li id="menu-item-34962" class="menu-item"><a href="https://www.vmware.com/help/privacy.html">Privacy Policy</a></li>
                         <li id="menu-item-34962" class="menu-item"><a href="https://www.vmware.com/help/privacy/california-privacy-rights.html">Your California Privacy Policy</a></li>
                     </ul>
@@ -39,7 +39,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="instagram" href="/rss-feeds">
+                            <a class="instagram" href="{{ "rss-feeds" | relURL }}">
                                 <span uk-icon="icon: rss"></span>
                             </a>
                         </li>
@@ -48,12 +48,12 @@
                 <div class="footer-copyright">
                     <div class="flex">
                         <p>&copy; 2023 VMware, Inc</p>
-                        <img src="/images/vmlogo.png" alt="VMware Logo" width="100">
+                        <img src="{{ "images/vmlogo.png" | relURL }}" alt="VMware Logo" width="100">
                     </div>
                 </div>
             </div>
             <div class="footer-logo">
-                <img src="/images/logo.svg">
+                <img src="{{ "images/logo.svg" | relURL }}">
             </div>
         </div>
     </div>

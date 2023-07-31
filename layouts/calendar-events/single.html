@@ -1,0 +1,18 @@
+{{ define "main" }}
+  <section class="calendar-event-page">
+    <div class="uk-container">
+      <div class="event">
+
+          <div class="event-thumbnail" style="background-image: url({{ .Params.image | relURL }})"></div>
+
+        {{ .Content }}
+
+        <hr />
+
+        <p><strong>Meeting time:</strong> {{ .Params.meetingTime }}</p>
+
+        <p><strong>Zoom link to attend:</strong> <a href="{{ .Params.zoomLink }}">{{ .Params.zoomLink }}</a></p>
+      </div>
+    </div>
+  </section>
+{{ end }}

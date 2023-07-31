@@ -1,16 +1,10 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        {{- partial "head" . -}}
-    </head>
-    <body class="single">
-        {{- partial "header" . -}}
+{{ define "main" }}
+    <main class="single">
         <div class="uk-container">
             <section class="single-content">
                 {{ .Content }}
                 {{ partial "tags" . }}
             </section>
         </div>
-        {{- partial "footer" . -}}
-    </body>
-</html>
+    </main>
+{{ end }}

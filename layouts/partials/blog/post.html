@@ -2,7 +2,7 @@
     <a href="{{ .Permalink }}">
         <div class="post-thumbnail">
             {{ if .Params.image }}
-                <img src="{{ .Params.image }}" alt="{{ .Params.image_alt }}">
+                <img src="{{ .Params.image | relURL }}" alt="{{ .Params.image_alt }}">
             {{ else }}
                 <img src="/images/logo.svg" alt="Salt Logo">
             {{ end }}
