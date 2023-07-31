@@ -3,8 +3,8 @@ title: "New Salt Extension: Salt Describe (Automate generating SLS files)"
 summary: "The Salt project team is releasing a new salt extension salt-describe to create templates for Salt by fetching the settings of remote salt minions."
 date: "2023-04-27"
 author: Megan Wilhite
-url: "/blog/new-salt-extension-salt-describe"
-image: /images/blog/new-extension.png
+url: "blog/new-salt-extension-salt-describe"
+image: images/blog/new-extension.png
 image_alt:
 tags:
     - releases

@@ -159,7 +159,7 @@ main {
     background-repeat: repeat;
     height: 100%;
     width: 100%;
-    background-position: center 860px;
+    /* background-position: center 860px; */ 
     background-repeat: no-repeat;
 }
 

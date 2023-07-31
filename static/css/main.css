@@ -7000,7 +7000,7 @@ body.home main.main {
  background:linear-gradient(180deg,rgba(20,206,187,.15),hsla(0,0%,96%,0) 45%,rgba(238,244,243,0) 55%,rgba(29,208,189,.35));
  height:100%;
  width:100%;
- background-position:center 860px;
+ /* background-position:center 860px; */
  background-repeat:no-repeat
 }
 body.post-type-archive-podcast_episode .nav>ul>li>ul.sub-menu,
@@ -7768,7 +7768,7 @@ body>.wrap.container {
  .row,
  .wrapper {
   padding-left:20px;
-  padding-right:20px
+  padding-right:20px;
  }
  section.two-columns .has-text.is-left {
   padding-left:0
@@ -8422,4 +8422,42 @@ body>.wrap.container {
 }
 .post-list .post-meta {
     margin-bottom: 50px;
+}
+
+.fc table {
+    margin-bottom: 0;
+}
+.fc-event.open-hour {
+    color: #551A8B;
+}
+.fc-event.open-hour .fc-daygrid-event-dot {
+    border-color: #551A8B;
+}
+section.calendar-event-page {
+    padding:100px 0 175px;
+    position:relative;
+    background:#11beac;
+    background:-webkit-gradient(linear,left top,left bottom,from(rgba(17,190,172,.2)),to(#fff));
+    background:-webkit-linear-gradient(top,rgba(17,190,172,.2),#fff);
+    background:-o-linear-gradient(top,rgba(17,190,172,.2) 0,#fff 100%);
+    background:linear-gradient(180deg,rgba(17,190,172,.2),#fff)
+}
+section.calendar-event-page .event {
+    background:#fff;
+    border-radius:25px;
+    padding:40px;
+    -webkit-box-shadow:0 0 20px rgba(0,0,0,.05);
+    box-shadow:0 0 20px rgba(0,0,0,.05)
+}
+section.calendar-event-page .event-thumbnail {
+    width: 100%;
+    height: 300px;
+    background-position: center;
+    background-size: cover;
+    margin-bottom: 40px;
+}
+@media screen and (max-width:900px) {
+    section.calendar-event-page .event-thumbnail {
+        height: 200px;
+    }
 }

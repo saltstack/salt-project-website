@@ -4,7 +4,7 @@ title: "Title"
 summary: "Summary"
 date: "yyyy-mm-dd"
 author: Testy McTester
-url: "/blog/title-shortened"
+url: "blog/title-shortened"
 image:
 image_alt:
 tags:

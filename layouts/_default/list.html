@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        {{- partial "head" . -}}
-    </head>
-    <body>
-        {{- partial "header" . -}}
-            {{ .Content }}
-        {{- partial "footer" . -}}
-    </body>
-</html>
+{{ define "main" }}
+    {{ .Content }}
+{{ end }}

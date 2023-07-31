@@ -3,8 +3,8 @@ title: "Salt 3006 LTS is available"
 summary: "The Salt Project has just released 3006.0 of the Salt 3006 LTS."
 date: "2023-04-18"
 author: Alyssa Rock
-url: "/blog/salt-3006-release-is-now-available"
-image: /images/blog/new-release.png
+url: "blog/salt-3006-release-is-now-available"
+image: images/blog/new-release.png
 image_alt:
 tags:
     - releases

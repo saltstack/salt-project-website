@@ -4,8 +4,8 @@ title: "Open Hour 2023-MON-dd"
 summary: "Open hour notes for July 20, 2023. In this open hour, {description}."
 date: "yyyy-mm-dd"
 author: Alyssa Rock
-url: "/blog/open-hour-yyyy-month-dd"
-image: /images/blog/person-computer-01.jpg
+url: "blog/open-hour-yyyy-month-dd"
+image: images/blog/person-computer-01.jpg
 image_alt:
 tags:
     - open hour

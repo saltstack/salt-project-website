@@ -1,15 +1,14 @@
-baseurl = "/"
+baseURL = "/"
 title = "Salt Project"
 languageCode = "en-us"
 summaryLength = 10
-relativeURLs = true
 
 [ taxonomies ]
     tag = 'tags'
 
 [ the-hacks ]
     recommended = [
-        "VR Headsets, Why Tech Won't Just Let Them Go.",
-        'The Evolution of Video Games',
+        "Shadow IT Makes the World Turn",
+        'Red Hat To Restrict Source Code Access!',
         'Putting the "A.I. Genie" Back In The Bottle'
     ]

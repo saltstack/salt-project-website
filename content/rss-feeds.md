@@ -35,16 +35,16 @@ Stay up to date on all things SaltStack on the [corporate blog](/blog/). Catch e
 blog post and press release, as well as the latest news and information on
 SaltStack product updates, and webinars.
 
-[RSS Feed](/blog/index.xml)
+[RSS Feed](../blog/index.xml)
 
 ## Salt Security Announcements
 Subscribe to [Salt Security](/security-announcements) RSS feed and receive a notification when new
 information is available regarding security announcements, patches and more.
 
-[RSS Feed](/security-announcements/index.xml)
+[RSS Feed](../security-announcements/index.xml)
 
 ## Community Events
 Get the latest Events from our Community Events, including the Weekly Open
 Hour, Working Groups, Monthly Meetups and More!
 
-[RSS Feed](/community-events/index.xml)
+[RSS Feed](../community-events/index.xml)
