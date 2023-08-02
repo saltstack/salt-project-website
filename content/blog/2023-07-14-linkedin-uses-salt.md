@@ -9,6 +9,7 @@ image: images/blog/person-phone-01.jpg
 image_alt:
 tags:
     - case study
+    - news
 ---
 
 # How LinkedIn uses Salt to support infrastructure growth
