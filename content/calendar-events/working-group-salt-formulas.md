@@ -21,3 +21,7 @@ themselves and can be used for tasks such as:
 - Configuring and starting a service
 - Setting up users or permissions
 - Many other common tasks
+
+<!-- If you change these details, make sure you also change them in
+content > working-groups > salt-formulas.md
+ -->
