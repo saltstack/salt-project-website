@@ -1,12 +1,25 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        {{- partial "head" . -}}
-    </head>
-    <body class="working-groups">
-        {{- partial "header" . -}}
-        {{ partial "groups/banner" }}
-        {{ partial "groups/working-groups" }}
-        {{- partial "footer" . -}}
-    </body>
-</html>
+{{ define "main" }}
+  <section class="calendar-event-page">
+    <div class="uk-container">
+      <div class="event">
+
+          <div class="event-thumbnail" style="background-image: url({{ .Params.image | relURL }})"></div>
+
+          <h2>{{- .Title -}}</h2>
+
+          <hr />
+
+          <div class="group-text">
+
+            <p>{{ .Params.description }}</p>
+
+              <ul>
+                <li><strong>Captain:</strong> {{ .Params.captain }} <a href="https://github.com/{{ .Params.captainHandle }}">@{{ .Params.captainHandle }}</a></li>
+                <li><strong>Slack channel:</strong> {{ .Params.slackChannel }}</li>
+                <li><strong>Meeting times:</strong> See <a href="{{ .Params.meetingLink | relURL }}"> {{.Title}}  calendar page</a></li>
+              </ul>
+         </div>
+      </div>
+    </div>
+  </section>
+{{ end }}

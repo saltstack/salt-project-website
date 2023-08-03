@@ -7306,8 +7306,11 @@ section.working-groups .panel .group-text {
  padding-bottom:20px;
  margin-bottom:35px
 }
-section.working-groups .panel .group-links a {
+section.working-groups .panel .group-text a {
  color:#2fa5d8
+}
+section.calendar-event-page .group-text a {
+    color:#2fa5d8
 }
 .comment-list ol {
  list-style:none
@@ -8432,6 +8435,9 @@ body>.wrap.container {
 }
 .fc-event.open-hour .fc-daygrid-event-dot {
     border-color: #551A8B;
+}
+section.calendar-event-page .event a {
+    color:#2fa5d8
 }
 section.calendar-event-page {
     padding:100px 0 175px;

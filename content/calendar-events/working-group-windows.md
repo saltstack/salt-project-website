@@ -12,3 +12,12 @@ url: calendar-events/windows
 # Windows
 
 Join the Windows working group to improve Salt for Windows operating systems.
+
+For more information:
+
+- [Windows project board](https://github.com/saltstack/salt/projects/19)
+- [Windows meeting notes](https://github.com/saltstack/community/tree/master/working_groups/wg-Windows/meeting-notes)
+
+<!-- If you change these details, make sure you also change them in
+content > working-groups > windows.md
+ -->

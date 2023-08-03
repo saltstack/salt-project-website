@@ -1,0 +1,32 @@
+{{ define "main" }}
+  <section class="banner">
+    <img src="/images/work-groups.jpg" alt="">
+    <div class="text">
+      <h1>Working Groups</h1>
+
+      <p>Community members join in collaboration with the Salt Core Team to decide on objectives and goals to propel the overall project forward while working specific projects. The members of each group also have some autonomy in guiding the technical aspects of each project.</p>
+    </div>
+  </section>
+  <section class="working-groups">
+    <div class="wrapper">
+      <div class="grid">
+        {{ range .Pages }}
+          <div class="panel">
+            <img src="{{ .Params.image | relURL }}" alt="">
+            <div class="group-text">
+              <h2>{{- .Title -}}</h2>
+
+              <p>{{ .Params.description }}</p>
+
+              <ul>
+                <li><strong>Captain:</strong> {{ .Params.captain }} <a href="https://github.com/{{ .Params.captainHandle }}">@{{ .Params.captainHandle }}</a></li>
+                <li><strong>Slack channel:</strong> {{ .Params.slackChannel }}</li>
+                <li><strong>Meeting times:</strong> See <a href="{{ .Params.meetingLink | relURL }}"> {{.Title}}  calendar page</a></li>
+              </ul>
+            </div>
+          </div>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+{{ end }}

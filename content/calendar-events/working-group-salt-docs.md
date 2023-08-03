@@ -12,5 +12,9 @@ url: calendar-events/salt-docs
 # Salt Docs
 
 Join the Salt Docs working group to help with strategic improvements to the
-Salt docs. Our group works by working on strategic projects from the
+Salt docs. Our group works on strategic projects from the
 [Salt docs roadmap](https://saltdocs.prodcamp.com/).
+
+<!-- If you change these details, make sure you also change them in
+content > working-groups > salt-docs.md
+ -->
