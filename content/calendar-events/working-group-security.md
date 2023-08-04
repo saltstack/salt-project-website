@@ -7,6 +7,7 @@ image: images/blog/coworkers-meeting-03.jpg
 zoomLink: https://VMware.zoom.us/j/91021770062?pwd=SFdaOFBQVXRIUnU0Nyt1emtEVlNwQT09&from=addon
 meetingTime: Meets the 2nd Wednesday monthly at 16:00-17:00 UTC / 10:00 a.m. U.S. Mountain Time
 url: calendar-events/security
+workingGroupLink: working-groups/security/
 ---
 
 # Security

@@ -7,6 +7,7 @@ image: images/blog/coworkers-meeting-10.jpg
 zoomLink: https://VMware.zoom.us/j/99624480164?pwd=RVNaVmJBQU1uZDhEaUt4eGVMdC9WQT09&from=addon
 meetingTime: Meets weekly every Tuesday at 22:00-23:00 UTC / 4:00 p.m. U.S. Mountain Time
 url: calendar-events/salt-docs
+workingGroupLink: working-groups/salt-docs/
 ---
 
 # Salt Docs

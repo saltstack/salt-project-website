@@ -7,6 +7,7 @@ image: images/saltmanbw-2.jpg
 zoomLink: https://VMware.zoom.us/j/94356749876?pwd=aEx5YWlrSkpQZU0vYUFVQ2NZeTQ1dz09
 meetingTime: Bi-weekly on Tuesdays at 15:00-16:00 UTC / 9:00 a.m. U.S. Mountain Time
 url: calendar-events/formulas
+workingGroupLink: working-groups/salt-formulas/
 ---
 
 # Salt Formulas

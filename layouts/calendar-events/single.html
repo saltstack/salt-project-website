@@ -12,6 +12,10 @@
         <p><strong>Meeting time:</strong> {{ .Params.meetingTime }}</p>
 
         <p><strong>Zoom link to attend:</strong> <a href="{{ .Params.zoomLink }}">{{ .Params.zoomLink }}</a></p>
+
+        {{ if .Params.workingGroupLink }}
+            <p><strong>More information:</strong> See <a href="{{ .Params.workingGroupLink | relURL }}">{{.Title}} working group page</a></p>
+        {{ end }}
       </div>
     </div>
   </section>

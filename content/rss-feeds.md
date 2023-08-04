@@ -42,9 +42,3 @@ Subscribe to [Salt Security](/security-announcements) RSS feed and receive a not
 information is available regarding security announcements, patches and more.
 
 [RSS Feed](../security-announcements/index.xml)
-
-## Community Events
-Get the latest Events from our Community Events, including the Weekly Open
-Hour, Working Groups, Monthly Meetups and More!
-
-[RSS Feed](../community-events/index.xml)
