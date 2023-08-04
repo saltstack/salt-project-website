@@ -7,6 +7,7 @@ image: images/blog/coworkers-laughing-02.png
 zoomLink: https://vmware.zoom.us/j/92211190594?pwd=bHcvb1p3SytRMGtaYm9pc3Z3RHdMQT09
 meetingTime: Meets the 3rd Thursday of the month at 16:00-17:00 UTC / 10:00 a.m. U.S. Mountain Time
 url: calendar-events/windows
+workingGroupLink: working-groups/windows/
 ---
 
 # Windows

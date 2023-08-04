@@ -5,11 +5,12 @@ summary: "Summary"
 date: "yyyy-mm-dd"
 author: Testy McTester
 url: "blog/title-shortened"
-image:
+image: images/blog/
 image_alt:
 tags:
     - releases
-    - open hour
+    - news
+    - community
 ---
 
 # This is where you put the heading
