@@ -40,7 +40,7 @@ pages:
   image: "${CI_TEMPLATE_REGISTRY_HOST}/pages/hugo:latest"
   script:
     # Generate site for hosting in GitLab Pages
-    - hugo --baseURL "${CI_PAGES_URL}/"
+    - hugo --buildFuture --baseURL "${CI_PAGES_URL}/"
     # Generate site for hosting on Salt Project Website
     - mkdir public-prod
     - hugo --baseURL "https://saltproject.io/" --destination ./public-prod
