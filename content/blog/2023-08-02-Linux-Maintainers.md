@@ -20,35 +20,35 @@ We'd like to invite you to go and read the full report for yourself. Also, we wa
 
 ## Open Source Powers the World
 
->Open source software is the backbone of our world infrastructure. 
-From financial services and healthcare, to telecommunications 
+>Open source software is the backbone of our world infrastructure.
+From financial services and healthcare, to telecommunications
 and the internet—it is no secret that open source runs the world...
 
 ## The Value of a Positive Maintainer/Contributor Relationship
 
 
->Maintainers that build successful projects often go to extensive 
-lengths to help first-time contributors improve their contribution 
-and learn how to prepare a code submission, such as checking 
-the format and syntax of code using automated check systems. 
-Gareth Greenaway, currently a maintainer of the Salt project, 
-had submitted an error-riddled PR that the lead project creator, 
-Thomas Hatch, read. The original creator gave Greenaway positive 
-feedback and worked with him to fix the code. Greenaway went on 
+>Maintainers that build successful projects often go to extensive
+lengths to help first-time contributors improve their contribution
+and learn how to prepare a code submission, such as checking
+the format and syntax of code using automated check systems.
+Gareth Greenaway, currently a maintainer of the Salt project,
+had submitted an error-riddled PR that the lead project creator,
+Thomas Hatch, read. The original creator gave Greenaway positive
+feedback and worked with him to fix the code. Greenaway went on
 to submit numerous other PRs and later became a Salt maintainer.
 
 ## Docs Are Crucial to Open Source Success
 
 
->Not surprisingly, maintainers expressed concern 
-that their project needed to improve documentation. 
-Best practices suggested by maintainers included 
+>Not surprisingly, maintainers expressed concern
+that their project needed to improve documentation.
+Best practices suggested by maintainers included
 making sure that project leads demonstrate docu-
-mentation is a first-class citizen in a project with 
-comparable recognition to code contributions; hiring 
+mentation is a first-class citizen in a project with
+comparable recognition to code contributions; hiring
 a documentation coordinator; requiring documen-
-tation to be submitted with each code contribution; 
-and creating formal events or processes around 
+tation to be submitted with each code contribution;
+and creating formal events or processes around
 documentation to make it easier to contribute.
 
 
