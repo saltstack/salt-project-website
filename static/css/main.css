@@ -8330,6 +8330,15 @@ body>.wrap.container {
 	gap: 2rem;
 }
 
+section.recent-posts img {
+    width:100%;
+    border-radius:15px;
+    height:150px;
+    -o-object-fit:cover;
+    object-fit:cover;
+    margin-bottom: 20px;
+   }
+
 .arch-col .flex {
 	display: flex;
 	justify-content: space-between;

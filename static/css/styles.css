@@ -159,7 +159,7 @@ main {
     background-repeat: repeat;
     height: 100%;
     width: 100%;
-    /* background-position: center 860px; */ 
+    /* background-position: center 860px; */
     background-repeat: no-repeat;
 }
 
@@ -342,6 +342,9 @@ section.recent-posts .posts .post h3 {
     font-size:22px;
     line-height:26px;
     margin:0 0 20px
+}
+section.recent-posts .posts .post .recent-post-date {
+    font-weight: bold;
 }
 section.recent-posts .posts .post p {
     font-size:16px;
