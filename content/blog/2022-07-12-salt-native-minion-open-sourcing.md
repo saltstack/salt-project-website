@@ -5,6 +5,8 @@ minions to the Salt Project."
 date: "2022-07-12"
 author: Chunga
 url: "blog/salt-project-announces-the-open-sourcing-of-several-saltstack-native-minions/"
+aliases:
+  - /salt-project-announces-the-open-sourcing-of-several-saltstack-native-minions/
 image: images/blog/new-update.png
 image_alt:
 tags:
