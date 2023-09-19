@@ -27,7 +27,7 @@ Scripts exist for the following OS versions:
 
 ## Why make these scripts available?
 
-Salt Project is open sourcing these scripts as a follow-up to [Salt Project announcing the open sourcing of several Salt Project Native Minions](./2022-07-12-salt-native-minion-open-sourcing.md).
+Salt Project is open sourcing these scripts as a follow-up to [Salt Project announcing the open sourcing of several Salt Project Native Minions]({{< ref "/2022-07-12-salt-native-minion-open-sourcing" >}} "Salt Project Announces the Open Sourcing of Several SaltStack Native Minions").
 
 These are example scripts referenced when previously building `armhf` Raspbian packages for Raspberry Pi devices, and some users may still want to build packages themselves in order to have newer versions of Salt, such as Salt v3005.2.
 
