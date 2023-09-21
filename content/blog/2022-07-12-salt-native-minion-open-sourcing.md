@@ -25,12 +25,13 @@ development.
 
 Native minions:
 
-- AIX
-- Arista
-- Juniper
-- Solaris
+- AIX: [salt-native-minion-for-aix](https://github.com/vmware/salt-native-minion-for-aix)
+- Arista: [salt-native-minion-for-arista](https://github.com/vmware/salt-native-minion-for-arista)
+- Juniper: [salt-native-minion-for-juniper](https://github.com/vmware/salt-native-minion-for-juniper)
+- Solaris 10: [salt-native-minion-for-solaris-10](https://github.com/vmware/salt-native-minion-for-solaris-10)
+- Solaris 11: [salt-native-minion-for-solaris-11](https://github.com/vmware/salt-native-minion-for-solaris-11)
 
-We will also be doing this for the Raspberry Pi builds.
+We are also open sourcing [Raspberry Pi `armhf` builds]({{< ref "/2023-09-19-salt-pi-pkg-open-sourcing" >}} "Salt Project is Open Sourcing salt-pi-pkg").
 
 **After Salt release v3005 we'll no longer build these packages but will
 provide open source project links in an updated announcement later.**
