@@ -1,6 +1,6 @@
 ---
 title: "Aira Automation Config and Salt Project — Leader in Configuration Management"
-summary: "Summary"
+summary: "When SaltStack was founded in 2011, it was built to be a pioneer in intelligent, event-driven configuration automation that controls and secures IT infrastructure and it is still doing that today."
 date: "2023-10-02"
 author: Praveena Ram
 url: "blog/aria-automation-config-and-salt"
