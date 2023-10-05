@@ -52,7 +52,7 @@ to join a mailing list for updates and let us know you are interested.
 
 ## Community forums update
 
-Today’s issue: {description}:
+Today's issue: {description}.
 
 - Lorem
 
