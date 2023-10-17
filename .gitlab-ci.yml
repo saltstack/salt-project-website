@@ -75,6 +75,7 @@ update-scheduled-pipeline:
   stage: trigger-upload
   image: debian:11-slim
   script:
+    - apt update && apt install curl -y
     - |
       curl -fsSL \
         --request PUT \
