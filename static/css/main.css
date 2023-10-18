@@ -8435,6 +8435,10 @@ section.recent-posts img {
 .post-list .post-meta {
     margin-bottom: 50px;
 }
+.security-date {
+    padding-bottom: 20px;
+    font-weight: bold;
+}
 
 .fc table {
     margin-bottom: 0;
