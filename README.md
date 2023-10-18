@@ -35,14 +35,14 @@ Episodes of The Hacks are not saved in this repository, but are instead dynamica
 
 To publish a new episode of The Hacks to the website:
 
-- Find the latest successful tagged pipeline via [GitLab: Salt Project Website Pipelines (by tag)](https://gitlab.com/saltstack/open/docs/salt-project-website/-/pipelines?scope=tags&page=1)
-  - Tag format should be `v*` (ex. `v0.1.4`)
-- [Run a new pipeline](https://gitlab.com/saltstack/open/docs/salt-project-website/-/pipelines/new)
-  - **Run for branch name or tag**: Select the latest successful tag (ex. `v0.1.4`)
-  - Click **Run Pipeline**
+- Run the **Republish site with latest The Hacks episodes** pipeline found in [scheduled pipelines for salt-project-website](https://gitlab.com/saltstack/open/docs/salt-project-website/-/pipeline_schedules?scope=ACTIVE)
 - A new pipeline should run and retrieve the latest updates to all episodes of The Hacks!
 
-If any issues occur, reach out to the Docs team or SRE team.
+Troubleshooting:
+
+- If URL check breaks on a new episode, the episode content may need to be updated to fix the broken URL.
+- If URL check breaks on a link that is manually verified as a passing link, then re-running the pipeline may work.
+- If uncertain on how to remedy, reach out to the Docs team or SRE team.
 
 #### Updating "The Hacks" recommended episodes
 
