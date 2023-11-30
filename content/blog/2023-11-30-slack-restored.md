@@ -1,6 +1,6 @@
 ---
 title: "Salt community Slack is now restored"
-summary: "All Salt Project community Slack services are now restored. Thank you again for your patience."
+summary: "We're pleased to report that the Salt Project Community Slack workspace is back online. You may need to re-open the workspace and re-authenticate."
 date: "2023-11-30T09:00:00"
 author: Jimmy Chunga
 url: "blog/temporary-slack-outage"
@@ -15,4 +15,5 @@ tags:
 To Salt Project community members:
 
 We're pleased to report that the Salt Project Community Slack workspace is back
-online. Thank you again for your patience.
+online. You may need to re-open the workspace and re-authenticate. Thank you
+again for your patience.
