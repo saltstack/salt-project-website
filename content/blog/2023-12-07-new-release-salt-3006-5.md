@@ -16,6 +16,14 @@ The Salt Project has just released the 3006.5 bugfix of the Salt 3006 LTS. To
 download and install Salt 3006.5, see the
 [Salt install guide](https://docs.saltproject.io/salt/install-guide/en/latest/).
 
+This release also includes support for the following new versions of these
+operating systems:
+
+- Debian 12
+- Amazon 2023
+- MacOS arm
+- Photon 5
+
 To access the 3006.5 packages directly, go to the
 [Salt Project Package Repository](https://repo.saltproject.io/salt/py3/).
 
