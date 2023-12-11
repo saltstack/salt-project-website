@@ -1,7 +1,7 @@
 ---
 title: "Salt 3006.5 is available"
 summary: "The Salt Project has just released the 3006.5 bugfix of the Salt 3006 LTS."
-date: "2023-12-07"
+date: "2023-12-11"
 author: Alyssa Rock
 url: "blog/salt-3006-5-release-is-now-available"
 image: images/blog/new-release.png
