@@ -2,18 +2,15 @@
     <main class="single">
         <div class="uk-container">
             <section class="single-content">
-                <script src="https://cdn.jsdelivr.net/npm/rrule@2.6.4/dist/es5/rrule.min.js"></script>
-                <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
-                <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/rrule@6.1.8/index.global.min.js"></script>
-                <script>
-                    document.addEventListener('DOMContentLoaded', function() {
-                        var calendarEl = document.getElementById('calendar');
-                        var calendar = new FullCalendar.Calendar(calendarEl, {
-                            initialView: 'dayGridMonth',
-                            events: '{{ "calendar-events/index.json" | relURL }}'
-                        });
-                        calendar.render();
-                    });
+                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.7/jstz.js"></script>
+
+                <iframe id="calendar_container" src="https://calendar.google.com/calendar/embed?src=c_b7646523f32f06e6762300c32b0960f6304c6cc6998e4233ef7c749d362b2759%40group.calendar.google.com&ctz=America%2FDenver" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+
+                <script type="text/javascript">
+                    var timezone = jstz.determine();
+                    var pref = 'https://calendar.google.com/calendar/embed?src=c_b7646523f32f06e6762300c32b0960f6304c6cc6998e4233ef7c749d362b2759%40group.calendar.google.com&ctz=';
+                    var iframe_src = pref + encodeURIComponent(timezone.name().replace(' ' ,''));
+                    document.getElementById('calendar_container').src = iframe_src;
                 </script>
 
                 <div id="calendar"></div>
