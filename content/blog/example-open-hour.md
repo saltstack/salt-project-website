@@ -1,7 +1,7 @@
 ---
 draft: true
-title: "Open Hour 2023-MON-dd"
-summary: "Open hour notes for Month dd, 2023. In this open hour, {description}."
+title: "Open Hour 2024-MON-dd"
+summary: "Open hour notes for Month dd, 2024. In this open hour, {description}."
 date: "yyyy-mm-dd"
 author: Alyssa Rock
 url: "blog/open-hour-yyyy-month-dd"
@@ -13,7 +13,7 @@ tags:
 
 Note: Make sure you remove "draft: true" from the front matter.
 
-# Open Hour 2023-MON-dd
+# Open Hour 2024-MON-dd
 
 [Open Hour YouTube playlist](https://www.youtube.com/playlist?list=PL9svBjLDUl_-XfmQSCgE_uislHD_rRKfu) | Contact us! <saltproject@vmware.com>
 
@@ -29,7 +29,7 @@ In this open hour, {description}.
 
 ## General updates and announcements
 
-- Open Hours are held every 1st and 3rd Thursday from 10a.m. to 11a.m. Pacific.
+- Open Hours are held every 3rd Thursday from 10a.m. to 11a.m. Pacific.
 - Our next Open Hour will be {month date}.
 - Join a [Salt Project working group](https://saltproject.io/working-groups/)!
 
