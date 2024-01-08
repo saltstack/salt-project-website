@@ -12,6 +12,8 @@ tags:
     - community
 ---
 
+# PyTest: A Journey of 3 Years
+
 Salt is ending a journey that started 3 years ago with the [first pull request](https://github.com/saltstack/salt/pull/39625) to add support for [PyTest](https://docs.pytest.org). In the upcoming weeks, Salt [will finally switch](https://github.com/saltstack/salt/pull/57897) to PyTest as its **sole** test runner, and the previous, and heavily customized unittest runner, [`runtests.py`](https://github.com/saltstack/salt/blob/v3001.1/tests/runtests.py), finally reaches EOL.
 
 ## Why?
