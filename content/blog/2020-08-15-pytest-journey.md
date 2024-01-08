@@ -24,7 +24,7 @@ There needed to be a better way going forward.
 
 ### What's The Gain?
 If you know PyTest, you already know what it brings to the table. If you're not familiar, here are a few highlights:
-* If you need "something" added to your test suite, it's likely that someone already [created a plugin](https://plugincompat.herokuapp.com/) implementing that.
+* If you need "something" added to your test suite, it's likely that someone already [created a plugin](https://docs.pytest.org/en/latest/reference/plugin_list.html) implementing that.
 
 * Selecting a group of tests, a single test, a test class, is [incredibly poweful and simple](https://docs.pytest.org/en/stable/usage.html#specifying-tests-selecting-tests), especially when compared to `runtests.py`.
 
