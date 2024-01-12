@@ -14,6 +14,8 @@ tags:
 
 # Undocumented Features: Salt Runner Silence
 
+> Nicholas Hughes is a founding partner and CEO of EITR Technologies and a champion of Salt Project. This blog entry also appears on the EITR blog at: <https://www.eitr.tech/blog/2023/11/9/undocumented-features-salt-runner-silence>
+
 Salt Project is a useful tool for DevOps. It has functionality for days (as the
 kids say), and Runner modules stand out as powerful utilities that allow for the
 execution of tasks directly on the master. Runners are typically executed from

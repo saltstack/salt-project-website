@@ -14,6 +14,8 @@ tags:
 
 # PyTest: A Journey of 3 Years
 
+> Pedro Algarvio is a core member of the Salt Project team. This blog entry also appears on his personal blog at: <https://blog.algarvio.me/blog/pytest-a-journey-of-3-years/>
+
 Salt is ending a journey that started 3 years ago with the [first pull request](https://github.com/saltstack/salt/pull/39625) to add support for [PyTest](https://docs.pytest.org). In the upcoming weeks, Salt [will finally switch](https://github.com/saltstack/salt/pull/57897) to PyTest as its **sole** test runner, and the previous, and heavily customized unittest runner, [`runtests.py`](https://github.com/saltstack/salt/blob/v3001.1/tests/runtests.py), finally reaches EOL.
 
 ## Why?
@@ -170,3 +172,4 @@ However, please note that [unittest](https://docs.python.org/3/library/unittest.
 
 ## What's Next?
 We will continue to adapt the test suite for PyTest by creating any neccessary foundational code required and rewrting almost **all** of the testing documentation.
+
