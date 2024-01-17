@@ -2,7 +2,6 @@
 title: "Salt 3007 RC1 is now available "
 summary: "The Salt Project has just released RC1 (release candidate 1) of the Salt 3007 STS."
 date: "2024-01-08"
-author: Alyssa Rock
 url: "blog/salt-3007-rc1-available"
 image: images/blog/new-update.png
 image_alt:
@@ -10,8 +9,6 @@ tags:
     - releases
     - release candidate
 ---
-
-# Salt 3007 RC1 is now available
 
 The Salt Project has just released RC1 (release candidate 1) of the Salt 3007
 STS. To download and test Salt 3007 RC1, see

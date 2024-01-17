@@ -12,8 +12,6 @@ tags:
     - news
 ---
 
-# How LinkedIn uses Salt to support infrastructure growth
-
 Here at the Salt Project, we enjoyed reading this recent blog post from LinkedIn
 Engineering:
 [Scaling Salt for Remote Execution to support LinkedIn Infra growth](https://engineering.linkedin.com/blog/2023/scaling-salt-for-remote-execution-to-support-linkedin-infra-grow)

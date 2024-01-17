@@ -10,8 +10,6 @@ tags:
     - announcements
 ---
 
-# Salt community Slack is now restored
-
 To Salt Project community members:
 
 We're pleased to report that the Salt Project Community Slack workspace is back

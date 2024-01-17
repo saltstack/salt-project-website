@@ -1,0 +1,25 @@
+{{ define "main" }}
+    <main class="single">
+        <div class="uk-container">
+            <section class="single-content">
+                <h2>{{- .Title -}}</h2>
+
+                <div class="blog-metadata">
+                  {{ if .Params.author }}
+                    <span>by <strong>{{ .Params.author }}</strong> — {{ dateFormat "Jan 2, 2006" .Params.date }}</span>
+
+                    {{ if .Params.authorbio }}
+                      <blockquote class="authorbio">{{ .Params.authorbio }}</blockquote>
+                    {{ end}}
+                {{ else }}
+                  <span>{{ dateFormat "Jan 2, 2006" .Params.date }}</span>
+                {{ end }}
+                </div>
+
+                {{ .Content }}
+
+                {{ partial "tags" . }}
+            </section>
+        </div>
+    </main>
+{{ end }}

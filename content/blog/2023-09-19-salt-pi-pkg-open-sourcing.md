@@ -2,15 +2,12 @@
 title: "Salt Project is Open Sourcing salt-pi-pkg"
 summary: "Salt Project is open sourcing salt-pi-pkg build script examples for classic packages on Raspberry Pi."
 date: "2023-09-19"
-author: Derek Ardolf
 url: "blog/salt-pi-pkg-open-source/"
 image: images/blog/new-update.png
 image_alt:
 tags:
     - announcement
 ---
-
-# Salt Project is Open Sourcing salt-pi-pkg
 
 Salt Project is open sourcing [salt-pi-pkg](https://github.com/vmware-archive/salt-pi-pkg/tree/main) build script examples for classic packages on Raspberry Pi.
 
