@@ -4,6 +4,7 @@ title: Linux Foundation Showcases Salt Project
 summary: "Here at the Salt Project, we enjoyed reading this recent report about the power of Open Source from our friends at the Linux Foundation."
 date: "2023-08-02"
 author: Jimmy Chunga
+authorbio: "Jimmy Chunga is the community manager for Salt Project."
 url: "blog/Linux-Foundation-Showcases-Salt-Project"
 image: images/blog/datacenter-03.jpg
 image_alt:
@@ -12,7 +13,6 @@ tags:
     - community
 ---
 
-# Linux Foundation Showcases Salt Project
 Here at the Salt Project, we enjoyed reading this recent report from our friends at the Linux Foundation:
 [Open Source Maintainers](https://www.linuxfoundation.org/research/open-source-maintainers).
 

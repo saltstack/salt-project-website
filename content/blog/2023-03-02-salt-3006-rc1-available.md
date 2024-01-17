@@ -2,7 +2,6 @@
 title: "Salt 3006 RC1 is now available "
 summary: "The Salt Project has just released RC1 (release candidate 1) of the Salt 3006 LTS."
 date: "2023-03-02"
-author: Alyssa Rock
 url: "blog/salt-3006-rc1-available"
 aliases:
   - /salt-3006-rc1-is-here/
@@ -12,8 +11,6 @@ tags:
     - releases
     - release candidate
 ---
-
-# Salt 3006 RC1 is now available
 
 The Salt Project has just released RC1 (release candidate 1) of the Salt 3006
 LTS. To download and test Salt 3006 RC1, see

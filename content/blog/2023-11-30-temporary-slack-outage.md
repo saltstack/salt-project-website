@@ -10,8 +10,6 @@ tags:
     - announcements
 ---
 
-# Salt community Slack is temporarily down
-
 To Salt Project community members:
 
 As many of you have noticed, the Salt Project Community Slack workspace was

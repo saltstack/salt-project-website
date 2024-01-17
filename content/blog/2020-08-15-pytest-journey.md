@@ -4,6 +4,7 @@ title: 'PyTest: A Journey of 3 Years'
 summary: "Salt is ending a journey that started 3 years ago with the first pull request to add support for PyTest. In the upcoming weeks, Salt will finally switch to PyTest as its sole test runner, and the previous, and heavily customized unittest runner, runtests.py, finally reaches EOL."
 date: "2020-08-15"
 author: Pedro Algarvio
+authorbio: "Pedro Algavrio is a member of the Salt Project core development team. This blog entry also appears on his personal blog at: https://blog.algarvio.me/blog/pytest-a-journey-of-3-years/"
 url: "blog/pytest-a-journey-of-3-years"
 image: images/blog/datacenter-03.jpg
 image_alt:
@@ -11,10 +12,6 @@ tags:
     - news
     - community
 ---
-
-# PyTest: A Journey of 3 Years
-
-> Pedro Algarvio is a core member of the Salt Project team. This blog entry also appears on his personal blog at: <https://blog.algarvio.me/blog/pytest-a-journey-of-3-years/>
 
 Salt is ending a journey that started 3 years ago with the [first pull request](https://github.com/saltstack/salt/pull/39625) to add support for [PyTest](https://docs.pytest.org). In the upcoming weeks, Salt [will finally switch](https://github.com/saltstack/salt/pull/57897) to PyTest as its **sole** test runner, and the previous, and heavily customized unittest runner, [`runtests.py`](https://github.com/saltstack/salt/blob/v3001.1/tests/runtests.py), finally reaches EOL.
 

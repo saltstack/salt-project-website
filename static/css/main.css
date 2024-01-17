@@ -8480,3 +8480,15 @@ section.calendar-event-page .event-thumbnail {
         height: 200px;
     }
 }
+.authorbio {
+  background: #f9f9f9;
+  border-left: 5px solid #ccc;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+  font-size: 14px;
+  font-style: normal;
+  line-height: 23px;
+}
+.blog-metadata {
+  margin-bottom: 20px;
+}

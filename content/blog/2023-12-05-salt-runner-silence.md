@@ -4,6 +4,7 @@ summary: "Runner modules have an undocumented configuration parameter that allow
 output of the Runner modules."
 date: "2023-12-05"
 author: Nicholas M. Hughes
+authorbio: "Nicholas Hughes is a founding partner and CEO of EITR Technologies and a champion of Salt Project. This blog entry also appears on the EITR blog at: https://www.eitr.tech/blog/2023/11/9/undocumented-features-salt-runner-silence"
 url: "blog/salt-runner-silence"
 image: images/blog/coworkers-meeting-03.jpg
 image_alt:
@@ -11,10 +12,6 @@ tags:
     - community
     - documentation
 ---
-
-# Undocumented Features: Salt Runner Silence
-
-> Nicholas Hughes is a founding partner and CEO of EITR Technologies and a champion of Salt Project. This blog entry also appears on the EITR blog at: <https://www.eitr.tech/blog/2023/11/9/undocumented-features-salt-runner-silence>
 
 Salt Project is a useful tool for DevOps. It has functionality for days (as the
 kids say), and Runner modules stand out as powerful utilities that allow for the

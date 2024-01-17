@@ -2,15 +2,12 @@
 title: "Salt 3006.1 is available"
 summary: "The Salt Project has just released 3006.1 bugfix of the Salt 3006 LTS."
 date: "2023-05-05"
-author: Alyssa Rock
 url: "blog/salt-3006-1-release-is-now-available"
 image: images/blog/new-release.png
 image_alt:
 tags:
     - releases
 ---
-
-# Salt 3006.1 is available
 
 The Salt Project has just released 3006.1 bugfix of Salt. To download and
 install Salt 3006.1, see the

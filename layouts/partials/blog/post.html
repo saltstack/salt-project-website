@@ -12,7 +12,9 @@
                 {{ if .Params.date }}
                     <span>{{ dateFormat "Jan 2, 2006" .Params.date }}</span>
                 {{ end }}
-                <span>{{ .Params.author }}</span>
+                {{ if .Params.author }}
+                    <span>{{ .Params.author }}</span>
+                {{ end }}
             </div>
             <h2>{{ .Params.title }}</h2>
             <p>{{ .Summary }}</p>

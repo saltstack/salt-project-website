@@ -3,7 +3,8 @@ draft: true
 title: "Salt 300x.x is available"
 summary: "The Salt Project has just released the 300x.x bugfix of Salt 300x."
 date: "yyyy-mm-dd"
-author: Testy McTester
+author: Testy McTester - DELETE IF ANONYMOUS
+authorbio: "Author bio here. Delete if no bio."
 url: "blog/salt-release-300x-x-is-now-available"
 image: images/blog/new-release.png
 tags:
@@ -23,8 +24,6 @@ Checklist of things to do:
 - Add necessary links to the blog content and remove or replace any {placeholder text}
 
 --->
-
-# Salt 300x.x is available
 
 The Salt Project has just released 300x.x bugfix of Salt. To download and
 install Salt 300x.x, see the

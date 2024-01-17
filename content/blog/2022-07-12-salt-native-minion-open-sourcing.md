@@ -3,7 +3,6 @@ title: "Salt Project Announces the Open Sourcing of Several SaltStack Native Min
 summary: "Salt Project is happy to announce the open sourcing of several SaltStack native
 minions to the Salt Project."
 date: "2022-07-12"
-author: Chunga
 url: "blog/salt-project-announces-the-open-sourcing-of-several-saltstack-native-minions/"
 aliases:
   - /salt-project-announces-the-open-sourcing-of-several-saltstack-native-minions/
@@ -12,8 +11,6 @@ image_alt:
 tags:
     - announcement
 ---
-
-# Salt Project Announces the Open Sourcing of Several SaltStack Native Minions
 
 Salt Project is happy to announce the open sourcing of several SaltStack native
 minions to the Salt Project.  We will continue to support these and all our

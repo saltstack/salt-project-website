@@ -2,15 +2,12 @@
 title: "Salt 3005.3 is available"
 summary: "The Salt Project has just released the 3005.3 bugfix of Salt 3005."
 date: "2023-09-21T05:00:00"
-author: Alyssa Rock
 url: "blog/salt-3005-3-release-is-now-available"
 image: images/blog/new-release.png
 image_alt:
 tags:
     - releases
 ---
-
-# Salt 3005.3 is available
 
 The Salt Project has just released the 3005.3 bugfix of Salt 3005. To download
 and install Salt 3005.3, see the
