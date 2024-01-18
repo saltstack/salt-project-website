@@ -3,10 +3,8 @@ draft: true
 title: "Open Hour 2024-MON-dd"
 summary: "Open hour notes for Month dd, 2024. In this open hour, {description}."
 date: "yyyy-mm-dd"
-author: Alyssa Rock
 url: "blog/open-hour-yyyy-month-dd"
 image: images/blog/person-computer-01.jpg
-image_alt:
 tags:
     - open hour
 ---
@@ -23,7 +21,6 @@ In this open hour, {description}.
 ## Agenda
 
 - General updates and announcements
-- New Salt Project website
 - Community forum updates
 - Q&A plus discussion
 
