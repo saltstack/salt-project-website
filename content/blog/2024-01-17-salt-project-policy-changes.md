@@ -37,7 +37,7 @@ rarely is, but it does need to exist and be trackable. Projects that tie to
 revenue thrive, projects that do not, dwindle and die.
 
 This reality has become much more solid in my mind over the last few months
-working inside of Broadcom. I have become a big fan of Hok Tan and his vision
+working inside of Broadcom. I have become a big fan of Hock Tan and his vision
 for Broadcom and VMware.
 
 With all of this said I have spent a great deal of time considering how to best
