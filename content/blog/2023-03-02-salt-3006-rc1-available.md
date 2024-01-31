@@ -14,7 +14,7 @@ tags:
 
 The Salt Project has just released RC1 (release candidate 1) of the Salt 3006
 LTS. To download and test Salt 3006 RC1, see
-[Install a release candidate](https://docs.saltproject.io/salt/install-guide/en/latest/topics/release-candidate.html)
+[Install a release candidate](https://docs.saltproject.io/salt/install-guide/en/latest/topics/other-install-types/release-candidate.html)
 in the Salt install guide. To access the release candidate packages directly, go to the [Salt Project Package Repository](https://repo.saltproject.io/salt_rc/salt/py3/).
 
 Users can install via PyPI, packages, or use the Docker containers.
@@ -38,4 +38,4 @@ LTS/STS release strategy and release timelines can be found in the [Salt Install
 
 The Salt Project strongly encourages Salt community members, users, and stakeholders to carefully test RC1 (release candidate 1) and report any bugs or performance issues to the Salt team prior to the LTS release to ensure final release quality. 
 
-To download and test the release candidate: see [Install a release candidate](https://docs.saltproject.io/salt/install-guide/en/latest/topics/release-candidate.html) in the Salt install guide. To access the release candidate packages directly, go to the [Salt Project Package Repository](https://repo.saltproject.io/salt_rc/salt/py3/).
+To download and test the release candidate: see [Install a release candidate](https://docs.saltproject.io/salt/install-guide/en/latest/topics/other-install-types/release-candidate.html) in the Salt install guide. To access the release candidate packages directly, go to the [Salt Project Package Repository](https://repo.saltproject.io/salt_rc/salt/py3/).
