@@ -33,8 +33,8 @@ To access the 300x.x packages directly, go to the
 
 {Optional: Describe release highlights.}
 
-- Release notes can be found here: {Insert link to release notes}
-- Changelogs can be found here: {Insert link to changelog}
-- Sources are available on PyPI here: {Insert link to PyPI}
+- Release notes: {Insert link to release notes}
+- Changelogs: {Insert link to changelog}
+- Sources are available on PyPI: {Insert link to PyPI}
 
 Thank you all for your contributions!
