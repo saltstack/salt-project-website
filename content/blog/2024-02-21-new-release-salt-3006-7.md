@@ -1,7 +1,7 @@
 ---
 title: "Salt 3006.7 is available"
 summary: "The Salt Project has just released the 3006.7 bugfix of Salt 3006."
-date: "2024-02-08"
+date: "2024-02-21"
 url: "blog/salt-release-3006-7-is-now-available"
 image: images/blog/new-release.png
 tags:
