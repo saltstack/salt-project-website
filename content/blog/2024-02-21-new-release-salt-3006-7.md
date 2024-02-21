@@ -8,7 +8,7 @@ tags:
     - releases
 ---
 
-The Salt Project has just released 300x.x bugfix of Salt. To download and
+The Salt Project has just released 3006.7 bugfix of Salt. To download and
 install Salt 3006.7, see the
 [Salt install guide](https://docs.saltproject.io/salt/install-guide/en/latest/).
 To access the 3006.7 packages directly, go to the
