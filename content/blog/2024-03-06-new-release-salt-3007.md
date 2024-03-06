@@ -18,4 +18,24 @@ To access the 3007.0 packages directly, go to the
 - Changelogs can be found here: https://github.com/saltstack/salt/blob/v3007.0/CHANGELOG.md
 - Sources are available on PyPI here: https://pypi.org/project/salt/3007.0/
 
+## Master cluster ability
+
+This release adds the ability to create a cluster of masters that run behind a load balancer.
+
+For more information:
+
+- [Master cluster page](https://github.com/saltstack/salt/blob/3007.x/doc/topics/tutorials/master-cluster.rst)
+- [Master cluster SEP](https://github.com/saltstack/salt-enhancement-proposals/blob/1433501a1417f78c895345a675e21a8b6382bb61/0000-master-cluster.md)
+
+
+## TCP mTLS and WebSocket transports
+
+One benefit of WebSocket over TCP is the ability of smarter routing of requests with load balancers that support TLS termination and routing based on headers. For instance, you could have both request server and publish server behind a load balancer that is listening on 443.
+
+
+## Vault refactoring
+
+In this release, the Vault integration has been rewritten while also retaining backward compatibility. This rewrite of Vault now provides higher-level abstractions to interact with Vault.
+
+
 Thank you all for your contributions!
