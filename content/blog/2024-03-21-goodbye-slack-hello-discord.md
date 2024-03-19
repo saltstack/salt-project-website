@@ -1,19 +1,19 @@
 ---
 title: "Goodbye Slack, Hello Discord!"
-summary: "Summary"
+summary: "Salt Project is switching from Slack to Discord, effective immediately. While this will be disruptive in the short term, we feel this transition will be fantastic for the Salt Project Community in the long run."
 date: "2024-03-21"
 url: "blog/goodbye-slack-hello-discord"
 author: Jimmy Chunga
 authorbio: "Jimmy Chunga is the Salt Project community manager."
-image: images/blog/
+image: images/blog/new-alert.png
 image_alt:
 tags:
     - news
     - community
 ---
 
-We've all heard the cliches: *"The only thing constant in life is change",*
-*"Change is the law of life",*  *"Our only security is our ability to change".*
+We've all heard the cliches: "The only thing constant in life is change",
+"Change is the law of life", "Our only security is our ability to change".
 I could go on for days. The truth is, these quotes, and quotes like them, are
 used and abused by all of us because they're true. No matter how you rationalize
 it, change is, in a word, uncomfortable. Even when it brings about incredible
