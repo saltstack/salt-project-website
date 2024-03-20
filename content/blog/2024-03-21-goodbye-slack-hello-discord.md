@@ -54,7 +54,7 @@ Thankfully the Salt Project was able to quickly find a fantastic replacement.
 - If you don't have it already, set up a Discord account. You can use a personal or professional account: [Getting Started with Discord](https://support.discord.com/hc/en-us/articles/360033931551-Getting-Started).
 - Use the [Salt Project Discord invite link](https://discord.gg/YVQamSwV3g) to join the Salt Project Community server.
 - Agree to the terms of the new Salt Project Community Code of Conduct.
-- Enjoy the new features and of the Salt Project Community Discord server!
+- Enjoy the new features of the Salt Project Community Discord server!
 
 Again, the switch from Slack to Discord is effective immediately, March 21, 2024.
 Please know that all of us at Salt Project are aware of how disruptive this is
