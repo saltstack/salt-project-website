@@ -35,7 +35,7 @@ started searching for, and vetting options that we felt would best accommodate
 the ever-changing needs, and heavy demands of Salt users around the world.
 
 Thankfully the Salt Project was able to quickly find a fantastic replacement.
-**Effective immediately, March 21, 2024, Salt Project is ending our partnership with Slack, and switching to Discord.**
+**Effective immediately, March 21, 2024, Salt Project is ending our usage of Slack, and switching to Discord.**
 
 
 ## Here's what you need to know
