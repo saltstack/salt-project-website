@@ -14,4 +14,15 @@ tags:
     - community
 ---
 
-Content
+<!---
+
+Checklist of things to do:
+- Make sure you save this file under a new name before making edits
+- Remove "draft: true" from the frontmatter
+- Update author and authorbio or delete for anonymous posts
+- Update url, but don't use dots (.), use dashes (-)
+- Delete any tags you don't need
+
+--->
+
+Your content goes here
