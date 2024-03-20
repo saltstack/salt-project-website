@@ -4,7 +4,7 @@ layout: "single"
 image: images/blog/coworkers-laughing-02.png
 captain: "Shane Lee"
 captainHandle: "twangboy"
-slackChannel: "#windows"
+discordChannel: "#windows"
 meetingLink: calendar-events/windows/
 description: Improve Salt for Windows operating systems
 ---
