@@ -4,7 +4,7 @@ layout: "single"
 image: images/blog/coworkers-meeting-03.jpg
 captain: "Barney Sowood"
 captainHandle: "barneysowood"
-slackChannel: "#security"
+discordChannel: "#security"
 meetingLink: calendar-events/security/
 description: Ensure that Salt is developed using security best practices
 
