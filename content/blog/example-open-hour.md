@@ -8,8 +8,14 @@ image: images/blog/person-computer-01.jpg
 tags:
     - open hour
 ---
+<!---
 
-Note: Make sure you remove "draft: true" from the front matter.
+Checklist of things to do:
+- Make sure you save this file under a new name before making edits
+- Remove "draft: true" from the frontmatter
+- Update url, but don't use dots (.), use dashes (-)
+
+--->
 
 # Open Hour 2024-MON-dd
 
