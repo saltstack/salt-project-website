@@ -11,7 +11,7 @@ tags:
 
 The Salt Project has just released the 3005.3 bugfix of Salt 3005. To download
 and install Salt 3005.3, see the
-[Salt install guide](https://docs.saltproject.io/salt/install-guide/en/3005/).
+[Salt install guide](https://docs.saltproject.io/salt/install-guide/).
 To access the 3005.3 packages directly, go to the
 [Salt Project Package Repository](https://repo.saltproject.io/salt/py3/).
 
