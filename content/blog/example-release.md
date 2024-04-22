@@ -18,8 +18,8 @@ Checklist of things to do:
 - If this is a CVE release, it needs to be a new security announcement rather than a blog
 - If this is a major release (not a bugfix point release), add LTS or STS to release title and summary
 - Remove "draft: true" from the frontmatter
-- Update the release version in the frontmatter, summary, first heading, and blog content
-- Update author
+- Update the release version in the frontmatter: title, summary, first heading, and blog content
+- Update or delete author and authorbio
 - Update url, but don't use dots (.) for point releases in the URL---use dashes (-)
 - Add necessary links to the blog content and remove or replace any {placeholder text}
 
