@@ -1,7 +1,7 @@
 ---
 title: "Salt 3006.8 (LTS) is available"
 summary: "The Salt Project has just released the 3006.8 bugfix of Salt 3006 (LTS)."
-date: "2024-04-24"
+date: "2024-04-30"
 url: "blog/salt-release-3006-8-is-now-available"
 image: images/blog/new-release.png
 tags:
