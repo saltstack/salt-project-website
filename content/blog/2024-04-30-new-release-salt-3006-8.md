@@ -14,4 +14,8 @@ install Salt 3006.8, see the
 To access the 3006.8 packages directly, go to the
 [Salt Project Package Repository](https://repo.saltproject.io/salt/py3/).
 
+- Release notes: https://docs.saltproject.io/en/3006/topics/releases/3006.8.html
+- Changelogs: https://github.com/saltstack/salt/blob/3006.x/CHANGELOG.md
+- Sources are available on PyPI: https://pypi.org/project/salt/3006.8/
+
 Thank you all for your contributions!
