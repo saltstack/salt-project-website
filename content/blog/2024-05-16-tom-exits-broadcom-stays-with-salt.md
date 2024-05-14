@@ -5,18 +5,12 @@ date: "2024-05-16"
 author: Tom Hatch
 authorbio: "Tom Hatch is the creator of Salt and founder of Salt Project."
 url: "blog/tom-exits-broadcom-stays-with-salt"
-image: images/blog/
+image: images/blog/tom-hatch.jpg
 image_alt:
 tags:
     - news
     - community
 ---
-
-<!--
-
-Image of Tom?
-
--->
 
 It seems like a long time ago, and feels like yesterday, all at the same time. In October of 2020, The pandemic was raging, businesses in every industry were scrambling to survive, and SaltStack was no different. Ultimately, SaltStack leadership, myself included, made a choice to be acquired by VMware. I had pushed hard for the acquisition of SaltStack, and felt that it would not only ensure the future of the open source Salt Project, but also the future of so many of the technologies I had helped create and develop.
 
