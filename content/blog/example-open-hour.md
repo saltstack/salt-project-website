@@ -13,7 +13,9 @@ tags:
 Checklist of things to do:
 - Make sure you save this file under a new name before making edits
 - Remove "draft: true" from the frontmatter
+- Update date
 - Update url, but don't use dots (.), use dashes (-)
+- Change image to the next image in the sequence
 
 --->
 
