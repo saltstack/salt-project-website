@@ -1,7 +1,7 @@
 ---
 title: "I'm exiting Broadcom - Staying with Salt Project forever"
 summary: "Tom Hatch is leaving Broadcom, but will remain actively involved in Salt Project forever."
-date: "2024-05-16"
+date: "2024-05-16T14:21:54+05:30"
 author: Tom Hatch
 authorbio: "Tom Hatch is the creator of Salt and founder of Salt Project."
 url: "blog/tom-exits-broadcom-stays-with-salt"
