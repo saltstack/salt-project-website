@@ -19,8 +19,11 @@ tags:
 Checklist of things to do:
 - Make sure you save this file under a new name before making edits
 - Remove "draft: true" from the frontmatter
+- Update date
+- Update url, but don't use dots (.), use dashes (-)
 - Update author and authorbio or delete for anonymous posts
 - Update url, but don't use dots (.), use dashes (-)
+- Add an image
 - Delete any tags you don't need
 
 --->
