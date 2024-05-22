@@ -31,10 +31,10 @@ install Salt 300x.x, see the
 To access the 300x.x packages directly, go to the
 [Salt Project Package Repository](https://repo.saltproject.io/salt/py3/).
 
-{Optional: Describe release highlights.}
-
 - Release notes: {Insert link to release notes}
 - Changelogs: {Insert link to changelog}
 - Sources are available on PyPI: {Insert link to PyPI}
+
+{Optional: Describe release highlights.}
 
 Thank you all for your contributions!
