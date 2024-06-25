@@ -1,7 +1,7 @@
 ---
 title: "Salt Project Launches Community Core Maintainer Program!"
 summary: "Salt Project announces a new program to further strengthen and secure the future of Salt Project by increasing the involvement and contributions of select members of the community."
-date: "2024-06-24"
+date: "2024-06-25"
 author: Jimmy Chunga
 authorbio: "Jimmy Chunga is the community manager for Salt Project"
 url: "blog/community-maintainers-wanted"
