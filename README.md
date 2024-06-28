@@ -193,7 +193,7 @@ The `layouts` folder also contains an additional folder called `partials` which 
 </section>
 ```
 
-When Hugo compiles that content, it substitutes the HTML code from the file found in `layouts > partials > home banner`:
+When Hugo compiles that content, it substitutes the HTML code from the file found in `layouts > partials > home > banner.html`:
 
 ```html
 <video playsinline="" autoplay="" muted="" loop="" id="bgvid">
