@@ -50,11 +50,11 @@ To push the latest changes in the `main` branch to the live site, you need to ta
 
 5. In the **Tag name** field, increase the latest tag name (number) by one digit. For example: `v1.0.65`.
 
-6. In the **Message** field, write a brief message explaining the changes you are pushing live. For example: `Add latest Open Hour notes.`
+6. In the **Message** field, write a brief message explaining the changes you are pushing live. For example: `Add latest Open Hour notes`.
 
 7. Click the **Create tag** button.
 
-8. The page now displays a link to a hash for a build pipeline, such as `e18261aa`. Click this link to view the progress of the build pipeline. When the pipeline completes, the page is live.
+8. The page now displays a link to a hash for a build pipeline, such as `e18261aa`. Click this link to view the progress of the build pipeline. When the pipeline completes, the changes to the site are live.
 
 > **NOTE:** If the pipeline fails, view the error message to see what is going wrong. Often, re-running the pipeline fixes the problem. If not, contact the SRE team for support.
 
