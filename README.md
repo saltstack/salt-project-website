@@ -1,6 +1,6 @@
 # Salt Project Website
 
-The main static site for https://saltproject.io, built with [Hugo](https://gohugo.io/). The site is currently hosted using GitLab Pages on AWS.
+This repository is for the main static site of https://saltproject.io, built with [Hugo](https://gohugo.io/). The site is currently hosted on AWS (CloudFront/S3), and uses GitLab Pages for previewing.
 
 ## Install prerequisites
 
@@ -80,7 +80,7 @@ To create a new blog post:
 5. Stage and commit your changes, then open a merge request.
 
 6. After the pipeline for your merge request finishes building, you can preview the staged changes. Replace the placeholder text with your GitLab username:
-<https://your-GitLab-username.gitlab.io/salt-project-website/>
+`<https://your-GitLab-username.gitlab.io/salt-project-website/>`
 
   > **NOTE:** If you want to share the local preview with someone to review your changes, you must first add them as a contributor to your fork of the Salt Project repo. This is required because this repo and your fork are private, which restricts preview access.
 
