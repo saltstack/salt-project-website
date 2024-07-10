@@ -19,9 +19,7 @@ This document explains:
 The current Salt Project community moderators are:
 
 - Jimmy Chunga
-- Derek Ardolf
 - Alyssa Rock
-- Deanna Thompson
 
 You may contact any of these individuals to make a Code of Conduct incident
 report.
