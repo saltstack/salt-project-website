@@ -18,6 +18,8 @@ Documentation for both LTS and STS:
 - [3006.x LTS: Supported Operating Systems](https://docs.saltproject.io/salt/install-guide/en/3006/topics/salt-supported-operating-systems.html)
 - [3007.x STS: Supported Operating Systems](https://docs.saltproject.io/salt/install-guide/en/latest/topics/salt-supported-operating-systems.html)
 
+> **NOTE**: 3007.x STS supported operating systems documentation will update with the next 3007.2 release to reflect the content of this blog post.
+
 ## Deprecated Operating Systems (no longer supported)
 
 - Photon OS 3
