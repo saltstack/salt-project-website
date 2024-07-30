@@ -2,7 +2,7 @@
 draft: true
 title: "Supported Operating Systems: From freshly deprecated, to newly supported"
 summary: "CentOS 7 and Debian 10, among others, will no longer be supported in future releases of Salt"
-date: "2024-07-09"
+date: "2024-07-30"
 author: Derek Ardolf
 authorbio: "SRE | Open Source Toolmaker"
 url: "blog/update-to-supported-operating-systems"
