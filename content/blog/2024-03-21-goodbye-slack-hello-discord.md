@@ -52,7 +52,7 @@ Thankfully the Salt Project was able to quickly find a fantastic replacement.
 ## Here's what you need to do
 
 - If you don't have it already, set up a Discord account. You can use a personal or professional account: [Getting Started with Discord](https://support.discord.com/hc/en-us/articles/360033931551-Getting-Started).
-- Use the [Salt Project Discord invite link](https://discord.gg/YVQamSwV3g) to join the Salt Project Community server.
+- Use the [Salt Project Discord invite link](https://discord.gg/bPah23K7mG) to join the Salt Project Community server.
 - Agree to the terms of the new Salt Project Community Code of Conduct.
 - Enjoy the new features of the Salt Project Community Discord server!
 
