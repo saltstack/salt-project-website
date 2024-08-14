@@ -21,3 +21,8 @@
 <script src="{{ "js/uikit-icons.min.js" | relURL }}"></script>
 
 <title>Saltproject.io{{ if .Params.title }} - {{ .Params.title }}{{ end }}</title>
+{{ if .Params.canonicalUrl }}
+<link rel="canonical" href="{{ .Params.canonicalUrl }}">
+{{ else }}
+<link rel="canonical" href="{{ .Permalink }}">
+{{ end }}
