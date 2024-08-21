@@ -1,5 +1,4 @@
 ---
-draft: true
 title: "The Great Salt Module Migration"
 summary: "Salt Project announces a new program to further strengthen and secure the future of Salt Project by increasing the involvement and contributions of select members of the community."
 date: "2024-08-14"
