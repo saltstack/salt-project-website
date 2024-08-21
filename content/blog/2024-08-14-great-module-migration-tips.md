@@ -4,7 +4,7 @@ summary: "Salt Project announces a new program to further strengthen and secure 
 date: "2024-08-14"
 author: Max Arnold
 authorbio: "Author of https://salt.tips and active Salt Project Community contributor"
-url: "blog/community-maintainers-wanted"
+url: "blog/the-great-salt-module-migration/"
 canonicalUrl: https://salt.tips/the-great-salt-module-migration/
 image: images/blog/coworkers-meeting-08.jpg
 tags:
