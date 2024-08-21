@@ -1,7 +1,7 @@
 ---
 title: "The Great Salt Module Migration"
-summary: "Salt Project announces a new program to further strengthen and secure the future of Salt Project by increasing the involvement and contributions of select members of the community."
-date: "2024-08-14"
+summary: "In Salt 3008 Argon, many states and modules that you might be currently using will be migrated to extensions because of the Great Module Migration."
+date: "2024-08-21"
 author: Max Arnold
 authorbio: "Author of https://salt.tips and active Salt Project Community contributor"
 url: "blog/the-great-salt-module-migration/"
@@ -18,9 +18,7 @@ In Salt 3008 Argon, many states and modules that you might be currently using wi
 * Around 750 modules will no longer be shipped with Salt  
 * Only \~100 of them (as of the time of the writing) were migrated to various Salt extensions  
 * Other modules are stored in a separate [holding repository](https://github.com/salt-extensions/community-extensions-holding/)  
-* To check whether a module was migrated, type its name into the search box below
-
-*(I will update the underlying data once in a while, but not forever)*
+* To check whether a module was migrated, type its name into the search box provided on the [Salt Tips website version of this article](https://salt.tips/the-great-salt-module-migration/)
 
 *In Salt 3008 Argon, many states and modules that you might be currently using will be gone. What could you do if you want to continue using them?*
 
