@@ -44,19 +44,19 @@ It is a good idea to disable automatic Salt master and minion package updates. Y
 
 You can get a rough list of used state modules (assuming they are included in the `top.sls` file) using the following one-liner:
 
-```shell
+```
 salt minion1 state.show_lowstate --out json | jq -r '.[][].state' | sort -u
 ```
 
 If that is too cryptic and cumbersome to remember, install the [TSL module](https://gitlab.com/turtletraction-oss/saltext-tsl) by running `sudo salt-pip install saltext.tsl` on a minion and then try the following command on your state tree:
 
-```shell
+```
 sudo salt-call tsl.states
 ```
 
 To see which SLS files use a particular state function, run another command:
 
-```shell
+```
 sudo salt-call tsl.state file.managed
 ```
 
