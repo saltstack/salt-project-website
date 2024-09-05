@@ -44,7 +44,7 @@ We expect our members, contributors, and leaders to:
 - Exhibit a high level of patience and always choose toward collaboration before conflict. Seek out and be respectful of differing opinions, styles, viewpoints, and experiences.
 - Give and accept constructive feedback gracefully. When expressing disagreement, be professional and respectful. Be open to learning from and educating others where needed.
 - Demonstrate empathy and kindness toward other people. Be considerate and respectful in your word choice, speech, and actions. Show respect with the terms you use to address others.
-- Look out for those around you in the community, especially if you are in a position of influence. Alert Jimmy Chunga, the Salt Project Community Manager, either by email at <jimmy.chunga@broadcom.com> or in the Salt Project Community Discord server if you notice a dangerous situation, someone in distress, or violations of this Code of Conduct, even if they seem inconsequential.
+- Look out for those around you in the community, especially if you are in a position of influence. Alert the Salt Project at <saltproject.pdl@broadcom.com> or in the Salt Project Community Discord server if you notice a dangerous situation, someone in distress, or violations of this Code of Conduct, even if they seem inconsequential.
 - Gracefully accept responsibility and apologize to those affected by any mistakes, whether made intentionally or unintentionally. If someone says they have been harmed through your words or actions, listen carefully, make amends, learn from the experience, and correct the behavior going forward.
 - Focus on what is best for the overall community, not just for each of us individually. Ensure that leadership roles and opportunities are well-distributed across the community membership and not just centered in one person or the same few people. To help our community develop and build up leaders at every level of Salt Project, ensure that you share knowledge with others as much as possible and be mindful of fostering healthy dialogue where no one voice dominates a conversation.
 - Please be mindful of your requests and how they impact the work you create for others. If you would like to see an improvement in Salt, consider rolling up your sleeves and volunteering to do the work wherever possible.
@@ -70,7 +70,7 @@ The following behaviors are unacceptable within The Salt Project Community, whet
 - Repeatedly communicating with a community member who has asked you to leave them alone.
 - Sustained disruption of community events, including meetings and presentations.
 - Recording or photography at community meetings and events without explicit permission.
-- Marketing to our community members either individually or collectively without prior approval of the Salt Project Community Manager. Solicitations on behalf of your business, while allowed with prior approval, should be restricted to areas of common interest within the Salt Project Community. Marketing, promotion, or solicitation of products and/or services that compete with Salt Project, VMware by Broadcom, or Broadcom are not permitted. For more information about appropriate ways to market your business to the community, please contact Jimmy Chunga, the Salt Project Community Manager, either by email at <jimmy.chunga@broadcom.com> or in the Salt Project Community Discord server.
+- Marketing to our community members either individually or collectively without prior approval of the Salt Project Team. Solicitations on behalf of your business, while allowed with prior approval, should be restricted to areas of common interest within the Salt Project Community. Marketing, promotion, or solicitation of products and/or services that compete with Salt Project, VMware by Broadcom, or Broadcom are not permitted. For more information about appropriate ways to market your business to the community, please contact <saltproject.pdl@broadcom.com>.
 - Advocating for, or encouraging, any of the above behavior.
 - Other conduct which could reasonably be considered inappropriate in a professional setting.
 
@@ -82,9 +82,8 @@ sponsors, or leaders will not be tolerated. We expect everyone to comply with
 requests to stop unacceptable behavior immediately.
 
 If any community member engages in unacceptable behavior, any community member
-or moderator should report the incident to Jimmy Chunga, the Salt Project
-Community Manager, either by email at <jimmy.chunga@broadcom.com> or in the Salt
-Project channel in Discord. The community manager and moderators will
+or moderator should report the incident at <saltproject.pdl@broadcom.com> or to a Discord
+moderator. The moderators will
 investigate the incident to determine the incident's severity and overall impact
 to the community. See our [Code of Conduct response plan](/code-of-conduct-response-plan/)
 for more details.
@@ -96,7 +95,7 @@ Depending on the risk and impact level, the moderators may respond by requiring:
 - **Temporary ban:** A temporary ban from any sort of interaction or public communication with the community for a specified period of time. No public or private interaction with the people involved, including unsolicited interaction with community moderators, is allowed during this period. Violating these terms may lead to a permanent ban. Readmittance to the community usually requires an additional meeting with a community moderator to ensure future compliance.
 - **Permanent ban:** A permanent ban from any sort of public interaction within the community.
 
-The action taken is at the discretion of the Salt Project community manager and
+The action taken is at the discretion of the Salt Project Team and
 moderators. Participants are expected to comply immediately, and further action
 may be taken in case a participant does not comply.
 
@@ -110,13 +109,12 @@ considered final.
 ## Reporting an incident
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported to the Salt Project community moderators or Jimmy Chunga, the Salt
-Project Community Manager, either by email at <jimmy.chunga@broadcom.com> or in
+reported to the Salt Project community moderators either by email at <saltproject.pdl@broadcom.com> or in
 the Salt Project Community Discord server. If you would like to discuss your concerns
 or if you have personally experienced unacceptable behavior, please reach out to
-the community manager as soon as possible.
+a moderator as soon as possible.
 
-We encourage reaching out to The Salt Project Community Manager or a
+We encourage reaching out to The Salt Project Team or a
 community moderator, even if you are unsure whether something counts as a Code
 of Conduct incident or even if the situation is merely something you observed
 and did not happen to you directly.
