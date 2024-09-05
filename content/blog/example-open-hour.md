@@ -21,7 +21,7 @@ Checklist of things to do:
 
 # Open Hour 2024-MON-dd
 
-[Open Hour YouTube playlist](https://www.youtube.com/playlist?list=PL9svBjLDUl_-XfmQSCgE_uislHD_rRKfu) | Contact us! <saltproject@vmware.com>
+[Open Hour YouTube playlist](https://www.youtube.com/playlist?list=PL9svBjLDUl_-XfmQSCgE_uislHD_rRKfu) | Contact us! <saltproject.pdl@broadcom.com>
 
 In this open hour, {description}.
 
