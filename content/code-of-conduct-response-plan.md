@@ -16,10 +16,10 @@ This document explains:
 
 ## Community moderators
 
-The current Salt Project community moderators are:
+The current Salt Project community moderators have the following roles on Discord:
 
-- Jimmy Chunga
-- Alyssa Rock
+- Salt Team
+- Community Mod
 
 You may contact any of these individuals to make a Code of Conduct incident
 report.
@@ -31,8 +31,8 @@ You can contact a community moderator to make a Code of Conduct incident report
 or to discuss the process and options related to Code of Conduct incidents. To
 make an incident report, send a direct message on Discord to the community
 moderator that you have the best working relationship with and feel most
-comfortable talking. You can also contact Jimmy Chunga, the Salt Project
-Community Manager, either by email at <jimmy.chunga@broadcom.com> or in the Salt
+comfortable talking. You can also contact the Salt Project
+email at <saltproject.pdl@broadcom.com> or in the Salt
 Project Discord.
 
 Community moderators will respond as soon as they possibly can. They might also
