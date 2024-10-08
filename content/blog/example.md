@@ -2,7 +2,7 @@
 draft: true
 title: "Title"
 summary: "Summary"
-date: "yyyy-mm-dd"
+date: "2024-01-01" # UPDATE!
 author: Testy McTester - DELETE IF ANONYMOUS
 authorbio: "Author bio here. Delete if no bio."
 url: "blog/title-shortened"

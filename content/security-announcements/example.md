@@ -1,7 +1,7 @@
 ---
 draft: true
 title: "Title"
-date: "yyyy-mm-dd"
+date: "2024-01-01" # UPDATE!
 summary: "Summary of security announcement."
 tags:
     - security announcement

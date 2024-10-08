@@ -2,8 +2,8 @@
 draft: true
 title: "Open Hour 2024-MON-dd"
 summary: "Open hour notes for Month dd, 2024. In this open hour, {description}."
-date: "yyyy-mm-dd"
-url: "blog/open-hour-yyyy-month-dd"
+date: "2024-01-01" # UPDATE!
+url: "blog/open-hour-yyyy-month-dd" # UPDATE!
 image: images/blog/person-computer-01.jpg
 tags:
     - open hour
