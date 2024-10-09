@@ -2,7 +2,7 @@
 draft: true
 title: "Salt 300x.x is available"
 summary: "The Salt Project has just released the 300x.x bugfix of Salt 300x."
-date: "yyyy-mm-dd"
+date: "2024-01-01" # UPDATE!
 author: Testy McTester - DELETE IF ANONYMOUS
 authorbio: "Author bio here. Delete if no bio."
 url: "blog/salt-release-300x-x-is-now-available"
