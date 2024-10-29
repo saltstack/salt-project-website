@@ -1,6 +1,6 @@
 ---
 title: "Salt Project Package Repository (repo.saltproject.io) Migration and Guidance"
-summary: "This week, packages from repo.saltproject.io will be migration to packages.broadcom.com. This means a variety of disruptive changes are being implemented: New install/upgrade/pinning directions for Salt packages, and a cleanup of non-supported versionf of Salt."
+summary: "This week, packages from `repo.saltproject.io` will be migrated to `packages.broadcom.com`. This means a variety of disruptive changes are being implemented around installing, upgrading, and pinning/locking Salt."
 date: "2024-10-28"
 author: Salt Project Team
 authorbio: ""
@@ -13,24 +13,28 @@ tags:
 
 Salt Project Community Members!
 
-This week, packages from `repo.saltproject.io` will be migration to packages.broadcom.com. This means a variety of disruptive changes are being implemented: New install/upgrade/pinning directions for Salt packages, and a cleanup of non-supported versionf of Salt.
+This week, packages from `repo.saltproject.io` will be migrated to `packages.broadcom.com`. This means a variety of disruptive changes are being implemented around installing, upgrading, and pinning/locking Salt.
 
 # Why the change?
 
-Broadcom has pushed mandatory initiatives requiring significant cuts to infrastructure and consolidation of services used by Salt Project. This has resulted in Salt Project needing to migrate entirely off of AWS, without an alternative public cloud solution, by **end of October 2024**.
+In order to integrate with Broadcom infrastructure and policies, we are migrating off of AWS public cloud infrastructure and consolidating services used by Salt Project by **end of October 2024**.
 
-As a result, Salt Project has been quickly needing to migrate to:
+To achieve these goals, Salt Project has been quickly needing to migrate to GitHub Pages:
 
-- GitHub Pages: For documentation and website/blog hosting
-- `packages.broadcom.com`: An Artifactory endpoint for package repository hosting (rpm/deb/windows/etc.).
+- For documentation, website/blog and `salt-bootstrap` hosting
+- [Salt Project Blog: Upcoming Salt Project Docs and Repo Migrations](./2024-10-23-upcoming-salt-project-docs-and-repo-migrations.md)
+- [Salt Project Blog: salt-bootstrap Breakage and Next Steps](./2024-10-25-salt-bootstrap-breakage-and-next-steps.md)
 
-This also means that all self-hosted CI/CD runners, connected to our GitHub repositories, will become non-functional when AWS is decommissioned.
+Salt Project has also needed to migrate the Salt package repository:
+- `repo.saltproject.io` -> `packages.broadcom.com`: A public Artifactory endpoint for package repository hosting (rpm/deb/windows/etc.)
+
+This also means that all self-hosted CI/CD runners, connected to our GitHub/GitLab repositories, will become non-functional when our public cloud backend is decommissioned.
 
 # Decommissioning of Older Packages
 
-As part of this migration, Salt Project is **dropping all packages older than Salt v3006.** This means that Salt 3005, 3004, etc. and older will no longer be available for installation.
+As part of this migration, Salt Project is **dropping all packages older than Salt v3006.** This means that Salt `3005`, `3004`, etc. and older will no longer be available for installation.
 
-At the end of October 2024, packages will no longer be available via:
+**At the end of October 2024, packages will no longer be available via:**
 
 - `repo.saltproject.io`
 - `archive.repo.saltproject.io`
@@ -39,46 +43,13 @@ At the end of October 2024, packages will no longer be available via:
 
 ## Linux: RPM
 
-```conf
-[salt-repo-3006-lts]
-name=Salt Repo for Salt v3006 LTS
-baseurl=https://packages.broadcom.com/artifactory/saltproject-rpm/
-skip_if_unavailable=True
-priority=10
-enabled=1
-enabled_metadata=1
-gpgcheck=1
-exclude=*3007* *3008* *3009* *3010*
-gpgkey=https://packages.broadcom.com/artifactory/api/security/keypair/SaltProjectKey/public
+RPM packages for Linux have been moved to:
+- https://packages.broadcom.com/ui/repos/tree/General/saltproject-rpm
 
-[salt-repo-3007-sts]
-name=Salt Repo for Salt v3007 STS
-baseurl=https://packages.broadcom.com/artifactory/saltproject-rpm/
-skip_if_unavailable=True
-priority=10
-enabled=0
-enabled_metadata=1
-gpgcheck=1
-exclude=*3006* *3008* *3009* *3010*
-gpgkey=https://packages.broadcom.com/artifactory/api/security/keypair/SaltProjectKey/public
-
-[salt-repo-latest]
-name=Salt Repo for Salt LATEST release
-baseurl=https://packages.broadcom.com/artifactory/saltproject-rpm/
-skip_if_unavailable=True
-priority=10
-enabled=0
-enabled_metadata=1
-gpgcheck=1
-gpgkey=https://packages.broadcom.com/artifactory/api/security/keypair/SaltProjectKey/public
-```
-
----
+To prep for RPM packages of Salt:
 
 ```
-# TODO: Create an updated repo file in Salt Install Guide
-# That uses the above configuration of salt-repo-*
-curl -fsSL https://<location-of-conf-file-download> | sudo tee /etc/yum.repos.d/salt.repo
+curl -fsSL https://raw.githubusercontent.com/saltstack/salt-install-guide/refs/heads/main/salt.repo | sudo tee /etc/yum.repos.d/salt.repo
 
 # Expire cache
 sudo dnf clean expire-cache
@@ -118,14 +89,14 @@ dnf update salt-minion
 
 ```
 # List available repos, and show what is enabled/disabled
-dnf repolist --all salt*
+dnf repolist --all salt-repo-*
 ```
 
 To make 3007 STS:
 
 ```
 dnf config-manager --set-disable salt-repo-*
-dnf config-manager --set-enabled salt-repo-3007-lts
+dnf config-manager --set-enabled salt-repo-3007-sts
 ```
 
 To make ALL salt packages available:
@@ -139,20 +110,25 @@ To ensure only 3006 LTS (default):
 
 ```
 dnf config-manager --set-disable salt-repo-*
-dnf config-manager --set-enabled salt-repo-3006-latest
+dnf config-manager --set-enabled salt-repo-3006-lts
 ```
 
 ---
 
 ## Linux: DEB
 
+DEB packages for Linux have been moved to:
+- https://packages.broadcom.com/ui/repos/tree/General/saltproject-deb
+
 > **NOTE:** Since we use the same `.deb` packages across all Debian-based distros, we do not included codenames as part of the apt source list configuration.
+
+To prep for DEB packages of Salt:
 
 ```
 # Download public key
-sudo curl -fsSL -o /etc/apt/keyrings/salt-archive-keyring-2023.gpg https://packages.broadcom.com/artifactory/api/security/keypair/SaltProjectKey/public
+curl -fsSL https://packages.broadcom.com/artifactory/api/security/keypair/SaltProjectKey/public | sudo tee /etc/apt/keyrings/salt-archive-keyring-2023.pgp
 # Create apt repo target configuration
-echo "deb [signed-by=/etc/apt/keyrings/salt-archive-keyring-2023.gpg arch=amd64] https://packages.broadcom.com/artifactory/saltproject-deb/ stable main" | sudo tee /etc/apt/sources.list.d/salt.list
+echo "deb [signed-by=/etc/apt/keyrings/salt-archive-keyring-2023.pgp arch=amd64] https://packages.broadcom.com/artifactory/saltproject-deb/ stable main" | sudo tee /etc/apt/sources.list.d/salt.list
 ```
 
 ```
@@ -163,6 +139,8 @@ sudo apt-get update
 ---
 
 ### Install Latest 3006 LTS
+
+Populate `/etc/apt/preferences.d/salt-pin-1001` in order to restrict upgrades to Salt 3006.x:
 
 ```
 echo 'Package: salt-*
@@ -194,11 +172,13 @@ sudo apt-mark hold salt-api
 
 ---
 
-### Install 3007 LTS
+### Install Latest 3007 LTS
+
+Populate `/etc/apt/preferences.d/salt-pin-1001` in order to restrict upgrades to Salt 3007.x:
 
 ```
 echo 'Package: salt-*
-Pin: version 3006=7.*
+Pin: version 3007.*
 Pin-Priority: 1001' | sudo tee /etc/apt/preferences.d/salt-pin-1001
 ```
 
@@ -227,8 +207,6 @@ sudo apt-mark hold salt-api
 ---
 
 ### Pin to Target Minor Version
-
-If wanting to install a specific minor version of Salt, and pin the version, start with `salt-common`.
 
 > **NOTE:** These examples use `3006.9` for target version.
 
@@ -297,4 +275,4 @@ Example downloads for Salt 3006.9 LTS:
 
 Salt Project will be giving an overhaul to the [Salt Install Guide directions](https://docs.saltproject.io/salt/install-guide/en/3006/) in order to reflect this new way of managing packages.
 
-In the meantime: We request that the Salt Project community provide feedback/improvements that can be done via the [Salt Project Community Discord](https://discord.gg/J7b7EscrAs) and the [Salt Install Guide GitHub Repo](https://github.com/saltstack/salt-install-guide/).
+In the meantime: We request that the Salt Project community provide feedback/improvements that can be done via the [Salt Project Community Discord](https://discord.gg/J7b7EscrAs) (in the `#documentation` channel) and the [Salt Install Guide GitHub Repo](https://github.com/saltstack/salt-install-guide/).
