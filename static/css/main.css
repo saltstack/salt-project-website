@@ -7232,7 +7232,7 @@ section.blog-banner {
 section.blog-banner img {
  width:100%;
  object-fit: cover;
- max-height: 700px;
+ max-height: 500px;
 }
 section.blog-banner h1 {
  position:absolute;
