@@ -22,8 +22,8 @@ In order to integrate with Broadcom infrastructure and policies, we are migratin
 To achieve these goals, Salt Project has been quickly needing to migrate to GitHub Pages:
 
 - For documentation, website/blog and `salt-bootstrap` hosting
-- [Salt Project Blog: Upcoming Salt Project Docs and Repo Migrations](./2024-10-23-upcoming-salt-project-docs-and-repo-migrations.md)
-- [Salt Project Blog: salt-bootstrap Breakage and Next Steps](./2024-10-25-salt-bootstrap-breakage-and-next-steps.md)
+- [Salt Project Blog - Upcoming Salt Project Docs and Repo Migrations](/blog/upcoming-salt-project-docs-and-repo-migration)
+- [Salt Project Blog - salt-bootstrap Breakage and Next Steps: New Updates](/blog/salt-bootstrap-breakage-part-2)
 
 Salt Project has also needed to migrate the Salt package repository:
 - `repo.saltproject.io` -> `packages.broadcom.com`: A public Artifactory endpoint for package repository hosting (rpm/deb/windows/etc.)
