@@ -49,7 +49,7 @@ RPM packages for Linux have been moved to:
 To prep for RPM packages of Salt:
 
 ```
-curl -fsSL https://raw.githubusercontent.com/saltstack/salt-install-guide/refs/heads/main/salt.repo | sudo tee /etc/yum.repos.d/salt.repo
+curl -fsSL https://github.com/saltstack/salt-install-guide/releases/latest/download/salt.repo | sudo tee /etc/yum.repos.d/salt.repo
 
 # Expire cache
 sudo dnf clean expire-cache
@@ -172,7 +172,7 @@ sudo apt-mark hold salt-api
 
 ---
 
-### Install Latest 3007 LTS
+### Install Latest 3007 STS
 
 Populate `/etc/apt/preferences.d/salt-pin-1001` in order to restrict upgrades to Salt 3007.x:
 
