@@ -13,6 +13,8 @@ tags:
 
 > **UPDATE (2024-10-29):** By end of **November 2024**, we will no longer be using the `bootstrap.saltproject.io` and `winbootstrap.saltproject.io` subdomains. Instead, users will be downloading bootstrap scripts directly from GitHub Releases. For more details: [salt-bootstrap Breakage and Next Steps: Part 2](/blog/salt-bootstrap-breakage-part-2)
 
+> **UPDATE (2024-10-31):** The `salt-bootstrap` scripts themselves don't currently work with the new `packages.broadcom.com` repositories. For more details: [Salt Install Guide Overhaul and salt-bootstrap updates](/blog/salt-install-guide-overhaul)
+
 Salt Project Community Members!
 
 Due to DNS migrations, there has been an unexpected breakage with downloading of the `salt-bootstrap` script.
