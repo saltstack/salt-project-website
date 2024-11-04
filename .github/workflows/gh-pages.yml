@@ -54,6 +54,15 @@ jobs:
           mkdir -p content/the-hacks/
           python tools/gen-the-hacks.py
           cp tools/_index.md content/the-hacks/
+
+          echo "Editing out all instances of saltconf.com in The Hacks episode descriptions..."
+          FILES_TO_EDIT=$(grep -irsn saltconf.com content/the-hacks/ | cut -f'1' -d':' | sort | uniq)
+          for i in $(echo "$FILES_TO_EDIT")
+          do
+            echo "Editing $i..."
+            sed -i 's:saltconf\.com:saltproject\.io:g' $i
+            sed -i 's:wwwsalt:www\.salt:g' $i
+          done
       - name: Build with Hugo
         env:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
