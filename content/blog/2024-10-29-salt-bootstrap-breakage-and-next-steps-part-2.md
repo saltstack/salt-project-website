@@ -13,6 +13,8 @@ tags:
 
 > **UPDATE (2024-10-31):** This article details how to download the `salt-bootstrap` scripts from a new location, but the `salt-bootstrap` scripts themselves don't currently work with the new `packages.broadcom.com` repositories. For more details: [Salt Install Guide Overhaul and salt-bootstrap updates](/blog/salt-install-guide-overhaul)
 
+> **UPDATE (2024-11-07):** A new version of `salt-bootstrap` has been released, making use of the `packages.broadcom.com` repositories. For more details: [Salt Project Blog - New salt-bootstrap release: v2024.11.07](/blog/new-salt-bootstrap-release-2024-11-07)
+
 Salt Project Community Members!
 
 Due to DNS and infrastructure migrations, there was an unexpected breakage with downloading of the `salt-bootstrap` script.
