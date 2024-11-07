@@ -11,6 +11,10 @@ tags:
     - community
 ---
 
+> **UPDATE (2024-10-31):** The [Salt Install Guide](https://docs.saltproject.io/salt/install-guide/en/latest/index.html) has since been updated with directions that users should reference, going forward. For more details: [Salt Project Blog - Salt Install Guide Overhaul and salt-bootstrap updates](/blog/salt-install-guide-overhaul)
+
+> **UPDATE (2024-11-07):** A new version of `salt-bootstrap` has been released, making use of the `packages.broadcom.com` repositories. For more details: [Salt Project Blog - New salt-bootstrap release: v2024.11.07](/blog/new-salt-bootstrap-release-2024-11-07)
+
 Salt Project Community Members!
 
 This week, packages from `repo.saltproject.io` will be migrated to `packages.broadcom.com`. This means a variety of disruptive changes are being implemented around installing, upgrading, and pinning/locking Salt.
