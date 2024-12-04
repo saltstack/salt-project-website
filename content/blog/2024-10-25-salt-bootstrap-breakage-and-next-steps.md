@@ -17,6 +17,8 @@ tags:
 
 > **UPDATE (2024-11-07):** A new version of `salt-bootstrap` has been released, making use of the `packages.broadcom.com` repositories. For more details: [Salt Project Blog - New salt-bootstrap release: v2024.11.07](/blog/new-salt-bootstrap-release-2024-11-07)
 
+> **UPDATE (2024-12-04):** Salt Project has extended the availability of the `bootstrap` and `winbootstrap` subdomains to **January 6th 2025**, we will no longer be using the `bootstrap.saltproject.io` and `winbootstrap.saltproject.io` subdomains. Instead, users will be downloading bootstrap scripts directly from GitHub Releases. For more details: [Upcoming bootstrap subdomain decommission](/blog/upcoming-bootstrap-decommission)
+
 Salt Project Community Members!
 
 Due to DNS migrations, there has been an unexpected breakage with downloading of the `salt-bootstrap` script.
