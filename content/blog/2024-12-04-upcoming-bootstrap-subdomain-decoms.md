@@ -5,7 +5,7 @@ date: "2024-12-04"
 author: Salt Project Team
 authorbio: ""
 url: "blog/upcoming-bootstrap-decommission"
-image: images/blog/new-update.png
+image: images/blog/new-alert.png
 tags:
     - news
     - community
