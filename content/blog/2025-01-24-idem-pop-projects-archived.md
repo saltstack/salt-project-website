@@ -17,7 +17,7 @@ Salt Project Community Members!
 
 ## GitLab vs. GitHub Project Hosting
 
-All actively maintained repositories for Salt Project only exist on under the [**GitHub** Organization: saltstack](https://github.com/saltstack/).
+All actively maintained repositories for Salt Project will only exist under the [**GitHub** Organization: saltstack](https://github.com/saltstack/).
 
 In the near future, all projects under the following **GitLab groups** will be archived:
 
