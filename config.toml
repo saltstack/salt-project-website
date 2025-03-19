@@ -5,10 +5,3 @@ summaryLength = 10
 
 [ taxonomies ]
     tag = 'tags'
-
-[ the-hacks ]
-    recommended = [
-        "STRIKE! Is A.I. Ruining Video Games?",
-        'SO MANY CYBER-ATTACKS!!',
-        'Data Center Drama'
-    ]
