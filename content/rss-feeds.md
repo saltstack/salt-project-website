@@ -20,16 +20,6 @@ you’re using a browser that doesn’t currently support RSS, there are a
 variety of RSS readers available on the web; some are free to download and
 others are available for purchase.
 
-## The Hacks Podcast
-Join Thomas Hatch and Jimmy Chunga every week as they talk about nerd stuff.
-If you’re into cybersecurity, DevSecOps, SecOps, DevOps, all the Ops,
-infrastructure automation, network automation, configuration management, and
-open source then [subscribe now](/the-hacks). This will be your new favorite podcast!
-Because we know you’re thinking it…NO, they don’t live in their moms’
-basements…this month.
-
-[RSS Feed](https://thehacks.libsyn.com/rss)
-
 ## Salt Blog
 Stay up to date on all things SaltStack on the [corporate blog](/blog/). Catch every
 blog post and press release, as well as the latest news and information on
