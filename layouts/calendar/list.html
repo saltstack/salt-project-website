@@ -4,11 +4,11 @@
             <section class="single-content">
                 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.7/jstz.js"></script>
 
-                <iframe id="calendar_container" src="https://calendar.google.com/calendar/embed?src=salt.project%40broadcom.com&ctz=America%2FChicago" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+                <iframe id="calendar_container" src="https://calendar.google.com/calendar/embed?src=salt.project%40broadcom.com&ctz=" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
 
                 <script type="text/javascript">
                     var timezone = jstz.determine();
-                    var pref = 'https://calendar.google.com/calendar/embed?src=salt.project%40broadcom.com&ctz=America%2FChicago';
+                    var pref = 'https://calendar.google.com/calendar/embed?src=salt.project%40broadcom.com&ctz=';
                     var iframe_src = pref + encodeURIComponent(timezone.name().replace(' ' ,''));
                     document.getElementById('calendar_container').src = iframe_src;
                 </script>
