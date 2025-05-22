@@ -4,17 +4,24 @@
             <section class="single-content">
                 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.7/jstz.js"></script>
 
-                <iframe id="calendar_container" src="https://calendar.google.com/calendar/embed?src=c_b7646523f32f06e6762300c32b0960f6304c6cc6998e4233ef7c749d362b2759%40group.calendar.google.com&ctz=America%2FDenver" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+                <iframe id="calendar_container" src="https://calendar.google.com/calendar/embed?src=salt.project%40broadcom.com&ctz=America%2FChicago" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
 
                 <script type="text/javascript">
                     var timezone = jstz.determine();
-                    var pref = 'https://calendar.google.com/calendar/embed?src=c_b7646523f32f06e6762300c32b0960f6304c6cc6998e4233ef7c749d362b2759%40group.calendar.google.com&ctz=';
+                    var pref = 'https://calendar.google.com/calendar/embed?src=salt.project%40broadcom.com&ctz=America%2FChicago';
                     var iframe_src = pref + encodeURIComponent(timezone.name().replace(' ' ,''));
                     document.getElementById('calendar_container').src = iframe_src;
                 </script>
 
                 <div id="calendar"></div>
             </section>
+        </div>
+        <div>
+            <center>
+            <p>
+                <strong>Download the ics:</strong> <a href="https://calendar.google.com/calendar/ical/salt.project%40broadcom.com/public/basic.ics">Salt Project Community Calendar ics</a>
+            </p>
+            </center>
         </div>
     </main>
 {{ end }}
