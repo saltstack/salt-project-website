@@ -14,8 +14,8 @@ The Salt Project has just released 3007.2 STS bugfix of Salt. To download and
 install Salt 3007.2 STS, see the
 [Salt install guide](https://docs.saltproject.io/salt/install-guide/en/latest/).
 
-- Release notes: https://github.com/saltstack/salt/blob/3007.x/doc/topics/releases/3007.2.md
-- Changelogs: https://github.com/saltstack/salt/blob/3007.x/CHANGELOG.md
+- Release notes: https://docs.saltproject.io/en/3007/topics/releases/3007.2.html
+- Changelogs: https://github.com/saltstack/salt/blob/v3007.2/CHANGELOG.md
 - Sources are available on PyPI: https://pypi.org/project/salt/3007.2/
 
 Directory repository locations:
