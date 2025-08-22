@@ -30,4 +30,4 @@ Native minions:
 
 We are also open sourcing [Raspberry Pi `armhf` builds](../../blog/salt-pi-pkg-open-source).
 
-**After Salt release v3005 we'll no longer build these packages but will provide open source project links in an updated announcement later.**
+**After Salt v3005 release, we'll no longer build or maintain these packages.**
