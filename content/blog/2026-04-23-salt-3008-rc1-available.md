@@ -23,7 +23,6 @@ Users can install via PyPI, packages, or use the Docker containers.
 
 - The tag: https://github.com/saltstack/salt/tree/v3008.0rc1
 - The PyPI Source: https://pypi.org/project/salt/3008.0rc1/
-- Docker Containers: https://hub.docker.com/r/saltstack/salt
 
 If you find any issues with Salt or the packaging, open an issue here:
 [https://github.com/saltstack/salt/issues/new/choose](https://github.com/saltstack/salt/issues/new/choose)
