@@ -8,3 +8,4 @@ public-prod/
 static/.DS_Store
 static/images/.DS_Store
 *.un~
+.idea
