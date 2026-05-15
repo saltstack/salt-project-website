@@ -28,8 +28,9 @@ Whether you are prioritizing long-term stability or looking to test the latest u
 
 Users can install Salt via **PyPI** or our **packages**
 
-> [!IMPORTANT]
-> We support differing versions between Master and Minions, but as always, it is **highly recommended to upgrade your Master first.**
+| IMPORTANT |
+| --------- |
+| We support differing versions between Master and Minions, but as always, it is **highly recommended to upgrade your Master first.** |
 
 ## Reporting Issues
 
