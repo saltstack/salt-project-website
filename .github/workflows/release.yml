@@ -1,0 +1,88 @@
+name: Release docs
+
+# Manually triggered after the Salt release is cut. Finds the open
+# topic/release/* PR, merges it, waits for the gh-pages workflow run on the
+# resulting main commit to succeed, then publishes a new GitHub Release
+# (patch-bumped from latest) which triggers the final build.
+
+on:
+  workflow_dispatch:
+    inputs:
+      salt_version:
+        description: 'Salt version, e.g. 3008.1'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: read
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Merge open topic/release/* PR
+        id: merge
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          prs=$(gh pr list --repo "$REPO" --state open \
+                  --json number,headRefName,title \
+                  --jq '[.[] | select(.headRefName | startswith("topic/release/"))]')
+          count=$(echo "$prs" | jq 'length')
+          if [[ "$count" -ne 1 ]]; then
+            echo "::error::expected 1 open topic/release/* PR, found $count"
+            echo "$prs" | jq -r '.[] | "  #\(.number) [\(.headRefName)] \(.title)"' >&2
+            exit 1
+          fi
+          pr=$(echo "$prs" | jq -r '.[0].number')
+          echo "merging PR #$pr"
+          gh pr merge --repo "$REPO" "$pr" --merge
+          sleep 5
+          sha=$(gh api "repos/$REPO/commits/main" --jq '.sha')
+          echo "merge_sha=$sha" >> "$GITHUB_OUTPUT"
+          echo "main is now at $sha"
+
+      - name: Wait for gh-pages build on merge commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          SHA: ${{ steps.merge.outputs.merge_sha }}
+        run: |
+          set -euo pipefail
+          # Poll up to 2 min for a run to register for this SHA
+          run_id=""
+          for i in $(seq 1 24); do
+            sleep 5
+            run_id=$(gh run list --repo "$REPO" --commit "$SHA" -L 5 \
+                      --workflow gh-pages.yml \
+                      --json databaseId --jq '.[0].databaseId // empty')
+            [[ -n "$run_id" ]] && break
+          done
+          if [[ -z "$run_id" ]]; then
+            echo "::error::no gh-pages.yml run found for $SHA"
+            exit 1
+          fi
+          echo "watching run $run_id"
+          gh run watch --repo "$REPO" "$run_id" --exit-status
+
+      - name: Publish new release (patch bump)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          SALT_VERSION: ${{ inputs.salt_version }}
+        run: |
+          set -euo pipefail
+          latest=$(gh release list --repo "$REPO" -L 1 \
+                    --json tagName --jq '.[0].tagName')
+          v=${latest#v}
+          IFS='.' read -r maj min pat <<<"$v"
+          next="v${maj}.${min}.$((pat + 1))"
+          echo "latest=$latest next=$next"
+          gh release create --repo "$REPO" "$next" \
+            --title "$next" \
+            --notes "Salt ${SALT_VERSION} LTS release" \
+            --latest
