@@ -1,0 +1,255 @@
+name: Release automation
+
+# End-to-end docs-release pipeline for salt-project-website.
+# Polls saltstack/salt every 10 min. On a new point release (X.Y where Y > 0):
+#   1. Open `topic/release/<version>` PR adding a new blog post
+#      content/blog/<date>-salt-<X>-<Y>-available.md
+#   2. Wait for required PR checks
+#   3. Merge
+#   4. Wait for the gh-pages.yml build on the merge commit to succeed
+#   5. Publish a new GitHub Release (patch-bumped) which triggers the final
+#      build
+#
+# `.0` (LTS-bump) blogs include a hand-written "What's New" intro and are
+# skipped — invoke `workflow_dispatch` manually for those.
+#
+# Caveat: PRs created with the default GITHUB_TOKEN do not trigger workflows
+# that run on `pull_request`. If you want PR-level CI to run, replace
+# GH_TOKEN with a PAT or GitHub App token stored as a secret.
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+    inputs:
+      salt_version:
+        description: 'Override salt version (e.g. 3008.1). Blank = auto-detect.'
+        required: false
+        type: string
+      release_date:
+        description: 'Override release date YYYY-MM-DD. Blank = today (UTC).'
+        required: false
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: read
+
+concurrency:
+  group: release-automation
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Detect target salt version
+        id: detect
+        env:
+          GH_TOKEN: ${{ github.token }}
+          INPUT_VERSION: ${{ inputs.salt_version }}
+          INPUT_DATE: ${{ inputs.release_date }}
+        run: |
+          set -euo pipefail
+          if [[ -n "${INPUT_VERSION:-}" ]]; then
+            v="$INPUT_VERSION"
+          else
+            v=$(gh api repos/saltstack/salt/releases/latest --jq '.tag_name')
+          fi
+          v=${v#v}
+          IFS='.' read -r maj min <<<"$v"
+          if [[ "${min:-0}" -eq 0 ]]; then
+            echo "::notice::skipping $v — .0 GA blogs require manual editing"
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          d=${INPUT_DATE:-$(date -u +%Y-%m-%d)}
+          slug=$(echo "$v" | tr '.' '-')
+          echo "salt_version=$v" >> "$GITHUB_OUTPUT"
+          echo "major=$maj" >> "$GITHUB_OUTPUT"
+          echo "date=$d" >> "$GITHUB_OUTPUT"
+          echo "branch=topic/release/$v" >> "$GITHUB_OUTPUT"
+          echo "blog_file=content/blog/${d}-salt-${slug}-available.md" >> "$GITHUB_OUTPUT"
+          echo "detected $v date=$d"
+
+      - name: Look up existing PR for this version
+        id: lookup
+        if: steps.detect.outputs.skip != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BRANCH: ${{ steps.detect.outputs.branch }}
+        run: |
+          set -euo pipefail
+          pr=$(gh pr list --state all --head "$BRANCH" \
+                 --json number,state,mergedAt,mergeCommit \
+                 --jq '.[0] // empty')
+          if [[ -n "$pr" ]]; then
+            echo "pr_number=$(echo "$pr" | jq -r '.number')" >> "$GITHUB_OUTPUT"
+            echo "pr_state=$(echo "$pr" | jq -r '.state')" >> "$GITHUB_OUTPUT"
+            merged=$(echo "$pr" | jq -r '.mergedAt // empty')
+            if [[ -n "$merged" ]]; then
+              echo "merged=true" >> "$GITHUB_OUTPUT"
+              echo "merge_sha=$(echo "$pr" | jq -r '.mergeCommit.oid')" >> "$GITHUB_OUTPUT"
+            fi
+          fi
+          echo "lookup: $pr"
+
+      - name: Checkout main
+        if: steps.detect.outputs.skip != 'true' && steps.lookup.outputs.pr_number == ''
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Generate blog post and open PR
+        if: steps.detect.outputs.skip != 'true' && steps.lookup.outputs.pr_number == ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BRANCH: ${{ steps.detect.outputs.branch }}
+          SALT: ${{ steps.detect.outputs.salt_version }}
+          MAJOR: ${{ steps.detect.outputs.major }}
+          DATE: ${{ steps.detect.outputs.date }}
+          FILE: ${{ steps.detect.outputs.blog_file }}
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git checkout -b "$BRANCH"
+
+          if [[ -e "$FILE" ]]; then
+            echo "::error::$FILE already exists"
+            exit 1
+          fi
+
+          cat > "$FILE" <<EOF
+          ---
+          title: "Salt ${SALT} LTS Now Available"
+          summary: "The Salt Project has just released ${SALT} (LTS Release)."
+          date: "${DATE}"
+          author: "Salt Project Team"
+          image: images/blog/new-release.png
+          image_alt:
+          tags:
+              - releases
+              - release candidate
+          ---
+
+          # Salt Project Announcement: Salt ${SALT} LTS is Here!
+
+          The Salt Project has just released the ${SALT} LTS bugfix version of Salt.
+
+          * **Release Notes:** View the release notes on [GitHub](https://github.com/saltstack/salt/blob/${MAJOR}.x/doc/topics/releases/${SALT}.md)
+          * **Changelogs:** https://github.com/saltstack/salt/blob/v${SALT}/CHANGELOG.md
+          * **The Tag:** Check out the official \`\`v${SALT}\`\` tag on [GitHub](https://github.com/saltstack/salt/releases/tag/v${SALT})
+
+          ## Installation & Upgrade Notes
+
+          Users can install Salt ${SALT} via PyPI or through our official package repositories.
+
+          * **Package Repo:** Packages are available here:
+            * [deb](https://packages.broadcom.com/artifactory/saltproject-deb/)
+            * [rpm](https://packages.broadcom.com/artifactory/saltproject-rpm/)
+            * [mac](https://packages.broadcom.com/artifactory/saltproject-generic/macos/${SALT}/)
+            * [win](https://packages.broadcom.com/artifactory/saltproject-generic/windows/${SALT}/)
+            * [onedir](https://packages.broadcom.com/artifactory/saltproject-generic/onedir/${SALT}/)
+          * **Install Guide:** Refer to our official instructions for [Installing Salt](https://docs.saltproject.io/salt/install-guide/en/latest/index.html).
+          * **PyPI Source:** Download the package directly via [PyPI](https://pypi.org/project/salt/${SALT}/)
+
+          | IMPORTANT |
+          | --------- |
+          | While Salt supports differing versions between the Master and Minions during transitional periods, it is **highly recommended to upgrade your Salt Master first** to prevent compatibility issues. |
+
+          ## Reporting Issues & Feedback
+
+          A massive thank you to everyone in the community who tested the Release Candidates and helped us cross the finish line!
+
+          If you encounter any unexpected behavior, bugs, or packaging issues with this GA release, please let us know right away by opening an issue:
+
+          [**Open a GitHub Issue**](https://github.com/saltstack/salt/issues/new/choose)
+
+          Thank you for being a vital part of the Salt Project community. Happy automating!
+          EOF
+          # Strip the leading indentation introduced by the heredoc
+          sed -i 's/^          //' "$FILE"
+
+          git add "$FILE"
+          git commit -m "Add blog post for Salt $SALT LTS release"
+          git push -u origin "$BRANCH"
+          gh pr create --base main --head "$BRANCH" \
+            --title "Add blog post for Salt $SALT LTS release" \
+            --body "Automated blog post for Salt $SALT point release."
+
+      - name: Wait for required PR checks
+        if: steps.detect.outputs.skip != 'true' && steps.lookup.outputs.merged != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BRANCH: ${{ steps.detect.outputs.branch }}
+        run: |
+          set -euo pipefail
+          sleep 15
+          gh pr checks "$BRANCH" --watch --required || true
+
+      - name: Merge PR
+        if: steps.detect.outputs.skip != 'true' && steps.lookup.outputs.merged != 'true'
+        id: merge
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BRANCH: ${{ steps.detect.outputs.branch }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          gh pr merge "$BRANCH" --merge
+          sleep 5
+          sha=$(gh api "repos/$REPO/commits/main" --jq '.sha')
+          echo "merge_sha=$sha" >> "$GITHUB_OUTPUT"
+
+      - name: Wait for gh-pages build on merge commit
+        if: steps.detect.outputs.skip != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          SHA: ${{ steps.merge.outputs.merge_sha || steps.lookup.outputs.merge_sha }}
+        run: |
+          set -euo pipefail
+          run_id=""
+          for i in $(seq 1 24); do
+            sleep 5
+            run_id=$(gh run list --repo "$REPO" --commit "$SHA" -L 5 \
+                      --workflow gh-pages.yml \
+                      --json databaseId --jq '.[0].databaseId // empty')
+            [[ -n "$run_id" ]] && break
+          done
+          if [[ -z "$run_id" ]]; then
+            echo "::error::no gh-pages.yml run found for $SHA"
+            exit 1
+          fi
+          gh run watch --repo "$REPO" "$run_id" --exit-status
+
+      - name: Publish new release (idempotent, patch-bumped)
+        if: steps.detect.outputs.skip != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          SALT: ${{ steps.detect.outputs.salt_version }}
+        run: |
+          set -euo pipefail
+          # Idempotency: skip if a release with this salt version in notes exists
+          for tag in $(gh release list --repo "$REPO" -L 10 \
+                        --json tagName --jq '.[].tagName'); do
+            body=$(gh release view --repo "$REPO" "$tag" --json body --jq '.body')
+            if [[ "$body" == *"Salt ${SALT} LTS release"* ]]; then
+              echo "release for Salt $SALT already published as $tag, skipping"
+              exit 0
+            fi
+          done
+          latest=$(gh release list --repo "$REPO" -L 1 \
+                    --json tagName --jq '.[0].tagName')
+          v=${latest#v}
+          IFS='.' read -r maj min pat <<<"$v"
+          next="v${maj}.${min}.$((pat + 1))"
+          echo "latest=$latest next=$next"
+          gh release create --repo "$REPO" "$next" \
+            --title "$next" \
+            --notes "Salt ${SALT} LTS release" \
+            --latest
