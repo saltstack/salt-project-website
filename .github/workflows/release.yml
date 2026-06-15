@@ -95,6 +95,29 @@ jobs:
           fi
           echo "lookup: $pr"
 
+      - name: Check if release already complete
+        id: done_check
+        if: steps.detect.outputs.skip != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          SALT: ${{ steps.detect.outputs.salt_version }}
+        run: |
+          set -euo pipefail
+          # Canonical end-state marker: the publish step writes
+          # "Salt <salt_version> LTS release" into the release notes. If any
+          # recent release already carries this string, the release is done
+          # and downstream steps short-circuit.
+          for tag in $(gh release list --repo "$REPO" -L 10 \
+                        --json tagName --jq '.[].tagName'); do
+            body=$(gh release view --repo "$REPO" "$tag" --json body --jq '.body')
+            if [[ "$body" == *"Salt ${SALT} LTS release"* ]]; then
+              echo "::notice::release $tag already published for Salt $SALT — done"
+              echo "done=true" >> "$GITHUB_OUTPUT"
+              break
+            fi
+          done
+
       - name: Checkout main
         if: steps.detect.outputs.skip != 'true' && steps.lookup.outputs.pr_number == ''
         uses: actions/checkout@v4
@@ -181,7 +204,7 @@ jobs:
             --body "Automated blog post for Salt $SALT point release."
 
       - name: Wait for required PR checks
-        if: steps.detect.outputs.skip != 'true' && steps.lookup.outputs.merged != 'true'
+        if: steps.detect.outputs.skip != 'true' && steps.lookup.outputs.merged != 'true' && steps.done_check.outputs.done != 'true'
         env:
           GH_TOKEN: ${{ github.token }}
           BRANCH: ${{ steps.detect.outputs.branch }}
@@ -191,7 +214,7 @@ jobs:
           gh pr checks "$BRANCH" --watch --required || true
 
       - name: Merge PR
-        if: steps.detect.outputs.skip != 'true' && steps.lookup.outputs.merged != 'true'
+        if: steps.detect.outputs.skip != 'true' && steps.lookup.outputs.merged != 'true' && steps.done_check.outputs.done != 'true'
         id: merge
         env:
           GH_TOKEN: ${{ github.token }}
@@ -205,7 +228,7 @@ jobs:
           echo "merge_sha=$sha" >> "$GITHUB_OUTPUT"
 
       - name: Wait for gh-pages build on merge commit
-        if: steps.detect.outputs.skip != 'true'
+        if: steps.detect.outputs.skip != 'true' && steps.done_check.outputs.done != 'true'
         env:
           GH_TOKEN: ${{ github.token }}
           REPO: ${{ github.repository }}
@@ -226,23 +249,14 @@ jobs:
           fi
           gh run watch --repo "$REPO" "$run_id" --exit-status
 
-      - name: Publish new release (idempotent, patch-bumped)
-        if: steps.detect.outputs.skip != 'true'
+      - name: Publish new release (patch-bumped)
+        if: steps.detect.outputs.skip != 'true' && steps.done_check.outputs.done != 'true'
         env:
           GH_TOKEN: ${{ github.token }}
           REPO: ${{ github.repository }}
           SALT: ${{ steps.detect.outputs.salt_version }}
         run: |
           set -euo pipefail
-          # Idempotency: skip if a release with this salt version in notes exists
-          for tag in $(gh release list --repo "$REPO" -L 10 \
-                        --json tagName --jq '.[].tagName'); do
-            body=$(gh release view --repo "$REPO" "$tag" --json body --jq '.body')
-            if [[ "$body" == *"Salt ${SALT} LTS release"* ]]; then
-              echo "release for Salt $SALT already published as $tag, skipping"
-              exit 0
-            fi
-          done
           latest=$(gh release list --repo "$REPO" -L 1 \
                     --json tagName --jq '.[0].tagName')
           v=${latest#v}
