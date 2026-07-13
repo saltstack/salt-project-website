@@ -35,7 +35,7 @@ theme   = 'pydata'
 [params]
   favicon           = 'images/SaltProject_Logomark_teal.png'
   sidebar_nav_title = 'Salt Project'
-  copyright         = '© Copyright 2023-{year} Broadcom. All Rights Reserved. The term "Broadcom" refers to Broadcom Inc. and/or its subsidiaries. Salt Project is a Broadcom-sponsored project.'
+  copyright         = '© Copyright 2005-{year} Broadcom. All Rights Reserved. The term "Broadcom" refers to Broadcom Inc. and/or its subsidiaries.'
   # All flat params must come BEFORE any [params.*] sub-tables in TOML.
   navbar_center     = ['header-links']
   github_url        = 'https://github.com/saltstack'
@@ -92,6 +92,45 @@ theme   = 'pydata'
   name = 'RSS'
   url  = '/community/rss-feeds/'
   icon = 'fa-solid fa-rss'
+
+# ---------------------------------------------------------------------------
+# Working groups — rendered as a table on /community/working-groups/
+# by layouts/community/working-groups.html.
+# ---------------------------------------------------------------------------
+[[params.working_groups]]
+  title           = 'MacOS'
+  description     = 'Improve Salt for Apple MacOS'
+  captain         = 'Wes'
+  captain_handle  = 'weswhet'
+  discord_channel = '#macos'
+
+[[params.working_groups]]
+  title           = 'Salt Extensions'
+  description     = 'Help converting modules to Salt extensions'
+  captain         = 'Shane Lee'
+  captain_handle  = 'twangboy'
+  discord_channel = '#salt-extensions'
+
+[[params.working_groups]]
+  title           = 'Salt Formulas'
+  description     = 'Create pre-written Salt states for common use cases'
+  captain         = 'Jeff Neel'
+  captain_handle  = 'jeff350'
+  discord_channel = '#salt-formulas'
+
+[[params.working_groups]]
+  title           = 'Security'
+  description     = 'Ensure that Salt is developed using security best practices'
+  captain         = 'Barney Sowood'
+  captain_handle  = 'barneysowood'
+  discord_channel = '#security'
+
+[[params.working_groups]]
+  title           = 'Windows'
+  description     = 'Improve Salt for Windows operating systems'
+  captain         = 'Shane Lee'
+  captain_handle  = 'twangboy'
+  discord_channel = '#windows'
 
 # ---------------------------------------------------------------------------
 # Sidebar navigation menu — three caption groups, each with children.

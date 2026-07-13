@@ -1,0 +1,35 @@
+{{ define "main" }}
+<div class="bd-content">
+  <div class="bd-article-container">
+    <div class="bd-header-article d-print-none">
+      {{ partial "header-article.html" . }}
+    </div>
+    <article class="bd-article">
+      <h1>{{ .Title }}</h1>
+      {{ .Content }}
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Working Group</th>
+            <th scope="col">Description</th>
+            <th scope="col">Captain</th>
+            <th scope="col">Discord Channel</th>
+            <th scope="col">Meeting Times</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{ range site.Params.working_groups }}
+          <tr>
+            <td>{{ .title }}</td>
+            <td>{{ .description }}</td>
+            <td><a href="https://github.com/{{ .captain_handle }}">{{ .captain }}</a></td>
+            <td>{{ .discord_channel }}</td>
+            <td><a href="{{ "community/event-calendar/" | relURL }}">Community calendar</a></td>
+          </tr>
+          {{ end }}
+        </tbody>
+      </table>
+    </article>
+  </div>
+</div>
+{{ end }}
