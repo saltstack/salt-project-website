@@ -78,9 +78,9 @@ To create a new blog post:
 
    | If you want to write this type of post... | Use this example file... |
    | ----------------------------------------- | ------------------------ |
-   | Release announcement | `example-release.md` |
+   | Release, release candidate, or security/CVE advisory | Use `scripts/new-blog-post.py` instead — see [Generate a release, RC, or security post](#generate-a-release-rc-or-security-post) |
    | Open Hour notes | `example-open-hour.md` |
-   | Generic blog entry (including security advisories) | `example.md` |
+   | Generic blog entry / announcement | `example.md` |
 
 3. Each example file contains instructions in commented out code for how to fill in the necessary Markdown front matter for that type of blog post. Follow those instructions and edit the content.
 
@@ -94,9 +94,66 @@ To create a new blog post:
 
 7. Push the current `main` branch to the live site by cutting a new release. (See [Push the current `main` branch to the live site](#push-the-current-main-branch-to-the-live-site).)
 
+### Generate a release, RC, or security post
+
+`scripts/new-blog-post.py` generates a new, fully-populated blog post file
+for the three most common (and most repetitive) post types, so you don't
+have to hand-copy the closest prior post:
+
+```bash
+# New GA release (one or more versions)
+python3 scripts/new-blog-post.py release --version 3008.2
+python3 scripts/new-blog-post.py release --version 3008.0 --version 3006.25
+
+# New release candidate (one version, one RC number)
+python3 scripts/new-blog-post.py rc --version 3008 --rc 1
+
+# New security/CVE advisory (one or more versions)
+python3 scripts/new-blog-post.py security --version 3008.2
+python3 scripts/new-blog-post.py security --version 3006.12 --version 3007.4
+
+# General news/announcement post
+python3 scripts/new-blog-post.py announcement \
+  --title "Some announcement" --summary "..." --tags community
+```
+
+Each Salt major version's release track (`LTS`, `STS`, or `RC`) is looked up
+in `scripts/releases.toml` — **add a new major version there before**
+generating a `release`, `rc`, or `security` post for it; the script exits
+with an error otherwise (`error: major version 'XXXX' not found in
+scripts/releases.toml — add it before generating this post.`).
+
+`release` and `security` are also checked against `scripts/release-log.toml`
+— a log of every version ever announced (version, blog post URL, and
+publish date), pre-populated from this repo's existing blog post history.
+A version that's already in the log is rejected as a duplicate, and a new
+version must be the next expected patch number for its major line (e.g.
+if `3006.27` is the latest logged `3006.x` release, the next one must be
+`3006.28` — `3006.29` or re-announcing `3006.27` are both rejected). A
+major version with no prior log entries (e.g. the first release of a new
+major) is allowed unconditionally. On success, the new version(s) are
+appended to the log automatically — **you don't edit this file by hand**
+except to fix a pre-population mistake.
+
+Notes:
+- All generated posts default to `draft: true` (pass `--publish` to skip
+  that). Remove `draft: true` yourself when you're ready to ship it, same
+  as any hand-written post.
+- `release`/`rc`/`security` bodies are fully populated boilerplate — no
+  further edits should be needed beyond removing `draft: true`.
+- `security` posts are the exception: the script only scaffolds the
+  wrapper text and one placeholder `### CVE-{YYYY}-{NNNNN}` block (with
+  `{Description}`/`{Impact}`/`{Severity Rating}`/etc. placeholders) under
+  `## CVE Details` — duplicate and fill that block in by hand per real CVE
+  before publishing. The generator can't infer CVE-specific details from a
+  version number alone.
+- `announcement`'s `--tags` must come from the approved taxonomy in
+  `scripts/tags.toml` (same validation `scripts/validate-tags.py` runs) —
+  the script rejects unapproved tags immediately.
+
 ### Create a new security announcement
 
-Security advisories are no longer a separate content type — they're just blog posts tagged `security`, published in `content/blog` alongside everything else, as part of a single unified blog feed. Follow the same process as [Create a new blog post](#create-a-new-blog-post) and use the `security` tag.
+Security advisories are no longer a separate content type — they're just blog posts tagged `security`, published in `content/blog` alongside everything else, as part of a single unified blog feed. Use `scripts/new-blog-post.py security` (see above), or follow the same manual process as [Create a new blog post](#create-a-new-blog-post) and use the `security` tag.
 
 The legacy `/security-announcements/` RSS feed URL is preserved for old subscribers: `scripts/duplicate-security-feed.sh` copies the built `tags/security` RSS feed to that legacy path. This runs automatically as part of the deploy workflow after the Hugo build — see `.github/workflows/gh-pages.yml`.
 
@@ -189,6 +246,8 @@ Depending on the type of content, it may need different front matter. See the ex
 The `scripts` folder holds standalone helper scripts used in local development and CI:
 
 - `scripts/validate-tags.py` — validates blog post tags against the approved taxonomy in `scripts/tags.toml`.
+- `scripts/new-blog-post.py` — generates a new release, RC, security, or announcement blog post (see [Generate a release, RC, or security post](#generate-a-release-rc-or-security-post)). Release track lookups come from `scripts/releases.toml`; duplicate/sequence checks and history come from `scripts/release-log.toml`.
+- `scripts/_blog_common.py` — small shared helper module (`scripts/tags.toml`/`scripts/releases.toml`/`scripts/release-log.toml` loaders) used by both `validate-tags.py` and `new-blog-post.py`.
 - `scripts/duplicate-security-feed.sh` — copies the built `tags/security` RSS feed to the legacy `/security-announcements/` URL after a Hugo build.
 
 ### GitHub Actions workflows
