@@ -1,0 +1,31 @@
+{{- /*
+  Given a URL (context .), returns ` target="_blank" rel="noopener noreferrer"`
+  if the URL is external and should open in a new tab, or an empty string
+  otherwise. A URL is treated as "internal" (no new tab) if it's not
+  http(s), points back at this site's own baseURL, or matches one of the
+  configured exceptions (matched by prefix).
+
+  Controlled via site.Params.external_links in hugo.toml:
+    [params.external_links]
+      new_tab    = true
+      exceptions = ['https://docs.saltproject.io/']
+
+  @example: {{ partial "link-target-attrs.html" .url }}
+*/ -}}
+{{- $url := . -}}
+{{- $cfg := site.Params.external_links | default dict -}}
+{{- $attrs := "" -}}
+{{- if $cfg.new_tab | default true -}}
+  {{- if or (hasPrefix $url "http://") (hasPrefix $url "https://") -}}
+    {{- $isInternal := hasPrefix $url site.BaseURL -}}
+    {{- range $cfg.exceptions | default (slice) -}}
+      {{- if hasPrefix $url . -}}
+        {{- $isInternal = true -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if not $isInternal -}}
+      {{- $attrs = " target=\"_blank\" rel=\"noopener noreferrer\"" -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $attrs -}}

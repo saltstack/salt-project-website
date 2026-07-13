@@ -1,3 +1,4 @@
+{{- $url := "https://pydata-sphinx-theme.readthedocs.io/" }}
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/">PyData Sphinx Theme</a> (Hugo port).
+  Built with the <a href="{{ $url }}"{{ partial "link-target-attrs.html" $url | safeHTMLAttr }}>PyData Sphinx Theme</a> (Hugo port).
 </p>

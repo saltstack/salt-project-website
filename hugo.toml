@@ -51,6 +51,14 @@ theme   = 'pydata'
     image_dark  = 'images/SaltProject_altlogo_teal.png'
     alt_text    = 'Salt Project - Home'
 
+# ---------------------------------------------------------------------------
+# External links — any link pointing off-site opens in a new tab, except
+# base URLs listed under `exceptions` (matched by prefix).
+# ---------------------------------------------------------------------------
+[params.external_links]
+  new_tab    = true
+  exceptions = ['https://docs.saltproject.io/']
+
 [params.landing]
   title             = "Welcome to the Salt Project"
   description       = "Salt is an open-source automation framework for remote execution, configuration management, and infrastructure orchestration — used by teams to manage thousands of systems from a single control plane."

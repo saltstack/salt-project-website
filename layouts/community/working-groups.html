@@ -19,10 +19,11 @@
         </thead>
         <tbody>
           {{ range site.Params.working_groups }}
+          {{ $captainURL := printf "https://github.com/%s" .captain_handle }}
           <tr>
             <td>{{ .title }}</td>
             <td>{{ .description }}</td>
-            <td><a href="https://github.com/{{ .captain_handle }}">{{ .captain }}</a></td>
+            <td><a href="{{ $captainURL }}"{{ partial "link-target-attrs.html" $captainURL | safeHTMLAttr }}>{{ .captain }}</a></td>
             <td>{{ .discord_channel }}</td>
             <td><a href="{{ "community/event-calendar/" | relURL }}">Community calendar</a></td>
           </tr>

@@ -4,22 +4,22 @@
 {{- $iconLinks := site.Params.icon_links | default (slice) -}}
 <div class="navbar-item">
   {{- if $github }}
-  <a href="{{ $github }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm pst-navbar-icon" aria-label="GitHub" title="GitHub" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <a href="{{ $github }}"{{ partial "link-target-attrs.html" $github | safeHTMLAttr }} class="btn btn-sm pst-navbar-icon" aria-label="GitHub" title="GitHub" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-brands fa-github fa-lg"></i>
   </a>
   {{- end }}
   {{- if $gitlab }}
-  <a href="{{ $gitlab }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm pst-navbar-icon" aria-label="GitLab" title="GitLab" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <a href="{{ $gitlab }}"{{ partial "link-target-attrs.html" $gitlab | safeHTMLAttr }} class="btn btn-sm pst-navbar-icon" aria-label="GitLab" title="GitLab" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-brands fa-gitlab fa-lg"></i>
   </a>
   {{- end }}
   {{- if $twitter }}
-  <a href="{{ $twitter }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm pst-navbar-icon" aria-label="Twitter" title="Twitter" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <a href="{{ $twitter }}"{{ partial "link-target-attrs.html" $twitter | safeHTMLAttr }} class="btn btn-sm pst-navbar-icon" aria-label="Twitter" title="Twitter" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-brands fa-twitter fa-lg"></i>
   </a>
   {{- end }}
   {{- range $iconLinks }}
-  <a href="{{ .url }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm pst-navbar-icon" aria-label="{{ .name }}" title="{{ .name }}" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <a href="{{ .url }}"{{ partial "link-target-attrs.html" .url | safeHTMLAttr }} class="btn btn-sm pst-navbar-icon" aria-label="{{ .name }}" title="{{ .name }}" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="{{ .icon }} fa-lg"></i>
   </a>
   {{- end }}
