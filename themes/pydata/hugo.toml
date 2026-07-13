@@ -110,5 +110,10 @@ title = 'My New Hugo Project'
   # Equivalent to html_css_files in Sphinx conf.py.
   extra_css = []
 
+  # Extra origins allowed in the Content-Security-Policy's frame-src,
+  # beyond 'self'. Set this if your site embeds a third-party iframe
+  # (e.g. a calendar widget).
+  csp_frame_src = []
+
   # Sidebar navigation section title. Defaults to site.Title when empty.
   sidebar_nav_title = ''

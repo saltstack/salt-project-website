@@ -2,8 +2,8 @@
 
 /* ============================================================
    Cross-doc navigation (header-links.html pattern)
-   Mirrors salt install guide's header-links.html CSS,
-   using pydata CSS variables throughout.
+   Styles the cross_doc_links partial, using pydata CSS
+   variables throughout.
    ============================================================ */
 
 .bd-header .navbar-nav {
@@ -36,7 +36,7 @@
 
 /* ============================================================
    Collapsible sidebar nav (globaltoc pattern)
-   Scoped to #pst-sidebar-nav — mirrors #salt-globaltoc CSS.
+   Scoped to #pst-sidebar-nav.
    ============================================================ */
 
 #pst-sidebar-nav {

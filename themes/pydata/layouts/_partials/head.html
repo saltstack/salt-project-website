@@ -1,6 +1,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; frame-src https://calendar.google.com; connect-src 'self'; base-uri 'self'; form-action 'self'">
+{{- /*
+  Content-Security-Policy: script-src always includes the CDNs the theme's
+  own search feature needs (cdnjs for Font Awesome, jsdelivr for Fuse.js).
+  Sites embedding third-party iframes (e.g. a calendar widget) should add
+  those origins via site.Params.csp_frame_src rather than editing this file.
+*/ -}}
+{{- $extraFrameSrc := site.Params.csp_frame_src | default (slice) -}}
+{{- $frameSrcList := (slice "'self'") -}}
+{{- range $extraFrameSrc }}{{ $frameSrcList = $frameSrcList | append . }}{{ end -}}
+{{- $frameSrc := delimit $frameSrcList " " -}}
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; frame-src {{ $frameSrc }}; connect-src 'self'; base-uri 'self'; form-action 'self'">
 
 {{- $defaultMode := site.Params.default_mode | default "auto" }}
 <script data-cfasync="false">

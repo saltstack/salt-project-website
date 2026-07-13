@@ -36,6 +36,9 @@ theme   = 'pydata'
   favicon           = 'images/SaltProject_Logomark_teal.png'
   sidebar_nav_title = 'Salt Project'
   copyright         = '© Copyright 2005-{year} Broadcom. All Rights Reserved. The term "Broadcom" refers to Broadcom Inc. and/or its subsidiaries.'
+  # Extra origins allowed in the CSP's frame-src, beyond 'self'. Needed here
+  # for the Google Calendar embed on layouts/community/event-calendar.html.
+  csp_frame_src     = ['https://calendar.google.com']
   # All flat params must come BEFORE any [params.*] sub-tables in TOML.
   navbar_center     = ['header-links']
   github_url        = 'https://github.com/saltstack'

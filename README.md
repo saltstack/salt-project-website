@@ -197,3 +197,9 @@ The `scripts` folder holds standalone helper scripts used in local development a
 
 The `themes/pydata` theme vendored in this repository is a Hugo port of the [PyData Sphinx Theme](https://github.com/pydata/pydata-sphinx-theme) ([docs](https://pydata-sphinx-theme.readthedocs.io/en/stable/)), originally built for Sphinx documentation sites. Credit to the PyData Sphinx Theme authors and contributors for the design and functionality this port is based on.
 
+## License
+
+This repository as a whole is **not** released under an open source or Creative Commons license — all rights reserved except as noted below.
+
+The one exception is `themes/pydata`: that directory is licensed under the **BSD 3-Clause License**, matching the license used by the upstream [PyData Sphinx Theme](https://github.com/pydata/pydata-sphinx-theme). See `themes/pydata/LICENSE` for the full text.
+
