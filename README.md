@@ -5,7 +5,7 @@ This repository is for the main static site of https://saltproject.io, built wit
 ## Install prerequisites
 
 - [Install Hugo](https://gohugo.io/installation/)
-  - Version `v0.146.0` or higher — this is the minimum required by the vendored `themes/pydata` theme's `hugo.toml` (`module.hugoVersion.min`). CI installs this same version automatically via the local `.github/actions/setup-hugo` composite action, so it only needs to be updated in one place.
+  - Version `v0.162.1` or higher — this is the minimum required by the vendored `themes/pydata` theme's `hugo.toml` (`module.hugoVersion.min`). CI installs this same version automatically via the local `.github/actions/setup-hugo` composite action, so it only needs to be updated in one place.
   - This was built with the `extended` version of Hugo, which is required.
 - Git
 - Python 3.14+ (only needed to run `scripts/validate-tags.py` locally)

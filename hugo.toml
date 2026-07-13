@@ -1,6 +1,6 @@
-baseURL = 'https://saltproject.io/'
-locale  = 'en-us'
-title   = 'Salt Project'
+baseURL      = 'https://saltproject.io/'
+languageCode = 'en-us'
+title        = 'Salt Project'
 theme   = 'pydata'
 
 [outputs]

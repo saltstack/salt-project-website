@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 {{- $defaultMode := site.Params.default_mode | default "auto" -}}
-<html lang="{{ site.Language.Locale }}" dir="{{ or site.Language.Direction `ltr` }}" data-content_root="{{ .RelPermalink }}"{{ if $defaultMode }} data-theme="{{ $defaultMode }}"{{ end }}>
+<html lang="{{ site.LanguageCode }}" dir="{{ or site.Language.LanguageDirection `ltr` }}" data-content_root="{{ .RelPermalink }}"{{ if $defaultMode }} data-theme="{{ $defaultMode }}"{{ end }}>
 <head>
   {{ partial "head.html" . }}
 </head>
