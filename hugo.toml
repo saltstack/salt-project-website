@@ -60,31 +60,37 @@ theme   = 'pydata'
   title       = "Install Salt"
   description = "Step-by-step instructions for every platform and operating system."
   url         = "https://docs.saltproject.io/salt/install-guide/en/latest/"
+  icon        = "fa-solid fa-download"
 
 [[params.landing.nav_boxes]]
   title       = "User Guide"
   description = "Learn Salt's core concepts: states, grains, pillars, and more."
   url         = "https://docs.saltproject.io/salt/user-guide/en/latest/"
+  icon        = "fa-solid fa-book"
 
 [[params.landing.nav_boxes]]
   title       = "Reference Docs"
   description = "Full module and API reference for Salt."
   url         = "https://docs.saltproject.io/en/latest/contents.html"
+  icon        = "fa-solid fa-code"
 
 [[params.landing.nav_boxes]]
   title       = "Blog"
   description = "Release announcements, community updates, and Salt news."
   url         = "/blog/"
+  icon        = "fa-solid fa-newspaper"
 
 [[params.landing.nav_boxes]]
   title       = "Discord Community"
   description = "Join the Salt Project Discord, attend events, and connect with contributors."
   url         = "https://discord.gg/J7b7EscrAs"
+  icon        = "fa-brands fa-discord"
 
 [[params.landing.nav_boxes]]
   title       = "GitHub"
   description = "Browse the source, open issues, and contribute to Salt."
   url         = "https://github.com/saltstack/salt"
+  icon        = "fa-brands fa-github"
 
 [[params.icon_links]]
   name = 'Discord'
