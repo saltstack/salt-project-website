@@ -1,14 +1,14 @@
 name: Setup Hugo
 description: >-
-  Installs the Hugo extended CLI. Defaults to the minimum version declared in
-  themes/pydata/hugo.toml (module.hugoVersion.min), so the required Hugo
-  version only has to be maintained in one place. Pass `version` to override.
+  Installs the Hugo extended CLI, using the version pinned in the repo's
+  root .hugo-version file — the same file the devcontainer reads, so CI and
+  local dev never drift apart. Pass `version` to override.
 
 inputs:
   version:
     description: >-
       Hugo version to install (without the leading "v"). Defaults to the
-      minimum version declared in themes/pydata/hugo.toml.
+      version pinned in the repo's root .hugo-version file.
     required: false
     default: ''
 
@@ -21,10 +21,10 @@ runs:
       run: |
         version="${{ inputs.version }}"
         if [ -z "$version" ]; then
-          version=$(sed -n '/\[module\.hugoVersion\]/,/^\[/{s/^\s*min\s*=\s*.\([0-9.]*\)./\1/p}' themes/pydata/hugo.toml | head -n1)
+          version=$(cat .hugo-version)
         fi
         if [ -z "$version" ]; then
-          echo "::error::Could not resolve a Hugo version (no input given and themes/pydata/hugo.toml has no module.hugoVersion.min)" >&2
+          echo "::error::Could not resolve a Hugo version (no input given and .hugo-version is empty/missing)" >&2
           exit 1
         fi
         echo "Using Hugo v${version}"

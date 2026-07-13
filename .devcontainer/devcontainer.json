@@ -8,7 +8,12 @@
 	// "image": "mcr.microsoft.com/devcontainers/python:3.13-bookworm",
 
 	"build": {
-		"dockerfile": "Dockerfile"
+		"dockerfile": "Dockerfile",
+		// Context is the repo root (not .devcontainer) so the Dockerfile can
+		// read the root .hugo-version file — the single source of truth for
+		// the Hugo version shared with GitHub Actions (see
+		// .github/actions/setup-hugo).
+		"context": ".."
 	},
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
