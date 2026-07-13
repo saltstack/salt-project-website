@@ -6,8 +6,8 @@ author: "Salt Project Team"
 image: images/blog/new-release.png
 image_alt:
 tags:
-    - releases
-    - release candidate
+    - release
+    - release-candidate
 ---
 
 # Salt Project Announcement: New RC Release Available

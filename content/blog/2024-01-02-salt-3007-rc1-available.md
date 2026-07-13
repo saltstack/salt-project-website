@@ -6,8 +6,8 @@ url: "blog/salt-3007-rc1-available"
 image: images/blog/new-update.png
 image_alt:
 tags:
-    - releases
-    - release candidate
+    - release
+    - release-candidate
 ---
 
 The Salt Project has just released RC1 (release candidate 1) of the Salt 3007

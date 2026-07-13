@@ -7,7 +7,7 @@ authorbio: ""
 url: "blog/bootstrap-hosting-decommission"
 image: images/blog/new-alert.png
 tags:
-    - news
+    - announcement
     - community
 ---
 

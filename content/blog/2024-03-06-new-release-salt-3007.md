@@ -5,7 +5,7 @@ date: "2024-03-06"
 url: "blog/salt-release-3007-is-now-available"
 image: images/blog/new-release.png
 tags:
-    - releases
+    - release
 ---
 
 The Salt Project has just released 3007 STS of Salt. To download and

@@ -7,7 +7,7 @@ authorbio: ""
 url: "blog/salt-project-package-repo-migration-and-guidance"
 image: images/blog/new-alert.png
 tags:
-    - news
+    - announcement
     - community
 ---
 

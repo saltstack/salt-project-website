@@ -7,7 +7,6 @@ authorbio: ""
 url: "blog/streamlining-cicd-package-distribution"
 image: images/blog/datacenter-01.jpg
 tags:
-    - news
     - community
 ---
 

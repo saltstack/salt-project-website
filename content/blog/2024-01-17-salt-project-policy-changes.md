@@ -7,7 +7,7 @@ authorbio: "Tom Hatch is the creator of Salt and founder of Salt Project."
 url: "blog/salt-project-policy-changes"
 image: images/blog/new-update.png
 tags:
-    - news
+    - announcement
     - community
 ---
 

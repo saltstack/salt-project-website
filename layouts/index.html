@@ -1,31 +1,49 @@
+{{- /*
+  Landing page — hero + CTA buttons + nav cards + optional recent posts.
+  All content is driven by [params.landing] in hugo.toml.
+*/ -}}
 {{ define "main" }}
-    <main>
-        <section class="video-hero">
-            {{ partial "home/banner" }}
-        </section>
+  {{- $landing    := site.Params.landing | default dict -}}
+  {{- $title      := $landing.title       | default site.Title -}}
+  {{- $desc       := $landing.description | default "" -}}
+  {{- $navBoxes   := $landing.nav_boxes      | default (slice) -}}
+  {{- $showPosts  := $landing.show_recent_posts | default false -}}
 
-        <section class="youtube-embed">
-            {{ partial "home/youtube" }}
-        </section>
+  {{- $body := "" -}}
 
-        <section class="two-columns">
-            {{ partial "home/two-column-right" }}
-        </section>
+  {{- /* ── Hero section ── */ -}}
+  {{- $body = printf "%s<div class=\"pst-landing-hero\"><h1>%s</h1>" $body $title -}}
+  {{- with $desc -}}
+    {{- $body = printf "%s<p>%s</p>" $body . -}}
+  {{- end -}}
+  {{- $body = printf "%s</div>" $body -}}
 
-        <section class="two-columns">
-            {{ partial "home/two-column-left" }}
-        </section>
+  {{- /* ── Nav card grid ── */ -}}
+  {{- if $navBoxes -}}
+    {{- $body = printf "%s<div class=\"row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 mb-4\">" $body -}}
+    {{- range $navBoxes -}}
+      {{- $body = printf "%s<div class=\"col d-flex\"><div class=\"card shadow-sm pst-nav-card w-100\"><div class=\"card-body\"><h3 class=\"card-title h6 fw-bold\">%s</h3><p class=\"card-text\">%s</p></div><a href=\"%s\" class=\"stretched-link\" aria-label=\"%s\"></a></div></div>" $body .title .description .url .title -}}
+    {{- end -}}
+    {{- $body = printf "%s</div>" $body -}}
+  {{- end -}}
 
-        <section class="icon-links">
-            {{ partial "home/icon-links" }}
-        </section>
+  {{- /* ── Recent blog posts ── */ -}}
+  {{- if $showPosts -}}
+    {{- $recent := where site.RegularPages "Section" "blog" | first 3 -}}
+    {{- if $recent -}}
+      {{- $body = printf "%s<div class=\"pst-recent-posts\"><div class=\"pst-recent-posts-header\"><h2>Recent Blog Posts</h2><a href=\"/blog/\" class=\"pst-recent-posts-all\">View all posts →</a></div>" $body -}}
+      {{- range $recent -}}
+        {{- $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" -}}
+        {{- $dateHuman   := .Date | time.Format ":date_long" -}}
+        {{- $tagsHTML    := "" -}}
+        {{- range .GetTerms "tags" -}}
+          {{- $tagsHTML = printf "%s<a href=\"%s\" class=\"pst-tag\">%s</a>" $tagsHTML .RelPermalink .LinkTitle -}}
+        {{- end -}}
+        {{- $body = printf "%s<section class=\"pst-post-listing\"><h3><a href=\"%s\">%s</a></h3><div class=\"pst-post-meta\"><time datetime=\"%s\" class=\"pst-post-date\">%s</time></div><p>%s</p>%s</section>" $body .RelPermalink .Title $dateMachine $dateHuman .Summary $tagsHTML -}}
+      {{- end -}}
+      {{- $body = printf "%s</div>" $body -}}
+    {{- end -}}
+  {{- end -}}
 
-        <section class="recent-posts">
-            {{ partial "home/recent-posts" }}
-        </section>
-
-        <section class="cover-image">
-            {{ partial "home/cover" }}
-        </section>
-    </main>
+  {{ partial "article-shell.html" (dict "page" . "content" ($body | safeHTML)) }}
 {{ end }}

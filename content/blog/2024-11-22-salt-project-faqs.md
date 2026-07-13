@@ -7,9 +7,7 @@ authorbio: ""
 url: "blog/post-migration-salt-project-faqs"
 image: images/blog/new-update.png
 tags:
-    - news
     - community
-    - open hour
 ---
 
 > This is a continuation of several blog post announcements related to infrastructure migration:

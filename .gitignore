@@ -9,3 +9,9 @@ static/.DS_Store
 static/images/.DS_Store
 *.un~
 .idea
+*.bkup
+*.bak
+.env
+.env.*
+*.pem
+*.key

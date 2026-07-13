@@ -8,8 +8,8 @@ url: "blog/new-salt-extension-salt-describe"
 image: images/blog/new-extension.png
 image_alt:
 tags:
-    - releases
-    - salt extensions
+    - release
+    - salt-extensions
 ---
 
 # New Salt Extension: Salt Describe (Automate generating SLS files)

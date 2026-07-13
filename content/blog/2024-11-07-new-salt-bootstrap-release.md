@@ -7,9 +7,8 @@ authorbio: ""
 url: "blog/new-salt-bootstrap-release-2024-11-07"
 image: images/blog/new-release.png
 tags:
-    - news
+    - release
     - community
-    - releases
 ---
 
 > This is a continuation of several blog post announcements related to infrastructure migration:

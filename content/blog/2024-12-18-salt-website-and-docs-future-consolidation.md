@@ -7,7 +7,6 @@ authorbio: ""
 url: "blog/2025-website-and-docs-review"
 image: images/blog/new-update.png
 tags:
-    - news
     - community
 ---
 

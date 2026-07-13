@@ -6,7 +6,7 @@ author: Salt Project Team
 image: images/blog/new-release.png
 draft: true
 tags:
-    - news
+    - announcement
     - community
 ---
 

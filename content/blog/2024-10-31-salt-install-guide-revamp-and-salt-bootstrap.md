@@ -7,7 +7,7 @@ authorbio: ""
 url: "blog/salt-install-guide-overhaul"
 image: images/blog/new-alert.png
 tags:
-    - news
+    - announcement
     - community
 ---
 

@@ -6,7 +6,7 @@ url: "blog/salt-3005-3-release-is-now-available"
 image: images/blog/new-release.png
 image_alt:
 tags:
-    - releases
+    - release
 ---
 
 The Salt Project has just released the 3005.3 bugfix of Salt 3005. To download

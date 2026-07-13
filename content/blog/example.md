@@ -9,8 +9,7 @@ url: "blog/title-shortened"
 image: images/blog/
 image_alt:
 tags:
-    - releases
-    - news
+    - release
     - community
 ---
 

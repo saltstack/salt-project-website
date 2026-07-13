@@ -8,7 +8,6 @@ url: "blog/tom-exits-broadcom-stays-with-salt"
 image: images/blog/tom-hatch.jpg
 image_alt:
 tags:
-    - news
     - community
 ---
 

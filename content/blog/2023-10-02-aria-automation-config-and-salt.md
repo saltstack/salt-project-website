@@ -8,8 +8,8 @@ url: "blog/aria-automation-config-and-salt"
 image: images/blog/computer-device-close-up-03.jpg
 image_alt:
 tags:
-    - news
-    - aria automation config
+    - guest-post
+    - enterprise
 ---
 
 # Aria Automation Config and Salt Project – Leader in Configuration Management
@@ -95,4 +95,4 @@ Some cool sneak peeks into what's coming:
 - **Salt Project in VMware Release Notes** - Look no further. Salt Project Key Release Highlights will be featured in [VMware Aria Automation Release Notes](https://docs.vmware.com/en/VMware-Aria-Automation/services/rn/vmware-aria-automation-release-notes/index.html). Aria Automation Config is powered by Salt Project, and we want to ensure our customers are aware of the new Salt capabilities in addition to what is available with Aria Automation Config.
 
 If you would like to get started using Salt, and learn more about the Salt
-Project community, go to: <http://www.saltproject.io>.
+Project community, go to: <https://www.saltproject.io>.
