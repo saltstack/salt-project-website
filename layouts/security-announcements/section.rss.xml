@@ -1,0 +1,31 @@
+{{- /*
+  Legacy backward-compatible feed for the old /security-announcements/index.xml
+  URL. Mirrors /tags/security/index.xml by reading from the same "security"
+  taxonomy data, so both feeds always stay in sync.
+*/ -}}
+{{- "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Security on {{ site.Title }}</title>
+    <link>{{ "/tags/security/" | absURL }}</link>
+    <description>Recent content in Security on {{ site.Title }}</description>
+    <generator>Hugo</generator>
+    {{- with site.Language.Locale }}
+    <language>{{ . }}</language>
+    {{- end }}
+    {{- $pages := site.Taxonomies.tags.security.Pages }}
+    {{- with $pages }}
+    <lastBuildDate>{{ (index . 0).Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</lastBuildDate>
+    {{- end }}
+    <atom:link href="{{ (.OutputFormats.Get "rss").Permalink }}" rel="self" type="application/rss+xml" />
+    {{- range $pages }}
+    <item>
+      <title>{{ .Title }}</title>
+      <link>{{ .Permalink }}</link>
+      <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
+      <guid>{{ .Permalink }}</guid>
+      <description>{{ .Summary | html }}</description>
+    </item>
+    {{- end }}
+  </channel>
+</rss>

@@ -8,7 +8,6 @@ url: "blog/the-great-salt-module-migration/"
 canonicalUrl: https://salt.tips/the-great-salt-module-migration/
 image: images/blog/coworkers-meeting-08.jpg
 tags:
-    - news
     - community
 ---
 

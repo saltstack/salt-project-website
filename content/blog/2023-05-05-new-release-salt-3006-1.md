@@ -6,7 +6,7 @@ url: "blog/salt-3006-1-release-is-now-available"
 image: images/blog/new-release.png
 image_alt:
 tags:
-    - releases
+    - release
 ---
 
 The Salt Project has just released 3006.1 bugfix of Salt. To download and

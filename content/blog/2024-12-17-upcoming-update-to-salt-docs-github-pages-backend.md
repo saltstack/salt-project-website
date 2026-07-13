@@ -7,7 +7,7 @@ authorbio: ""
 url: "blog/2024-12-17-upcoming-update-to-salt-project-docs-github-pages"
 image: images/blog/new-update.png
 tags:
-    - news
+    - announcement
     - community
 ---
 

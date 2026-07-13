@@ -5,7 +5,7 @@ date: "2025-01-24"
 author: Salt Project Team
 image: images/blog/new-update.png
 tags:
-    - news
+    - announcement
     - community
 ---
 

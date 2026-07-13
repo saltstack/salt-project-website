@@ -6,8 +6,8 @@ url: "blog/salt-3008-rc2-available"
 image: images/blog/new-update.png
 image_alt:
 tags:
-    - releases
-    - release candidate
+    - release
+    - release-candidate
 ---
 
 The Salt Project has just released RC2 (release candidate 2) of the Salt 3008

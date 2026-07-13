@@ -6,7 +6,6 @@ author: David Murphy
 authorbio: "David Murphy is a retired Salt Project Core Maintainer, spending his free time with family and living the life of an Irish sailor"
 image: images/blog/sailing.jpg
 tags:
-    - news
     - community
 ---
 

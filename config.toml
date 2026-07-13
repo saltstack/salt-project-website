@@ -1,7 +1,0 @@
-baseURL = "/"
-title = "Salt Project"
-languageCode = "en-us"
-summaryLength = 10
-
-[ taxonomies ]
-    tag = 'tags'

@@ -9,7 +9,7 @@ url: "blog/Linux-Foundation-Showcases-Salt-Project"
 image: images/blog/datacenter-03.jpg
 image_alt:
 tags:
-    - news
+    - announcement
     - community
 ---
 

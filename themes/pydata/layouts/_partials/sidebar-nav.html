@@ -1,0 +1,155 @@
+{{- /*
+  Left sidebar navigation — globaltoc-style collapsible tree.
+
+  Uses site.Menus.main for navigation entries.
+  Optional: define site.Menus.sidebar for a separate sidebar menu.
+  Section title from site.Params.sidebar_nav_title (defaults to site.Title).
+*/ -}}
+{{- $title  := site.Params.sidebar_nav_title | default site.Title -}}
+{{- $menu   := site.Menus.sidebar -}}
+{{- if not $menu -}}{{- $menu = site.Menus.main -}}{{- end -}}
+{{- $currentPath := $.RelPermalink -}}
+{{- /*
+  A menu URL "matches" the current page if it's an exact match, or a
+  non-root prefix of it. When several sibling entries match (e.g. one
+  entry's URL is a textual prefix of another's, like /tags/ and
+  /tags/release/), only the most specific (longest) match should be
+  highlighted, since siblings in the menu tree aren't ancestors of
+  each other just because their URLs happen to nest.
+*/ -}}
+{{- $bestLen := -1 -}}
+{{- range $menu }}
+  {{- if .URL }}
+    {{- if or (eq $currentPath .URL) (and (ne .URL "/") (strings.HasPrefix $currentPath .URL)) }}
+      {{- if gt (len .URL) $bestLen }}{{- $bestLen = len .URL -}}{{- end }}
+    {{- end }}
+    {{- range .Children }}
+      {{- if or (eq $currentPath .URL) (and (ne .URL "/") (strings.HasPrefix $currentPath .URL)) }}
+        {{- if gt (len .URL) $bestLen }}{{- $bestLen = len .URL -}}{{- end }}
+      {{- end }}
+    {{- end }}
+  {{- else }}
+    {{- range .Children }}
+      {{- if or (eq $currentPath .URL) (and (ne .URL "/") (strings.HasPrefix $currentPath .URL)) }}
+        {{- if gt (len .URL) $bestLen }}{{- $bestLen = len .URL -}}{{- end }}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+<h3><a href="{{ "/" | relURL }}">{{ $title }}</a></h3>
+<div id="pst-sidebar-nav">
+  {{- range $menu }}
+  {{- if .URL }}
+  {{- /* Regular top-level link — render as a single-item list */ -}}
+  {{- $selfMatches := and (gt $bestLen -1) (eq (len .URL) $bestLen) (or (eq $currentPath .URL) (and (ne .URL "/") (strings.HasPrefix $currentPath .URL))) -}}
+  {{- $childWins := false -}}
+  {{- range .Children }}
+    {{- if and (gt $bestLen -1) (eq (len .URL) $bestLen) (or (eq $currentPath .URL) (and (ne .URL "/") (strings.HasPrefix $currentPath .URL))) }}
+      {{- $childWins = true -}}
+    {{- end }}
+  {{- end }}
+  <ul>
+    <li class="toctree-l1{{ if or $selfMatches $childWins }} current{{ end }}">
+      <a href="{{ .URL }}">{{ .Name }}</a>
+      {{- with .Children }}
+      <ul>
+        {{- range . }}
+        {{- $childActive := and (gt $bestLen -1) (eq (len .URL) $bestLen) (or (eq $currentPath .URL) (and (ne .URL "/") (strings.HasPrefix $currentPath .URL))) -}}
+        <li class="toctree-l2{{ if $childActive }} current{{ end }}">
+          <a href="{{ .URL }}">{{ .Name }}</a>
+        </li>
+        {{- end }}
+      </ul>
+      {{- end }}
+    </li>
+  </ul>
+  {{- else }}
+  {{- /* Caption header (url = '') — renders as expandable section, no link */ -}}
+  <p class="caption" role="heading"><span class="caption-text">{{ .Name }}</span></p>
+  <ul>
+    {{- range .Children }}
+    {{- $childActive := and (gt $bestLen -1) (eq (len .URL) $bestLen) (or (eq $currentPath .URL) (and (ne .URL "/") (strings.HasPrefix $currentPath .URL))) -}}
+    <li class="toctree-l1{{ if $childActive }} current{{ end }}">
+      <a href="{{ .URL }}">{{ .Name }}</a>
+    </li>
+    {{- end }}
+  </ul>
+  {{- end }}
+  {{- end }}
+</div>
+
+<script>
+(function () {
+  function hasCurrentDescendant(ul) {
+    return !!ul.querySelector("li.current");
+  }
+
+  function initCollapsible() {
+    var container = document.getElementById("pst-sidebar-nav");
+    if (!container) return;
+
+    // Caption-level collapsing (p.caption elements — start expanded)
+    container.querySelectorAll("p.caption").forEach(function (caption) {
+      var ul = caption.nextElementSibling;
+      if (!ul || ul.tagName !== "UL") return;
+      caption.classList.add("expanded");
+      caption.addEventListener("click", function () {
+        var isCollapsed = ul.style.display === "none";
+        ul.style.display = isCollapsed ? "" : "none";
+        caption.classList.toggle("expanded", isCollapsed);
+      });
+    });
+
+    // Nested li collapsing — only for li items that directly contain a ul
+    container.querySelectorAll("li").forEach(function (li) {
+      var childUl = li.querySelector(":scope > ul");
+      if (!childUl) return;
+
+      var link = li.querySelector(":scope > a");
+      if (!link) return;
+
+      // Only collapse if children are sub-pages (href without #)
+      var childLinks = childUl.querySelectorAll(":scope > li > a");
+      var hasSubPages = false;
+      childLinks.forEach(function (childLink) {
+        if ((childLink.getAttribute("href") || "").indexOf("#") === -1) {
+          hasSubPages = true;
+        }
+      });
+
+      if (!hasSubPages) {
+        childUl.style.display = "none";
+        return;
+      }
+
+      li.classList.add("has-children");
+
+      var btn = document.createElement("button");
+      btn.className = "toc-toggle";
+      btn.setAttribute("aria-label", "Toggle section");
+
+      var expanded = li.classList.contains("current") || hasCurrentDescendant(childUl);
+      if (expanded) {
+        btn.classList.add("expanded");
+      } else {
+        childUl.style.display = "none";
+      }
+
+      link.insertAdjacentElement("afterend", btn);
+
+      btn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        var isCollapsed = childUl.style.display === "none";
+        childUl.style.display = isCollapsed ? "" : "none";
+        btn.classList.toggle("expanded", isCollapsed);
+      });
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initCollapsible);
+  } else {
+    initCollapsible();
+  }
+})();
+</script>

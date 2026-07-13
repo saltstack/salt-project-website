@@ -1,0 +1,14 @@
+{{ define "main" }}
+  {{- $listHTML := "" -}}
+  {{- range .Pages -}}
+    {{- $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" -}}
+    {{- $dateHuman   := .Date | time.Format ":date_long" -}}
+    {{- $tagsHTML    := "" -}}
+    {{- range .GetTerms "tags" -}}
+      {{- $tagsHTML = printf "%s<a href=\"%s\" class=\"pst-tag\">%s</a>" $tagsHTML .RelPermalink .LinkTitle -}}
+    {{- end -}}
+    {{- $listHTML = printf "%s<section class=\"pst-post-listing\"><h2><a href=\"%s\">%s</a></h2><time datetime=\"%s\" class=\"pst-post-date\">%s</time><p>%s</p>%s</section>" $listHTML .RelPermalink .Title $dateMachine $dateHuman .Summary $tagsHTML -}}
+  {{- end -}}
+  {{- $body := printf "<h1>%s</h1>%s%s" .Title .Content $listHTML | safeHTML -}}
+  {{ partial "article-shell.html" (dict "page" . "content" $body) }}
+{{ end }}

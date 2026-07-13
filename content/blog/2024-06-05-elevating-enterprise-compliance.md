@@ -6,8 +6,6 @@ url: "blog/elevating-enterprise-compliance"
 image: images/blog/coworkers-meeting-11.jpg
 image_alt:
 tags:
-    - news
-    - open source
     - enterprise
 ---
 

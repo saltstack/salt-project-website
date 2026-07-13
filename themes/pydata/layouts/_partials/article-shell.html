@@ -1,0 +1,50 @@
+{{- /*
+  Renders the full pydata article page structure.
+  Expects context dict: (dict "page" $page "content" $htmlContent)
+  $htmlContent should be a safeHTML string.
+*/ -}}
+{{- $page    := .page -}}
+{{- $content := .content -}}
+{{- /* Determine whether to show the secondary (right-hand) TOC sidebar.
+     Default: hide on section/home/taxonomy/term pages (tag listing pages
+     have no headings, so the TOC would render empty); show on all others.
+     Per-page override: set `show_toc: true/false` in frontmatter. */ -}}
+{{- $showTOCDefault := not (in (slice "section" "home" "taxonomy" "term") $page.Kind) -}}
+{{- $showTOC := $page.Params.show_toc | default $showTOCDefault -}}
+{{- $secondarySidebarItems := cond $showTOC (site.Params.secondary_sidebar_items | default (slice "page-toc")) (slice) -}}
+<div class="bd-content">
+  <div class="bd-article-container">
+    {{- /* Article header: breadcrumbs etc. */ -}}
+    <div class="bd-header-article d-print-none">
+      {{ partial "header-article.html" $page }}
+    </div>
+
+    {{- /* Main article body */ -}}
+    <article class="bd-article">
+      {{ $content }}
+    </article>
+
+    {{- /* Article footer */ -}}
+    {{- $footerItems := site.Params.article_footer_items | default (slice) -}}
+    {{- if $footerItems }}
+    <footer class="bd-footer-article">
+      {{ partial "footer-article.html" $page }}
+    </footer>
+    {{- end }}
+
+    {{- /* Prev / Next navigation */ -}}
+    {{- if site.Params.show_prev_next }}
+    <footer class="prev-next-footer d-print-none">
+      {{ partial "prev-next.html" $page }}
+    </footer>
+    {{- end }}
+  </div>
+
+  {{- /* Secondary (right) sidebar: in-page TOC */ -}}
+  {{- if $secondarySidebarItems }}
+  <dialog id="pst-secondary-sidebar-modal"></dialog>
+  <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc">
+    {{ partial "sidebar-secondary.html" $page }}
+  </div>
+  {{- end }}
+</div>

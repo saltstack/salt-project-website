@@ -1,0 +1,19 @@
+{{- /*
+  Lists every term in the "tags" taxonomy, each linking to its term page
+  with a post count. Meant for use as a secondary_sidebar_items entry (see
+  sidebar-secondary.html) — e.g. on a blog listing page, to let readers
+  browse/filter by tag without a dedicated "Tags" nav entry.
+*/ -}}
+{{- $termsPage := site.GetPage "/tags" -}}
+{{- with $termsPage }}
+<div class="page-toc tocsection onthispage">
+  <i class="fa-solid fa-tags"></i> Filter by tag
+</div>
+<nav id="pst-tag-list-nav" aria-label="Filter by tag">
+  <ul>
+    {{- range .Pages.ByTitle }}
+    <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a> <span class="pst-tag-count">({{ len .Pages }})</span></li>
+    {{- end }}
+  </ul>
+</nav>
+{{- end }}

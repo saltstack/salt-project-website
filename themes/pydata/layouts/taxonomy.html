@@ -1,0 +1,8 @@
+{{ define "main" }}
+  {{- $listHTML := "" -}}
+  {{- range .Pages -}}
+    {{- $listHTML = printf "%s<li><a href=\"%s\">%s</a> <span class=\"pst-tag-count\">(%d)</span></li>" $listHTML .RelPermalink .LinkTitle (len .Pages) -}}
+  {{- end -}}
+  {{- $body := printf "<h1>%s</h1>%s<ul class=\"pst-tag-list\">%s</ul>" .Title .Content $listHTML | safeHTML -}}
+  {{ partial "article-shell.html" (dict "page" . "content" $body) }}
+{{ end }}

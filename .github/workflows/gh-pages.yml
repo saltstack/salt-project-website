@@ -1,21 +1,30 @@
-# Workflow for building and deploying a Hugo site to GitHub Pages
+# Workflow for building and deploying a Hugo site to GitHub Pages.
+#
+# SECURITY: this workflow must never trigger on `pull_request`. It requests
+# `pages: write` / `id-token: write`, and for `pull_request` (as opposed to
+# `pull_request_target`) GitHub runs the workflow definition from the PR's
+# own branch — for a same-repo (non-fork) branch, GitHub does NOT downgrade
+# the token, so an attacker-controlled branch could edit this file to abuse
+# those permissions on their own PR. Deploy credentials must stay confined
+# to push/tag/dispatch events on this repo, which require write access to
+# push in the first place. PR-time checks (build + tag validation) live in
+# the separate pr-checks.yml, which only ever requests `contents: read`.
 name: Deploy Hugo site to Pages
 
 on:
   push:
     branches:
-      - '*'
+      - main
     tags:
       - 'v**'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+# Default (minimal) permissions for the whole workflow. `build` and `deploy`
+# below are each granted the extra permissions they individually need.
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
 # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
@@ -29,18 +38,17 @@ defaults:
     shell: bash
 
 jobs:
-  # Build job
+  # Build job. Needs `pages: write` because actions/configure-pages calls
+  # the Pages API to resolve the configured custom domain's base_url.
   build:
+    permissions:
+      pages: write
     runs-on: ubuntu-24.04
-    env:
-      HUGO_VERSION: 0.135.0
     steps:
-      - name: Install Hugo CLI
-        run: |
-          wget -O ${{ runner.temp }}/hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb \
-          && sudo dpkg -i ${{ runner.temp }}/hugo.deb
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Install Hugo CLI
+        uses: ./.github/actions/setup-hugo
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
@@ -52,18 +60,40 @@ jobs:
           hugo \
             --minify \
             --baseURL "${{ steps.pages.outputs.base_url }}/"
+      - name: Duplicate security feed to legacy URL
+        run: scripts/duplicate-security-feed.sh
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./public
 
-  # Deployment job
+  # Tag validation job — a safety net for tags pushed directly, bypassing PR
+  # checks entirely.
+  validate-tags:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+      - name: Validate blog post tags
+        run: python3 scripts/validate-tags.py
+
+  # Deployment job — only runs when pushing a version tag. This is the only
+  # job that needs (and is granted) Pages/OIDC write access.
   deploy:
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-24.04
-    needs: build
+    needs:
+      - build
+      - validate-tags
     if: startsWith(github.ref, 'refs/tags/v')
     steps:
       - name: Deploy to GitHub Pages

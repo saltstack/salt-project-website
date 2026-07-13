@@ -8,8 +8,8 @@ url: "blog/new-salt-extension-salt-analytics"
 image: images/blog/new-extension.png
 image_alt:
 tags:
-    - salt extensions
-    - releases
+    - release
+    - salt-extensions
 ---
 
 The Salt Project team is releasing **salt-analytics-framework**, a new Salt

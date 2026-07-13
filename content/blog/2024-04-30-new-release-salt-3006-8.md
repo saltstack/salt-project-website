@@ -5,7 +5,7 @@ date: "2024-04-30"
 url: "blog/salt-release-3006-8-is-now-available"
 image: images/blog/new-release.png
 tags:
-    - releases
+    - release
 ---
 
 The Salt Project has just released 3006.8 bugfix of Salt. To download and

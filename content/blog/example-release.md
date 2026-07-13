@@ -8,7 +8,7 @@ authorbio: "Author bio here. Delete if no bio."
 url: "blog/salt-release-300x-x-is-now-available"
 image: images/blog/new-release.png
 tags:
-    - releases
+    - release
 ---
 
 <!---

@@ -8,8 +8,7 @@ url: "blog/linkedin-uses-salt-to-support-infrastructure-growth"
 image: images/blog/person-phone-01.jpg
 image_alt:
 tags:
-    - case study
-    - news
+    - case-study
 ---
 
 Here at the Salt Project, we enjoyed reading this recent blog post from LinkedIn

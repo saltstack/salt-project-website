@@ -1,0 +1,14 @@
+{{- $logo     := site.Params.logo | default dict -}}
+{{- $logoLink := $logo.link | default "/" -}}
+{{- $logoText := $logo.text | default site.Title -}}
+{{- $logoAlt  := $logo.alt_text | default (printf "%s - Home" site.Title) -}}
+<a class="navbar-brand logo" href="{{ $logoLink | relURL }}">
+  {{- if $logo.image_light }}
+  <img src="{{ $logo.image_light | relURL }}" class="logo__image only-light" alt="{{ $logoAlt }}"/>
+  <img src="{{ ($logo.image_dark | default $logo.image_light) | relURL }}" class="logo__image only-dark pst-js-only" alt="{{ $logoAlt }}"/>
+  {{- end }}
+  {{- /* Show text only when there's no image, OR when logo.text is explicitly set alongside an image */ -}}
+  {{- if or (not $logo.image_light) $logo.text }}
+  <p class="title logo__title">{{ $logoText }}</p>
+  {{- end }}
+</a>

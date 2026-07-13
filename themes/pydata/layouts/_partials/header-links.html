@@ -1,0 +1,27 @@
+{{- /*
+  Cross-doc navigation partial — renders links to sibling sites/projects
+  in the navbar (e.g. related documentation sites for the same project).
+  Reads site.Params.cross_doc_links (list of {name, url, active}) and renders
+  cross-project nav links with .custom-nav-item styling.
+
+  Usage: set navbar_center = ["header-links"] in hugo.toml params, then define:
+    [[params.cross_doc_links]]
+      name   = "Home"
+      url    = "/"
+      active = true
+    [[params.cross_doc_links]]
+      name = "Docs"
+      url  = "https://docs.example.com/"
+*/ -}}
+{{- $links := site.Params.cross_doc_links | default (slice) -}}
+{{- if $links }}
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    {{- range $links }}
+    <li class="nav-item custom-nav-item{{ if .active }} active{{ end }}">
+      <a class="nav-link" href="{{ .url }}">{{ .name }}</a>
+    </li>
+    {{- end }}
+  </ul>
+</nav>
+{{- end }}

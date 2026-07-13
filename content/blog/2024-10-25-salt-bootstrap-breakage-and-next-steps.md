@@ -7,7 +7,7 @@ authorbio: ""
 url: "blog/salt-bootstrap-breakage"
 image: images/blog/new-alert.png
 tags:
-    - news
+    - announcement
     - community
 ---
 

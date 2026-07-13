@@ -6,7 +6,7 @@ date: "2024-01-01" # UPDATE!
 url: "blog/open-hour-yyyy-month-dd" # UPDATE!
 image: images/blog/person-computer-01.jpg
 tags:
-    - open hour
+    - community
 ---
 <!---
 

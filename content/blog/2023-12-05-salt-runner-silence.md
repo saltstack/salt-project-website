@@ -9,8 +9,8 @@ url: "blog/salt-runner-silence"
 image: images/blog/coworkers-meeting-03.jpg
 image_alt:
 tags:
+    - guest-post
     - community
-    - documentation
 ---
 
 Salt Project is a useful tool for DevOps. It has functionality for days (as the

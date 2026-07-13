@@ -9,7 +9,6 @@ url: "blog/pytest-a-journey-of-3-years"
 image: images/blog/datacenter-03.jpg
 image_alt:
 tags:
-    - news
     - community
 ---
 

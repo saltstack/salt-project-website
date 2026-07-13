@@ -1,13 +1,15 @@
 # Salt Project Website
 
-This repository is for the main static site of https://saltproject.io, built with [Hugo](https://gohugo.io/). The site is currently hosted on AWS (CloudFront/S3), and uses GitLab Pages for previewing.
+This repository is for the main static site of https://saltproject.io, built with [Hugo](https://gohugo.io/) using a custom Hugo port of the [PyData Sphinx Theme](https://pydata-sphinx-theme.readthedocs.io/) (vendored in `themes/pydata`). The site is built and deployed to **GitHub Pages** via GitHub Actions.
 
 ## Install prerequisites
 
 - [Install Hugo](https://gohugo.io/installation/)
-  - Version `v0.133.0` or higher.
+  - The exact version pinned for this project is tracked in the root `.hugo-version` file. The devcontainer and CI both install that exact version automatically (see `.devcontainer/Dockerfile` and `.github/actions/setup-hugo`), so it only needs to be updated in one place.
+  - Must be the `extended` version, and at least the minimum declared in the vendored `themes/pydata` theme's `hugo.toml` (`module.hugoVersion.min`).
   - This was built with the `extended` version of Hugo, which is required.
 - Git
+- Python 3.14+ (only needed to run `scripts/validate-tags.py` locally)
 
 ### Build a local preview
 
@@ -29,33 +31,40 @@ hugo server --buildFuture
 
 Be aware that the command `hugo server --buildDrafts` currently errors out in Salt Project and, at the time of writing, this hasn't been fixed. The only workaround is to remove `draft: true` from the front matter.
 
-
 ## Contributing
 
 To contribute, create a fork of this repository. See [Using the Fork-and-Branch Git Workflow](https://blog.scottlowe.org/2015/01/27/using-fork-branch-git-workflow/) for help.
 
+Every pull request runs through the `PR checks` GitHub Actions workflow (`.github/workflows/pr-checks.yml`), which:
+
+- Builds the site with `hugo --minify` to catch any build breakage.
+- Runs `scripts/validate-tags.py` to make sure every blog post only uses tags from the approved taxonomy (see [Blog post tags](#blog-post-tags) below).
+
+Both checks must pass before a pull request can be merged.
+
 ### Push the current `main` branch to the live site
 
-To push the latest changes in the `main` branch to the live site, you need to tag the latest changes:
+The site deploys via the `Deploy Hugo site to Pages` GitHub Actions workflow (`.github/workflows/gh-pages.yml`). It builds on every push, but only **deploys** to GitHub Pages when the push is a tag matching `v**`.
 
-1. Navigate to the home directory of the repo and ensure you see the right sidebar. (You may have to widen your window to see it.)
+The easiest and preferred way to cut a release is to create a **GitHub Release**, which automatically creates and pushes the underlying tag for you:
 
-2. On the right sidebar, click **Tags**.
+1. Merge your changes into `main` first — the tag should point at the commit you want live.
 
-3. Make a note of the latest tag name (number). For example: `v1.0.64`.
+2. On GitHub, go to the repo's **Releases** page and click **Draft a new release**.
 
-4. Click the **New tag** button.
+3. Under **Choose a tag**, type a new tag name following the existing convention: `v<major>.<minor>.<patch>` (e.g. the current latest tag is `v2.0.38`, so the next one would be `v2.0.39`). Select **Create new tag: \<tag\> on publish**.
 
-5. In the **Tag name** field, increase the latest tag name (number) by one digit. For example: `v1.0.65`.
+4. Set **Target** to `main`.
 
-6. In the **Message** field, write a brief message explaining the changes you are pushing live. For example: `Add latest Open Hour notes`.
+5. Give the release a title and describe the changes being shipped (this doubles as your release notes).
 
-7. Click the **Create tag** button.
+6. Click **Publish release**. This pushes the new tag, which triggers the `Deploy Hugo site to Pages` workflow and publishes the changes live.
 
-8. The page now displays a link to a hash for a build pipeline, such as `e18261aa`. Click this link to view the progress of the build pipeline. When the pipeline completes, the changes to the site are live.
+7. Watch the workflow run under the **Actions** tab to confirm the build and deploy succeed.
 
-> **NOTE:** If the pipeline fails, view the error message to see what is going wrong. Often, re-running the pipeline fixes the problem. If not, contact the SRE team for support.
+> **NOTE:** If the workflow fails, check the run's logs to see what's going wrong. If you can't resolve it, contact the SRE team for support.
 
+> Alternatively, you can push a tag directly with `git tag v2.0.39 && git push origin v2.0.39`, but creating a GitHub Release is preferred since it keeps a human-readable changelog tied to each deployed tag.
 
 ### Create a new blog post
 
@@ -63,98 +72,94 @@ To create a new blog post:
 
 1. Pull down the latest changes from `main` and check out a new branch.
 
-2. Open one of the template blog posts in your browser. These files are located in the `content > blog` folder. Open the example file based on the type of blog post you want to write:
+2. Open one of the template blog posts in your browser. These files are located in the `content/blog` folder. Open the example file based on the type of blog post you want to write:
 
    | If you want to write this type of post... | Use this example file... |
    | ----------------------------------------- | ------------------------ |
    | Release announcement | `example-release.md` |
    | Open Hour notes | `example-open-hour.md` |
-   | Generic blog entry | `example.md` |
+   | Generic blog entry (including security advisories) | `example.md` |
 
 3. Each example file contains instructions in commented out code for how to fill in the necessary Markdown front matter for that type of blog post. Follow those instructions and edit the content.
 
+   The page title is rendered automatically from the front matter `title` field — don't add a duplicate `# Title` heading at the top of the body.
+
 4. Build a local preview to check that the changes render properly.
 
-5. Stage and commit your changes, then open a merge request.
+5. Stage and commit your changes, then open a pull request against `main`.
 
-6. After the pipeline for your merge request finishes building, you can preview the staged changes. Replace the placeholder text with your GitLab username:
-`<https://your-GitLab-username.gitlab.io/salt-project-website/>`
+6. Once the `PR checks` workflow passes and the PR is approved, merge it in.
 
-  > **NOTE:** If you want to share the local preview with someone to review your changes, you must first add them as a contributor to your fork of the Salt Project repo. This is required because this repo and your fork are private, which restricts preview access.
-
-7. After your merge request is approved, merge it in.
-
-8. Push the current `main` branch to the live site. (See the previous section.)
+7. Push the current `main` branch to the live site by cutting a new release. (See [Push the current `main` branch to the live site](#push-the-current-main-branch-to-the-live-site).)
 
 ### Create a new security announcement
 
-The process for creating a new security announcement is identical to the process for creating a new blog post. The only difference is that the security announcement content is located in a different folder: `content > security-announcements` and you use the `example.md` file located in this folder.
+Security advisories are no longer a separate content type — they're just blog posts tagged `security`, published in `content/blog` alongside everything else, as part of a single unified blog feed. Follow the same process as [Create a new blog post](#create-a-new-blog-post) and use the `security` tag.
+
+The legacy `/security-announcements/` RSS feed URL is preserved for old subscribers: `scripts/duplicate-security-feed.sh` copies the built `tags/security` RSS feed to that legacy path. This runs automatically as part of the deploy workflow after the Hugo build — see `.github/workflows/gh-pages.yml`.
+
+### Blog post tags
+
+Every blog post's tags must come from the approved taxonomy defined in `scripts/tags.toml`. If you need to add or remove an approved tag, edit that file — no code changes required.
+
+You can check your local posts against the taxonomy at any time with:
+
+```bash
+python3 scripts/validate-tags.py
+```
+
+This same check runs automatically on every pull request via the `PR checks` workflow.
 
 ## How Hugo works (Hugo architecture)
 
 Hugo is a static site generator, which means it compiles the raw content (Markdown files) and uses the layout and style code to generate HTML files that can be stored on a web server.
 
-Many times when people use Hugo, they import a theme created by someone else that is stored in the `themes` folder and referenced in the `config.toml` file, which is the configuration file for the site. Salt Project's site is using a custom, homegrown theme. (The Salt Project `config.toml` file is pretty light and small, with all the heavy lifting being done by the rest of the site architecture.)
-
-When you're using a custom theme, it's helpful to understand about Hugo's site architecture when using a customer theme is its overall folder structure. To generate HTML pages, Hugo expects a few important folders and files:
+This site uses a custom theme — a Hugo port of the PyData Sphinx Theme — vendored under `themes/pydata` and referenced by the `theme` key in `hugo.toml` (Hugo's configuration file). The theme is tracked directly in this repository, so it can be edited like any other part of the site.
 
 ### Content
 
-The `content` folder contains the raw Markdown source files that contain the content for the site. The folder contains a few stand-alone Markdown files for individual pages (called "single" pages in Hugo) and sub-folders for content that is logically grouped together and displayed in similar ways, such as the blog content, security announcements, and the working group pages.
+The `content` folder contains the raw Markdown source files that contain the content for the site. It's organized into a few sections:
 
-Hugo treats `index.md` pages inside a sub-folder as a "list" page, which is useful for listing the content in that folder in a landing page.
+- `content/blog` — the unified blog feed: release announcements, community updates, Open Hour notes, and security advisories, all tagged appropriately (see [Blog post tags](#blog-post-tags)).
+- `content/community` — standalone community pages (event calendar, working groups, RSS feeds).
+- `content/security-announcements` — kept only for the legacy `/security-announcements/` RSS feed URL (see [Create a new security announcement](#create-a-new-security-announcement)); it no longer holds its own post content.
+
+Hugo treats `_index.md` pages inside a folder as a "list" page, which is useful for listing the content in that folder on a landing page.
 
 ### Layouts
 
-The `layouts` folder contains the raw HTML files that explain how Hugo should render the content when it transformed (compiled) into HTML. You can use straight HTML or you can additionally add sophisticated logic to the pages using Hugo's coding language (Go).
+The `layouts` folder contains the raw HTML files that explain how Hugo should render content when it's transformed (compiled) into HTML, using Hugo's templating language (Go templates).
 
-The `layouts` folder structure should closely mirror the `content` folder. In other words, every file or folder that appears in the `content` folder often has a corresponding file or folder in `layouts` that tells Hugo how to render that type of content. If there isn't a corresponding file or folder, Hugo uses either the default `single` or `list` HTML layout to compile the content (depending on whether the content is a single page or a list page).
+Most of the site's layout logic lives in the theme (`themes/pydata/layouts`). The top-level `layouts` folder holds project-specific overrides and additions that go beyond (or intentionally diverge from) the theme's defaults — for example:
 
+- `layouts/page.html` — overrides the theme's default page template to automatically render the page title as an `<h1>`, so individual pages don't need a duplicate Markdown heading.
+- `layouts/community/event-calendar.html` and `layouts/community/working-groups.html` — custom layouts for those two community pages, selected via the `layout` front matter field on their respective content files.
+
+When Hugo looks for a template, it checks the project's `layouts` folder first and falls back to the theme's `layouts` folder if there's no project-level override. This means the theme can be updated/upstreamed while site-specific customizations stay isolated in the top-level `layouts` folder — only touch files under `themes/pydata` directly when the fix belongs in the theme itself (e.g. a genuine theme bug), not when it's a site-specific behavior change.
 
 ### Partials
 
-The `layouts` folder also contains an additional folder called `partials` which contain reusable "snippets" of HTML or Go that can be called into other layout files dynamically. For example, if you open the `index.html` file in the `layouts` folder, you see a big list of partials for rendering the home page. Here's an example of one partial that substitutes the HTML for the top banner:
+Both the theme and the project's `layouts` folder can contain a `_partials` folder with reusable "snippets" of HTML/Go template code that get called into other layout files dynamically, for example:
 
 ```
-<section class="video-hero">
-  {{ partial "home/banner" }}
-</section>
+{{ partial "header-article.html" . }}
 ```
 
-When Hugo compiles that content, it substitutes the HTML code from the file found in `layouts > partials > home > banner.html`:
-
-```html
-<video playsinline="" autoplay="" muted="" loop="" id="bgvid">
-    <source src="{{ "video/header_Option1.mp4" | relURL }}" type="video/mp4">
-</video>
-<div class="video-text">
-    <h1>Welcome to Salt Project</h1>
-    <p>The largest, friendliest, and most active open source community in the world.</p>
-    <a href="https://docs.saltproject.io/salt/install-guide/en/latest/" class="btn outline">Get Started</a>
-</div>
-```
-
-The most important partials are the `head.html`, `header.html`, and `footer.html` files, which render the global HTML versions of those HTML elements for the site.
-
-The `header.html` file contains the code for the top nav bar (global site navigation).
+The most important partials are `head.html`, `header.html`, and `footer.html`, which render the global HTML for those elements across the site.
 
 ### Static
 
-The `static` folder contains the CSS, Javascript, video, and image files used by the site. For example, the `images` folder has a `blog` subfolder for all the images used on the Salt Project blog.
+The `static` folder contains CSS, JavaScript, and other static assets that are copied as-is into the built site. `static/images` holds site images (for example, `static/images/blog` for blog post images).
 
-When you reference images in these folders, you leave off the `static` part of the filepath because Hugo expects images to the stored in this root folder.
-
-### Miscellaneous additional folders
-
-Most of the other folders aren't being used by the Salt Project website. However, if we ever decided to convert from CSS to SASS/SCSS, those files would be stored in the `assets` folder.
+When you reference these files in content or templates, you leave off the `static` part of the path, since Hugo serves everything under `static` from the site root.
 
 ### The baseof file
 
-In the `layouts > _default` folder, there is a `baseof.html` file that defines the baseline HTML structure for all the pages on the site. This page calls the `head.html`, `header.html`, and `footer.html` partials.
+`themes/pydata/layouts/baseof.html` defines the baseline HTML structure for all pages on the site. It calls the `head.html`, `header.html`, and `footer.html` partials, and defines the `main` block that individual page layouts fill in.
 
 ### Markdown file front matter
 
-The Markdown content includes some front matter (metadata) at the top of each file that passes important information to Hugo when it is rendering the layout. For example, the `example.md` blog file includes this font matter:
+The Markdown content includes some front matter (metadata) at the top of each file that passes important information to Hugo when it is rendering the layout. For example, a blog post's front matter looks like:
 
 ```
 ---
@@ -168,16 +173,35 @@ url: "blog/title-shortened"
 image: images/blog/
 image_alt:
 tags:
-    - releases
-    - news
+    - release
     - community
 ---
 ```
 
-That front matter metadata sends important information that Hugo uses when building the page by swapping in the title for the blog, the summary of the blog that appears on the blog index page, the author, and so forth.
+That front matter metadata sends important information that Hugo uses when building the page — swapping in the title, the summary that appears on the blog index page, the author, and so on.
 
-Depending on the type of content, it may need different front matter. You can view the front matter for other Markdown content files in that folder to understand what kind of front matter is needed. You can also view the layout file for that type of content to better understand how Hugo is using that front matter to render the final HTML pages.
+Depending on the type of content, it may need different front matter. See the example files in `content/blog` (`example.md`, `example-release.md`, `example-open-hour.md`) to understand what front matter is needed for each type of post.
 
-### For deeper learning
+### Scripts
 
-To learn more about Hugo custom themes and site architecture, check out the free [Giraffe Academy Hugo course](https://www.giraffeacademy.com/static-site-generators/hugo/). It's a pretty helpful video guide.
+The `scripts` folder holds standalone helper scripts used in local development and CI:
+
+- `scripts/validate-tags.py` — validates blog post tags against the approved taxonomy in `scripts/tags.toml`.
+- `scripts/duplicate-security-feed.sh` — copies the built `tags/security` RSS feed to the legacy `/security-announcements/` URL after a Hugo build.
+
+### GitHub Actions workflows
+
+- `.github/workflows/pr-checks.yml` — runs on every pull request; builds the site with Hugo and validates blog post tags. Only ever requests `contents: read` — see the security note at the top of `gh-pages.yml` for why it must stay that way.
+- `.github/workflows/gh-pages.yml` — builds the site on every push, and deploys it to GitHub Pages when the push is a tag matching `v**` (see [Push the current `main` branch to the live site](#push-the-current-main-branch-to-the-live-site)). Deploy-time (`pages`/`id-token` write) permissions are scoped to just the `deploy` job; it never triggers on `pull_request`.
+- `.github/actions/setup-hugo` — local composite action shared by both workflows above to install the Hugo CLI. Defaults to the version pinned in the root `.hugo-version` file — the same file the devcontainer's `Dockerfile` reads — so the required Hugo version only needs to be maintained in that one place.
+
+## Credits
+
+The `themes/pydata` theme vendored in this repository is a Hugo port of the [PyData Sphinx Theme](https://github.com/pydata/pydata-sphinx-theme) ([docs](https://pydata-sphinx-theme.readthedocs.io/en/stable/)), originally built for Sphinx documentation sites. Credit to the PyData Sphinx Theme authors and contributors for the design and functionality this port is based on.
+
+## License
+
+This repository as a whole is **not** released under an open source or Creative Commons license — all rights reserved except as noted below.
+
+The one exception is `themes/pydata`: that directory is licensed under the **BSD 3-Clause License**, matching the license used by the upstream [PyData Sphinx Theme](https://github.com/pydata/pydata-sphinx-theme). See `themes/pydata/LICENSE` for the full text.
+

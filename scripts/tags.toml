@@ -1,0 +1,17 @@
+# Approved tag taxonomy for blog posts.
+#
+# Used by scripts/validate-tags.py to make sure every post in content/blog
+# only uses tags from this list. Add/remove tags here as the taxonomy
+# evolves — no code changes needed.
+
+approved_tags = [
+    "release",
+    "release-candidate",
+    "security",
+    "community",
+    "case-study",
+    "salt-extensions",
+    "announcement",
+    "enterprise",
+    "guest-post",
+]

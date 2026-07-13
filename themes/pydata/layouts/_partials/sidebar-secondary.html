@@ -1,0 +1,10 @@
+{{- /* Per-page override: set `secondary_sidebar_items` in frontmatter to
+     use different secondary-sidebar widgets than the site default. */ -}}
+{{- $items := .Params.secondary_sidebar_items | default site.Params.secondary_sidebar_items | default (slice "page-toc") -}}
+{{- if $items }}
+<div class="sidebar-secondary-items sidebar-secondary__inner">
+  {{- range $items }}
+  <div class="sidebar-secondary-item">{{ partial . $ }}</div>
+  {{- end }}
+</div>
+{{- end }}

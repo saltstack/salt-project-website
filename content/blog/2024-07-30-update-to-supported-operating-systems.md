@@ -8,7 +8,7 @@ url: "blog/update-to-supported-operating-systems"
 image: images/blog/new-alert.png
 image_alt: Salt Project logo with the word "Attention"
 tags:
-    - news
+    - announcement
 ---
 
 This year, a variety of operating systems have reached EOL and newly released. When it comes to Salt support, this means several updates have happened.

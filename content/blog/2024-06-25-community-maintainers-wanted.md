@@ -7,7 +7,7 @@ authorbio: "Jimmy Chunga is the community manager for Salt Project"
 url: "blog/community-maintainers-wanted"
 image: images/blog/coworkers-laughing-01.png
 tags:
-    - news
+    - announcement
     - community
 ---
 

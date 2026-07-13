@@ -1,0 +1,119 @@
+baseURL = 'https://example.org/'
+languageCode = 'en-US'
+title = 'My New Hugo Project'
+
+[module]
+  [module.hugoVersion]
+    extended = true
+    min      = '0.162.1'
+
+# ---------------------------------------------------------------------------
+# Default menus (overridable by site hugo.toml)
+# ---------------------------------------------------------------------------
+[menus]
+  [[menus.main]]
+    name    = 'Home'
+    pageRef = '/'
+    weight  = 10
+  [[menus.main]]
+    name    = 'Posts'
+    pageRef = '/posts'
+    weight  = 20
+  [[menus.main]]
+    name    = 'Tags'
+    pageRef = '/tags'
+    weight  = 30
+
+# ---------------------------------------------------------------------------
+# Theme parameters — mirror pydata-sphinx-theme theme.conf defaults
+# ---------------------------------------------------------------------------
+[params]
+  # Dark / light / auto mode default
+  default_mode = 'auto'
+
+  # Back-to-top button
+  back_to_top_button = true
+
+  # Sidebar navigation
+  show_prev_next    = true
+  show_toc_level    = 1
+  show_nav_level    = 1
+  navigation_depth  = 4
+  collapse_navigation = false
+
+  # Navbar layout slots (list of partial names without path prefix)
+  navbar_start      = ['navbar-logo']
+  navbar_center     = ['navbar-nav']
+  navbar_end        = ['theme-switcher', 'navbar-icon-links']
+  # Mirrors pydata-sphinx-theme __init__.py behaviour: search-button-field
+  # is injected into navbar_persistent by default when search is enabled.
+  navbar_persistent = ['search-button-field']
+
+  # Article header / footer slots
+  article_header_start = ['breadcrumbs']
+  article_header_end   = []
+  article_footer_items = ['last-updated']
+
+  # Content footer (below article, above page footer)
+  content_footer_items = []
+
+  # Secondary (right) sidebar slots
+  secondary_sidebar_items = ['page-toc']
+
+  # Primary sidebar bottom slots
+  primary_sidebar_end = []
+
+  # Page footer slots
+  footer_start  = ['copyright']
+  footer_center = []
+  footer_end    = ['theme-version']
+
+  # Announcement banner (empty = disabled; URL = loaded remotely)
+  announcement = ''
+
+  # Sticky announcement + navbar
+  sticky_banners = false
+
+  # Search
+  disable_search     = false
+  search_bar_text    = 'Search the docs ...'
+
+  # Navbar dropdown overflow
+  header_links_before_dropdown = 5
+  header_dropdown_text         = 'More'
+
+  # Site logo
+  [params.logo]
+    text     = 'My Site'
+    link     = '/'
+    # image_light = '/images/logo-light.png'
+    # image_dark  = '/images/logo-dark.png'
+    alt_text = ''
+
+  # Icon links shown in navbar (list of {name, url, icon} tables)
+  icon_links       = []
+  icon_links_label = 'Icon Links'
+
+  # External links
+  github_url  = ''
+  gitlab_url  = ''
+  twitter_url = ''
+
+  # ---------------------------------------------------------------------------
+  # Cross-doc navigation (header-links.html partial)
+  # Each entry is a table: { name = "...", url = "...", active = true/false }
+  # Enable by setting navbar_center = ["header-links"] in your site hugo.toml.
+  # ---------------------------------------------------------------------------
+  cross_doc_links = []
+
+  # Extra CSS files injected after theme CSS (relative paths or full URLs).
+  # Equivalent to html_css_files in Sphinx conf.py.
+  extra_css = []
+
+  # Extra origins allowed in the Content-Security-Policy's frame-src,
+  # beyond 'self'. Set this if your site embeds a third-party iframe
+  # (e.g. a calendar widget).
+  csp_frame_src = []
+
+  # Sidebar navigation section title. Defaults to site.Title when empty.
+  sidebar_nav_title = ''

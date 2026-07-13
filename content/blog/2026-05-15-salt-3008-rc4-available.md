@@ -6,11 +6,9 @@ author: "Salt Project Team"
 image: images/blog/new-release.png
 image_alt:
 tags:
-    - releases
-    - release candidate
+    - release
+    - release-candidate
 ---
-
-# Salt Project Announcement: New RC Release Available
 
 The Salt Project is excited to announce the release of **Salt 3008 RC4** (Release Candidate).
 

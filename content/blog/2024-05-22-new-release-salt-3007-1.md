@@ -5,7 +5,7 @@ date: "2024-05-22"
 url: "blog/salt-release-3007-1-is-now-available"
 image: images/blog/new-release.png
 tags:
-    - releases
+    - release
 ---
 
 

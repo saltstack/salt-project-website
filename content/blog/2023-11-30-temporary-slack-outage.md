@@ -7,7 +7,8 @@ url: "blog/temporary-slack-outage"
 image: images/blog/new-alert.png
 image_alt:
 tags:
-    - announcements
+    - announcement
+    - community
 ---
 
 To Salt Project community members:

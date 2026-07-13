@@ -5,7 +5,7 @@ date: "2026-04-29" # UPDATE!
 author: Salt Project Team
 image: images/blog/new-release.png
 tags:
-    - releases
+    - release
 ---
 
 Salt Project Community Members!
