@@ -21,8 +21,8 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# Default (minimal) permissions for the whole workflow. Only the `deploy`
-# job below is granted the extra `pages`/`id-token` permissions it needs.
+# Default (minimal) permissions for the whole workflow. `build` and `deploy`
+# below are each granted the extra permissions they individually need.
 permissions:
   contents: read
 
@@ -38,8 +38,11 @@ defaults:
     shell: bash
 
 jobs:
-  # Build job
+  # Build job. Needs `pages: write` because actions/configure-pages calls
+  # the Pages API to resolve the configured custom domain's base_url.
   build:
+    permissions:
+      pages: write
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout
