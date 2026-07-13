@@ -12,8 +12,6 @@ tags:
     - enterprise
 ---
 
-# Aria Automation Config and Salt Project – Leader in Configuration Management
-
 When SaltStack was founded in 2011, it was built to be a pioneer in intelligent,
 event-driven configuration automation that controls and secures IT
 infrastructure and is still doing that today. Salt Project, as it is now called,

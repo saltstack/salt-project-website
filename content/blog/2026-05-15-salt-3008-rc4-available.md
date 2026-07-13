@@ -10,8 +10,6 @@ tags:
     - release-candidate
 ---
 
-# Salt Project Announcement: New RC Release Available
-
 The Salt Project is excited to announce the release of **Salt 3008 RC4** (Release Candidate).
 
 We are moving closer to the final release of Salt 3008 LTS. We invite the community to download and test Release Candidate 4 (RC4) to help us ensure the highest quality for the upcoming LTS.

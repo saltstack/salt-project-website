@@ -10,8 +10,6 @@ tags:
     - security
 ---
 
-# The Salt Project Website Has a New Look
-
 You may have noticed things look a little different around here. The Salt Project website has had a facelift, as part of a broader effort to unify the look and feel across the Salt Project website and documentation.
 
 ## What's changed
