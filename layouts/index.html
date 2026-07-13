@@ -22,7 +22,12 @@
   {{- if $navBoxes -}}
     {{- $body = printf "%s<div class=\"row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 mb-4\">" $body -}}
     {{- range $navBoxes -}}
-      {{- $body = printf "%s<div class=\"col d-flex\"><div class=\"card shadow-sm pst-nav-card w-100\"><div class=\"card-body\"><h3 class=\"card-title h6 fw-bold\">%s</h3><p class=\"card-text\">%s</p></div><a href=\"%s\" class=\"stretched-link\" aria-label=\"%s\"></a></div></div>" $body .title .description .url .title -}}
+      {{- $iconHTML := "" -}}
+      {{- with .icon -}}
+        {{- $iconHTML = printf "<i class=\"%s pst-nav-card-icon\" aria-hidden=\"true\"></i>" . -}}
+      {{- end -}}
+      {{- $linkAttrs := partial "link-target-attrs.html" .url -}}
+      {{- $body = printf "%s<div class=\"col d-flex\"><div class=\"card shadow-sm pst-nav-card w-100\"><div class=\"card-body\">%s<h3 class=\"card-title h6 fw-bold\">%s</h3><p class=\"card-text\">%s</p></div><a href=\"%s\"%s class=\"stretched-link\" aria-label=\"%s\"></a></div></div>" $body $iconHTML .title .description .url $linkAttrs .title -}}
     {{- end -}}
     {{- $body = printf "%s</div>" $body -}}
   {{- end -}}

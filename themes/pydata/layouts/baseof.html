@@ -63,7 +63,7 @@
 </div>
 
 {{- /* Scripts at end of body */ -}}
-<script defer src="{{ "scripts/bootstrap.js" | relURL }}"></script>
+{{ partial "head/bootstrap-js.html" . }}
 <script defer src="{{ "scripts/pydata-sphinx-theme.js" | relURL }}"></script>
 
 <footer class="bd-footer">

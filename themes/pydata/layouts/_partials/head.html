@@ -28,7 +28,7 @@
 {{- end }}
 <link rel="stylesheet" href="{{ "styles/pydata-sphinx-theme.css" | relURL }}">
 <link rel="stylesheet" href="{{ "styles/hugo-pydata.css" | relURL }}">
-<script src="{{ "scripts/fontawesome.js" | relURL }}" defer></script>
+{{ partial "head/fontawesome.html" . }}
 {{- if not site.Params.disable_search }}
 <script>
   window.DOCUMENTATION_OPTIONS = {

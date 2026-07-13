@@ -407,6 +407,13 @@
   transform: scale(1.01);
 }
 
+.pst-nav-card-icon {
+  color: var(--pst-color-primary);
+  display: block;
+  font-size: 2.25rem;
+  margin-bottom: 0.5rem;
+}
+
 .pst-nav-card .card-title {
   color: var(--pst-color-text-base);
   font-weight: 700;

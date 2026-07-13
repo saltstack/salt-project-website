@@ -17,17 +17,18 @@
 	},
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
-	// "features": {
-		// node / npm is required for markdownlint-cli2
-		// By default, installs lts version
-		// "ghcr.io/devcontainers/features/node:1": {}
-	// },
+	// Node.js itself is installed directly in the Dockerfile (pinned via the
+	// root .node-version file), not via this feature — avoids two divergent
+	// install paths.
+	// "features": {},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 
-	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": ""
+	// Install the theme's build-time npm deps (FontAwesome/Bootstrap) after
+	// the workspace is mounted — a Dockerfile RUN step would get shadowed by
+	// the workspace bind mount, since node_modules isn't part of the repo.
+	"postCreateCommand": "cd themes/pydata && npm ci",
 
 	// There is also a postStartCommand that executes every time the container starts.
 	// The parameters behave exactly like postCreateCommand, but the commands execute on start rather than create.

@@ -1,0 +1,7 @@
+{{- /*
+  Markdown link render hook — applies the same external-link/new-tab rules
+  (see link-target-attrs.html) to every [text](url) link written in content,
+  site-wide, with no per-post markup needed.
+*/ -}}
+{{- $attrs := partial "link-target-attrs.html" .Destination | safeHTMLAttr -}}
+<a href="{{ .Destination | safeURL }}"{{ $attrs }}{{ with .Title }} title="{{ . }}"{{ end }}>{{ .Text }}</a>

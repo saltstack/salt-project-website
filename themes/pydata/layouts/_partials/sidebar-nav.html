@@ -50,13 +50,13 @@
   {{- end }}
   <ul>
     <li class="toctree-l1{{ if or $selfMatches $childWins }} current{{ end }}">
-      <a href="{{ .URL }}">{{ .Name }}</a>
+      <a href="{{ .URL }}"{{ partial "link-target-attrs.html" .URL | safeHTMLAttr }}>{{ .Name }}</a>
       {{- with .Children }}
       <ul>
         {{- range . }}
         {{- $childActive := and (gt $bestLen -1) (eq (len .URL) $bestLen) (or (eq $currentPath .URL) (and (ne .URL "/") (strings.HasPrefix $currentPath .URL))) -}}
         <li class="toctree-l2{{ if $childActive }} current{{ end }}">
-          <a href="{{ .URL }}">{{ .Name }}</a>
+          <a href="{{ .URL }}"{{ partial "link-target-attrs.html" .URL | safeHTMLAttr }}>{{ .Name }}</a>
         </li>
         {{- end }}
       </ul>
@@ -70,7 +70,7 @@
     {{- range .Children }}
     {{- $childActive := and (gt $bestLen -1) (eq (len .URL) $bestLen) (or (eq $currentPath .URL) (and (ne .URL "/") (strings.HasPrefix $currentPath .URL))) -}}
     <li class="toctree-l1{{ if $childActive }} current{{ end }}">
-      <a href="{{ .URL }}">{{ .Name }}</a>
+      <a href="{{ .URL }}"{{ partial "link-target-attrs.html" .URL | safeHTMLAttr }}>{{ .Name }}</a>
     </li>
     {{- end }}
   </ul>
