@@ -51,7 +51,7 @@ theme   = 'pydata'
 [params.landing]
   title             = "Welcome to the Salt Project"
   description       = "Salt is an open-source automation framework for remote execution, configuration management, and infrastructure orchestration — used by teams to manage thousands of systems from a single control plane."
-  show_recent_posts = true
+  show_recent_posts = false
 
 [[params.landing.nav_boxes]]
   title       = "Install Salt"
