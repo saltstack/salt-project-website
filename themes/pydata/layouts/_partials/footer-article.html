@@ -1,0 +1,8 @@
+{{- $items := site.Params.article_footer_items | default (slice) -}}
+{{- if $items }}
+<div class="footer-article-items footer-article__inner">
+  {{- range $items }}
+  <div class="footer-article-item">{{ partial . $ }}</div>
+  {{- end }}
+</div>
+{{- end }}

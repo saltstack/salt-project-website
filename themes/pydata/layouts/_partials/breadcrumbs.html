@@ -1,0 +1,22 @@
+{{- /* Only show breadcrumbs when not on homepage */ -}}
+{{- if not .IsHome }}
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="{{ "/" | relURL }}" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    {{- range .Ancestors.Reverse }}
+    {{- if not .IsHome }}
+    <li class="breadcrumb-item">
+      <a href="{{ .RelPermalink }}" class="nav-link">{{ .Title }}</a>
+    </li>
+    {{- end }}
+    {{- end }}
+    <li class="breadcrumb-item active" aria-current="page">
+      <span class="ellipsis">{{ .Title }}</span>
+    </li>
+  </ul>
+</nav>
+{{- end }}

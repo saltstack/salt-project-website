@@ -1,0 +1,26 @@
+{{- /*
+  Cross-doc navigation partial — mirrors the salt install guide's header-links.html pattern.
+  Reads site.Params.cross_doc_links (list of {name, url, active}) and renders
+  cross-project nav links with .custom-nav-item styling.
+
+  Usage: set navbar_center = ["header-links"] in hugo.toml params, then define:
+    [[params.cross_doc_links]]
+      name   = "Home"
+      url    = "/"
+      active = true
+    [[params.cross_doc_links]]
+      name = "Install Guide"
+      url  = "https://docs.saltproject.io/salt/install-guide/en/latest/"
+*/ -}}
+{{- $links := site.Params.cross_doc_links | default (slice) -}}
+{{- if $links }}
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    {{- range $links }}
+    <li class="nav-item custom-nav-item{{ if .active }} active{{ end }}">
+      <a class="nav-link" href="{{ .url }}">{{ .name }}</a>
+    </li>
+    {{- end }}
+  </ul>
+</nav>
+{{- end }}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{{- $defaultMode := site.Params.default_mode | default "auto" -}}
+<html lang="{{ site.Language.Locale }}" dir="{{ or site.Language.Direction `ltr` }}" data-content_root="{{ .RelPermalink }}"{{ if $defaultMode }} data-theme="{{ $defaultMode }}"{{ end }}>
+<head>
+  {{ partial "head.html" . }}
+</head>
+<body data-default-mode="{{ $defaultMode }}">
+
+{{- /* Skip link for accessibility */ -}}
+<div id="pst-skip-link" class="skip-link d-print-none">
+  <a href="#main-content">Skip to main content</a>
+</div>
+
+{{- /* Scroll detection pixel */ -}}
+<div id="pst-scroll-pixel-helper"></div>
+
+{{- /* Back-to-top button */ -}}
+{{- if site.Params.back_to_top_button }}
+<button type="button" class="btn rounded-pill" id="pst-back-to-top">
+  <i class="fa-solid fa-arrow-up"></i>
+  Back to top
+</button>
+{{- end }}
+
+{{- /* Search dialog (modal) */ -}}
+{{- if not site.Params.disable_search }}
+<dialog id="pst-search-dialog">
+  {{ partial "search-field.html" . }}
+</dialog>
+{{- end }}
+
+{{- /* Sticky banners wrapper */ -}}
+{{- $sticky := site.Params.sticky_banners | default false }}
+{{- if $sticky }}<div class="pst-sticky-header">{{ end }}
+
+{{ partial "announcement.html" . }}
+
+<header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+  {{ partial "header.html" . }}
+</header>
+
+{{- if $sticky }}</div>{{ end }}
+
+<div class="bd-container">
+  <div class="bd-container__inner bd-page-width">
+
+    {{- /* Primary sidebar */ -}}
+    <dialog id="pst-primary-sidebar-modal"></dialog>
+    <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      {{ partial "sidebar-primary.html" . }}
+    </div>
+
+    {{- /* Main content */ -}}
+    <main id="main-content" class="bd-main" role="main">
+      {{ block "main" . }}{{ end }}
+
+      <footer class="bd-footer-content">
+        {{ partial "footer-content.html" . }}
+      </footer>
+    </main>
+
+  </div>
+</div>
+
+{{- /* Scripts at end of body */ -}}
+<script defer src="{{ "scripts/bootstrap.js" | relURL }}"></script>
+<script defer src="{{ "scripts/pydata-sphinx-theme.js" | relURL }}"></script>
+
+<footer class="bd-footer">
+  {{ partial "footer.html" . }}
+</footer>
+
+</body>
+</html>

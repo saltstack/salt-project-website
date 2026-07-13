@@ -1,0 +1,49 @@
+{{- $navbarStart     := site.Params.navbar_start     | default (slice "navbar-logo") -}}
+{{- $navbarCenter    := site.Params.navbar_center    | default (slice "navbar-nav") -}}
+{{- $navbarEnd       := site.Params.navbar_end       | default (slice "theme-switcher" "navbar-icon-links") -}}
+{{- $navbarPersistent := site.Params.navbar_persistent | default (slice) -}}
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+
+  {{- if $navbarStart }}
+  <div class="col-lg-3 navbar-header-items__start">
+    {{- range $navbarStart }}
+    <div class="navbar-item">{{ partial . $ }}</div>
+    {{- end }}
+  </div>
+  {{- end }}
+
+  <div class="col-lg-9 navbar-header-items">
+    {{- if $navbarCenter }}
+    <div class="me-auto navbar-header-items__center">
+      {{- range $navbarCenter }}
+      <div class="navbar-item">{{ partial . $ }}</div>
+      {{- end }}
+    </div>
+    {{- end }}
+
+    {{- if or $navbarEnd $navbarPersistent }}
+    <div class="navbar-header-items__end">
+      {{- range $navbarPersistent }}
+      <div class="navbar-item navbar-persistent--container">{{ partial . $ }}</div>
+      {{- end }}
+      {{- range $navbarEnd }}
+      <div class="navbar-item">{{ partial . $ }}</div>
+      {{- end }}
+    </div>
+    {{- end }}
+  </div>
+
+  {{- range $navbarPersistent }}
+  <div class="navbar-persistent--mobile">{{ partial . $ }}</div>
+  {{- end }}
+
+  {{- $secondarySidebar := site.Params.secondary_sidebar_items | default (slice "page-toc") }}
+  {{- if $secondarySidebar }}
+  <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+    <span class="fa-solid fa-outdent"></span>
+  </button>
+  {{- end }}
+</div>

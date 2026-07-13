@@ -1,0 +1,20 @@
+{{- $startItems := site.Params.article_header_start | default (slice "breadcrumbs") -}}
+{{- $endItems   := site.Params.article_header_end   | default (slice) -}}
+{{- if or $startItems $endItems }}
+<div class="header-article-items header-article__inner">
+  {{- if $startItems }}
+  <div class="header-article-items__start">
+    {{- range $startItems }}
+    <div class="header-article-item">{{ partial . $ }}</div>
+    {{- end }}
+  </div>
+  {{- end }}
+  {{- if $endItems }}
+  <div class="header-article-items__end">
+    {{- range $endItems }}
+    <div class="header-article-item">{{ partial . $ }}</div>
+    {{- end }}
+  </div>
+  {{- end }}
+</div>
+{{- end }}

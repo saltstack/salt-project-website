@@ -1,0 +1,4 @@
+{{ define "main" }}
+  {{- $body := "<h1>Search</h1><div id=\"pst-search-results\"><div class=\"bd-search d-flex align-items-center\"><i class=\"fa-solid fa-magnifying-glass\"></i><input type=\"search\" id=\"search-input\" class=\"form-control\" placeholder=\"Search the docs ...\" aria-label=\"Search\" autocomplete=\"off\"/></div><div id=\"search-results\"><p class=\"search-empty\">Type to search&hellip;</p></div></div>" | safeHTML -}}
+  {{ partial "article-shell.html" (dict "page" . "content" $body) }}
+{{ end }}

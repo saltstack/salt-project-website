@@ -1,0 +1,41 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; frame-src https://calendar.google.com; connect-src 'self'; base-uri 'self'; form-action 'self'">
+
+{{- $defaultMode := site.Params.default_mode | default "auto" }}
+<script data-cfasync="false">
+  document.documentElement.dataset.mode  = localStorage.getItem("mode")  || "{{ $defaultMode }}";
+  document.documentElement.dataset.theme = localStorage.getItem("theme") || "{{ $defaultMode }}";
+</script>
+<noscript>
+  <style>.pst-js-only { display: none !important; }</style>
+</noscript>
+<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
+<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Summary }}{{ end }}">
+{{- with .Params.author }}<meta name="author" content="{{ . }}">{{ end }}
+{{- with site.Params.favicon }}
+<link rel="icon" href="{{ . | relURL }}">
+{{- end }}
+<link rel="stylesheet" href="{{ "styles/pydata-sphinx-theme.css" | relURL }}">
+<link rel="stylesheet" href="{{ "styles/hugo-pydata.css" | relURL }}">
+<script src="{{ "scripts/fontawesome.js" | relURL }}" defer></script>
+{{- if not site.Params.disable_search }}
+<script>
+  window.DOCUMENTATION_OPTIONS = {
+    search_as_you_type: false,
+    BUILDER: "dirhtml",
+    pagename: window.location.pathname,
+    VERSION: "",
+    show_version_warning_banner: false
+  };
+</script>
+<script src="{{ "scripts/search.js" | relURL }}" defer></script>
+{{- end }}
+{{- range site.Params.extra_css }}
+<link rel="stylesheet" href="{{ . }}">
+{{- end }}
+{{- range .AlternativeOutputFormats }}
+  {{- if eq .Rel "alternate" }}
+<link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink }}" title="{{ site.Title }}">
+  {{- end }}
+{{- end }}

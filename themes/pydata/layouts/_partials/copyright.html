@@ -1,0 +1,7 @@
+<p class="copyright">
+  {{- with site.Params.copyright }}
+    {{ replace . "{year}" (string now.Year) }}
+  {{- else }}
+    &copy; Copyright {{ now.Year }} {{ site.Title }}.
+  {{- end }}
+</p>

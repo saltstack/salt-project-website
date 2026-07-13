@@ -1,0 +1,28 @@
+{{- $footerStart  := site.Params.footer_start  | default (slice "copyright") -}}
+{{- $footerCenter := site.Params.footer_center | default (slice) -}}
+{{- $footerEnd    := site.Params.footer_end    | default (slice "theme-version") -}}
+{{- if or $footerStart $footerCenter $footerEnd }}
+<div class="bd-footer__inner bd-page-width">
+  {{- if $footerStart }}
+  <div class="footer-items__start">
+    {{- range $footerStart }}
+    <div class="footer-item">{{ partial . $ }}</div>
+    {{- end }}
+  </div>
+  {{- end }}
+  {{- if $footerCenter }}
+  <div class="footer-items__center">
+    {{- range $footerCenter }}
+    <div class="footer-item">{{ partial . $ }}</div>
+    {{- end }}
+  </div>
+  {{- end }}
+  {{- if $footerEnd }}
+  <div class="footer-items__end">
+    {{- range $footerEnd }}
+    <div class="footer-item">{{ partial . $ }}</div>
+    {{- end }}
+  </div>
+  {{- end }}
+</div>
+{{- end }}

@@ -1,0 +1,8 @@
+{{- $items := site.Params.secondary_sidebar_items | default (slice "page-toc") -}}
+{{- if $items }}
+<div class="sidebar-secondary-items sidebar-secondary__inner">
+  {{- range $items }}
+  <div class="sidebar-secondary-item">{{ partial . $ }}</div>
+  {{- end }}
+</div>
+{{- end }}

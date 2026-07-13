@@ -1,0 +1,413 @@
+/* Hugo-specific additions for the pydata theme port */
+
+/* ============================================================
+   Cross-doc navigation (header-links.html pattern)
+   Mirrors salt install guide's header-links.html CSS,
+   using pydata CSS variables throughout.
+   ============================================================ */
+
+.bd-header .navbar-nav {
+  flex-direction: row !important;
+  align-items: center !important;
+}
+
+.bd-header .navbar-nav li.nav-item.custom-nav-item {
+  margin: 0 0.75rem;
+}
+
+.bd-header .navbar-nav li.nav-item.custom-nav-item a.nav-link {
+  color: var(--pst-color-text-muted);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  padding: 0.5rem 0;
+  transition: color 0.2s;
+}
+
+.bd-header .navbar-nav li.nav-item.custom-nav-item a.nav-link:hover {
+  color: var(--pst-color-text-base);
+}
+
+.bd-header .navbar-nav li.nav-item.custom-nav-item.active a.nav-link {
+  font-weight: 700;
+  color: var(--pst-color-primary);
+}
+
+/* ============================================================
+   Collapsible sidebar nav (globaltoc pattern)
+   Scoped to #pst-sidebar-nav — mirrors #salt-globaltoc CSS.
+   ============================================================ */
+
+#pst-sidebar-nav {
+  font-size: 0.875rem;
+}
+
+#pst-sidebar-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0.25rem 0;
+}
+
+#pst-sidebar-nav ul ul {
+  padding-left: 0.75rem;
+  margin: 0;
+  width: 100%;
+}
+
+/* Section caption headers (toctree-style groups) */
+#pst-sidebar-nav p.caption {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--pst-color-text-muted);
+  padding: 0.35rem 0.25rem 0.35rem 0;
+  margin: 0.75rem 0 0 0;
+  user-select: none;
+}
+
+#pst-sidebar-nav p.caption:hover {
+  color: var(--pst-color-text-base);
+}
+
+/* Triangle arrow on captions */
+#pst-sidebar-nav p.caption::before {
+  content: "";
+  display: inline-block;
+  flex-shrink: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 4px 0 4px 6px;
+  border-color: transparent transparent transparent currentColor;
+  transition: transform 0.15s ease;
+}
+
+#pst-sidebar-nav p.caption.expanded::before {
+  transform: rotate(90deg);
+}
+
+/* li items with sub-pages: flex row so link + toggle sit side by side */
+#pst-sidebar-nav li.has-children {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+#pst-sidebar-nav li.has-children > a {
+  flex: 1;
+  min-width: 0;
+}
+
+#pst-sidebar-nav li.has-children > ul {
+  width: 100%;
+}
+
+/* Expand/collapse toggle button */
+#pst-sidebar-nav .toc-toggle {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem 0.35rem;
+  color: var(--pst-color-text-muted);
+  line-height: 1;
+  border-radius: 4px;
+}
+
+#pst-sidebar-nav .toc-toggle:hover {
+  color: var(--pst-color-text-base);
+  background-color: var(--pst-color-surface);
+}
+
+#pst-sidebar-nav .toc-toggle::before {
+  content: "";
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 4px 0 4px 6px;
+  border-color: transparent transparent transparent currentColor;
+  transition: transform 0.15s ease;
+}
+
+#pst-sidebar-nav .toc-toggle.expanded::before {
+  transform: rotate(90deg);
+}
+
+/* Link styles for all tree levels */
+#pst-sidebar-nav li > a {
+  display: block;
+  padding: 0.25rem 0.5rem;
+  color: var(--pst-color-text-base);
+  text-decoration: none;
+  border-radius: 4px;
+  line-height: 1.4;
+}
+
+#pst-sidebar-nav li > a:hover {
+  background-color: var(--pst-color-surface);
+}
+
+#pst-sidebar-nav li.current > a,
+#pst-sidebar-nav li.current > a:hover {
+  font-weight: 600;
+  background-color: transparent;
+  color: var(--pst-color-primary);
+  box-shadow: inset 3px 0 0 var(--pst-color-primary);
+}
+
+/* Slightly smaller text for deeper levels */
+#pst-sidebar-nav .toctree-l2 > a,
+#pst-sidebar-nav .toctree-l3 > a,
+#pst-sidebar-nav .toctree-l4 > a {
+  font-size: 0.85rem;
+  padding: 0.18rem 0.5rem;
+}
+
+/* Section title link */
+#pst-sidebar-nav ~ h3,
+.sidebar-primary-item > h3 {
+  font-size: var(--pst-sidebar-header-font-size, 1.2rem);
+  font-weight: var(--pst-sidebar-header-font-weight, 600);
+  color: var(--pst-color-text-base);
+  margin: 0 0 0.5rem 0;
+}
+
+.sidebar-primary-item > h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.sidebar-primary-item > h3 a:hover {
+  color: var(--pst-color-primary);
+}
+
+/* Post listing cards on home and section pages */
+.pst-post-listing {
+  border-bottom: 1px solid var(--pst-color-border);
+  padding: 1.25rem 0;
+}
+
+.pst-post-listing h2 {
+  margin-top: 0;
+  font-size: var(--pst-font-size-h4);
+}
+
+.pst-post-listing h2 a {
+  color: var(--pst-color-text-base);
+  text-decoration: none;
+}
+
+.pst-post-listing h2 a:hover {
+  color: var(--pst-color-primary);
+}
+
+.pst-post-date {
+  display: block;
+  color: var(--pst-color-text-muted);
+  font-size: var(--pst-font-size-milli);
+  margin-bottom: 0.5rem;
+}
+
+.pst-tag {
+  display: inline-block;
+  background-color: var(--pst-color-surface);
+  color: var(--pst-color-primary);
+  border: 1px solid var(--pst-color-border);
+  border-radius: 0.25rem;
+  padding: 0.1rem 0.5rem;
+  font-size: var(--pst-font-size-milli);
+  text-decoration: none;
+  margin: 0.1rem 0.15rem;
+}
+
+.pst-tag:hover {
+  background-color: var(--pst-color-primary);
+  color: var(--pst-color-on-background);
+}
+
+/* Tag list on taxonomy page */
+.pst-tag-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.pst-tag-list a {
+  display: inline-block;
+  background-color: var(--pst-color-surface);
+  color: var(--pst-color-primary);
+  border: 1px solid var(--pst-color-border);
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.75rem;
+  text-decoration: none;
+}
+
+.pst-tag-list a:hover {
+  background-color: var(--pst-color-primary);
+  color: var(--pst-color-on-background);
+}
+
+.pst-tag-count {
+  color: var(--pst-color-text-muted);
+  font-size: 0.85em;
+}
+
+/* Search results */
+.search-results-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+}
+
+.search-result-item {
+  border-bottom: 1px solid var(--pst-color-border);
+  padding: 0.75rem 0;
+}
+
+.search-result-item a {
+  display: block;
+  text-decoration: none;
+  color: var(--pst-color-text-base);
+}
+
+.search-result-title {
+  display: block;
+  font-weight: 600;
+  color: var(--pst-color-primary);
+  margin-bottom: 0.25rem;
+}
+
+.search-result-summary {
+  display: block;
+  font-size: var(--pst-font-size-milli);
+  color: var(--pst-color-text-muted);
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.search-empty {
+  color: var(--pst-color-text-muted);
+  font-style: italic;
+}
+
+/* Search dialog */
+#pst-search-dialog {
+  width: min(600px, 90vw);
+  padding: 1.5rem;
+  border: 1px solid var(--pst-color-border);
+  border-radius: 0.5rem;
+  background-color: var(--pst-color-on-background);
+  color: var(--pst-color-text-base);
+  box-shadow: 0 0.5rem 1rem var(--pst-color-shadow);
+}
+
+#pst-search-dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+#pst-search-dialog .bd-search {
+  gap: 0.5rem;
+}
+
+#pst-dialog-search-results {
+  max-height: 60vh;
+  overflow-y: auto;
+  margin-top: 1rem;
+}
+
+/* Hugo's auto-generated TOC uses nested <nav><ul> lists */
+#pst-page-toc-nav nav > ul {
+  padding-left: 0;
+  list-style: none;
+  font-size: var(--pst-sidebar-font-size);
+}
+
+#pst-page-toc-nav nav > ul ul {
+  padding-left: 1rem;
+  list-style: none;
+}
+
+#pst-page-toc-nav a {
+  display: block;
+  padding: var(--pst-toc-item-padding-y, 0.25rem) 0;
+  color: var(--pst-color-text-muted);
+  text-decoration: none;
+  line-height: 1.4;
+}
+
+#pst-page-toc-nav a:hover {
+  color: var(--pst-color-primary);
+}
+
+/* Landing page — hero section */
+.pst-landing-hero {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--pst-color-border);
+}
+
+.pst-landing-hero h1 {
+  font-size: var(--pst-font-size-h2);
+  margin-bottom: 0.5rem;
+}
+
+/* Landing page — nav cards. Use pst-color-surface directly (Bootstrap's
+   --bs-card-bg var doesn't update in dark mode; pydata's surface color does). */
+.pst-nav-card {
+  background-color: var(--pst-color-surface) !important;
+  border-color: var(--pst-color-border) !important;
+  color: var(--pst-color-text-base);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.pst-nav-card:hover {
+  border-color: hsla(231, 99%, 66%, 1);
+  box-shadow: 0 0.2rem 0.5rem var(--pst-color-shadow), 0 0 0.0625rem var(--pst-color-shadow) !important;
+  transform: scale(1.01);
+}
+
+.pst-nav-card .card-title {
+  color: var(--pst-color-text-base);
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+
+.pst-nav-card .card-text {
+  color: var(--pst-color-text-muted);
+  font-size: 0.875rem;
+  line-height: 1.4;
+  margin-bottom: 0;
+}
+
+/* Landing page — recent posts section */
+.pst-recent-posts-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.pst-recent-posts-header h2 {
+  margin: 0;
+}
+
+.pst-recent-posts-all {
+  font-size: 0.875rem;
+  color: var(--pst-color-primary);
+  text-decoration: none;
+}
+
+.pst-recent-posts-all:hover {
+  text-decoration: underline;
+}

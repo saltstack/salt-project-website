@@ -1,0 +1,15 @@
+{{- $pages := slice -}}
+{{- range site.RegularPages -}}
+  {{- $tags := slice -}}
+  {{- range .GetTerms "tags" -}}
+    {{- $tags = $tags | append .LinkTitle -}}
+  {{- end -}}
+  {{- $pages = $pages | append (dict
+    "title"   .Title
+    "url"     .RelPermalink
+    "summary" .Summary
+    "content" (.Plain | truncate 500)
+    "tags"    $tags
+  ) -}}
+{{- end -}}
+{{ $pages | jsonify (dict "indent" "  ") }}
