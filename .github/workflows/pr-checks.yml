@@ -1,9 +1,18 @@
 # Workflow to sanity-check pull requests: the site must build cleanly with
 # Hugo, and blog post tags must stick to the approved taxonomy.
+#
+# SECURITY: this workflow only ever requests `contents: read` and must never
+# be given `pages`/`id-token` write permissions — see the note at the top of
+# gh-pages.yml for why that combination is dangerous on a `pull_request`
+# trigger. Deploy credentials live only in gh-pages.yml, which never
+# triggers on pull_request.
 name: PR checks
 
 on:
   pull_request:
+
+permissions:
+  contents: read
 
 # Default to bash
 defaults:
