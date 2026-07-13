@@ -158,12 +158,6 @@ theme   = 'pydata'
   weight = 15
 
 [[menus.sidebar]]
-  name   = 'Tags'
-  parent = 'announcements'
-  url    = '/tags/'
-  weight = 20
-
-[[menus.sidebar]]
   name       = 'Documentation'
   identifier = 'documentation'
   url        = ''

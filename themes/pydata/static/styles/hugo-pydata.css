@@ -359,6 +359,27 @@
   color: var(--pst-color-primary);
 }
 
+/* Secondary-sidebar tag list (tag-list.html partial) */
+#pst-tag-list-nav ul {
+  padding-left: 0;
+  list-style: none;
+  font-size: var(--pst-sidebar-font-size);
+}
+
+#pst-tag-list-nav li {
+  padding: var(--pst-toc-item-padding-y, 0.25rem) 0;
+  line-height: 1.4;
+}
+
+#pst-tag-list-nav a {
+  color: var(--pst-color-text-muted);
+  text-decoration: none;
+}
+
+#pst-tag-list-nav a:hover {
+  color: var(--pst-color-primary);
+}
+
 /* Landing page — hero section */
 .pst-landing-hero {
   margin-bottom: 2rem;
