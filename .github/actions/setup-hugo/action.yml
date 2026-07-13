@@ -1,0 +1,39 @@
+name: Setup Hugo
+description: >-
+  Installs the Hugo extended CLI. Defaults to the minimum version declared in
+  themes/pydata/hugo.toml (module.hugoVersion.min), so the required Hugo
+  version only has to be maintained in one place. Pass `version` to override.
+
+inputs:
+  version:
+    description: >-
+      Hugo version to install (without the leading "v"). Defaults to the
+      minimum version declared in themes/pydata/hugo.toml.
+    required: false
+    default: ''
+
+runs:
+  using: composite
+  steps:
+    - name: Resolve Hugo version
+      id: resolve
+      shell: bash
+      run: |
+        version="${{ inputs.version }}"
+        if [ -z "$version" ]; then
+          version=$(sed -n '/\[module\.hugoVersion\]/,/^\[/{s/^\s*min\s*=\s*.\([0-9.]*\)./\1/p}' themes/pydata/hugo.toml | head -n1)
+        fi
+        if [ -z "$version" ]; then
+          echo "::error::Could not resolve a Hugo version (no input given and themes/pydata/hugo.toml has no module.hugoVersion.min)" >&2
+          exit 1
+        fi
+        echo "Using Hugo v${version}"
+        echo "version=${version}" >> "$GITHUB_OUTPUT"
+
+    - name: Install Hugo CLI
+      shell: bash
+      env:
+        HUGO_VERSION: ${{ steps.resolve.outputs.version }}
+      run: |
+        wget -O "${{ runner.temp }}/hugo.deb" "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb" \
+        && sudo dpkg -i "${{ runner.temp }}/hugo.deb"

@@ -5,7 +5,7 @@ This repository is for the main static site of https://saltproject.io, built wit
 ## Install prerequisites
 
 - [Install Hugo](https://gohugo.io/installation/)
-  - Version `v0.135.0` or higher (this is the version pinned in CI — see `.github/workflows/gh-pages.yml`).
+  - Version `v0.146.0` or higher — this is the minimum required by the vendored `themes/pydata` theme's `hugo.toml` (`module.hugoVersion.min`). CI installs this same version automatically via the local `.github/actions/setup-hugo` composite action, so it only needs to be updated in one place.
   - This was built with the `extended` version of Hugo, which is required.
 - Git
 - Python 3.14+ (only needed to run `scripts/validate-tags.py` locally)
@@ -190,8 +190,9 @@ The `scripts` folder holds standalone helper scripts used in local development a
 
 ### GitHub Actions workflows
 
-- `.github/workflows/pr-checks.yml` — runs on every pull request; builds the site with Hugo and validates blog post tags.
-- `.github/workflows/gh-pages.yml` — builds the site on every push, and deploys it to GitHub Pages when the push is a tag matching `v**` (see [Push the current `main` branch to the live site](#push-the-current-main-branch-to-the-live-site)).
+- `.github/workflows/pr-checks.yml` — runs on every pull request; builds the site with Hugo and validates blog post tags. Only ever requests `contents: read` — see the security note at the top of `gh-pages.yml` for why it must stay that way.
+- `.github/workflows/gh-pages.yml` — builds the site on every push, and deploys it to GitHub Pages when the push is a tag matching `v**` (see [Push the current `main` branch to the live site](#push-the-current-main-branch-to-the-live-site)). Deploy-time (`pages`/`id-token` write) permissions are scoped to just the `deploy` job; it never triggers on `pull_request`.
+- `.github/actions/setup-hugo` — local composite action shared by both workflows above to install the Hugo CLI. Defaults to the version declared in `themes/pydata/hugo.toml` (`module.hugoVersion.min`), so the required Hugo version only needs to be maintained in that one file.
 
 ## Credits
 
