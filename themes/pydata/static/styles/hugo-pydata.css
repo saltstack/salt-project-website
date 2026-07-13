@@ -302,7 +302,15 @@
 }
 
 /* Search dialog */
-#pst-search-dialog {
+/*
+ * The vendored pydata-sphinx-theme.css ships `#pst-search-dialog[open]`
+ * rules (background-color: transparent, backdrop opacity .5) sized for
+ * Sphinx's own search markup. The `[open]` attribute selector out-specifies
+ * our plain-ID rules below while the dialog is actually shown, so we have
+ * to match that specificity here to keep the dialog opaque and readable.
+ */
+#pst-search-dialog,
+#pst-search-dialog[open] {
   width: min(600px, 90vw);
   padding: 1.5rem;
   border: 1px solid var(--pst-color-border);
@@ -312,7 +320,8 @@
   box-shadow: 0 0.5rem 1rem var(--pst-color-shadow);
 }
 
-#pst-search-dialog::backdrop {
+#pst-search-dialog::backdrop,
+#pst-search-dialog[open]::backdrop {
   background-color: rgba(0, 0, 0, 0.4);
 }
 

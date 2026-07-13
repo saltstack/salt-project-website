@@ -6,9 +6,10 @@
 {{- $page    := .page -}}
 {{- $content := .content -}}
 {{- /* Determine whether to show the secondary (right-hand) TOC sidebar.
-     Default: hide on section/home/taxonomy pages; show on all others.
+     Default: hide on section/home/taxonomy/term pages (tag listing pages
+     have no headings, so the TOC would render empty); show on all others.
      Per-page override: set `show_toc: true/false` in frontmatter. */ -}}
-{{- $showTOCDefault := not (in (slice "section" "home" "taxonomy") $page.Kind) -}}
+{{- $showTOCDefault := not (in (slice "section" "home" "taxonomy" "term") $page.Kind) -}}
 {{- $showTOC := $page.Params.show_toc | default $showTOCDefault -}}
 {{- $secondarySidebarItems := cond $showTOC (site.Params.secondary_sidebar_items | default (slice "page-toc")) (slice) -}}
 <div class="bd-content">
