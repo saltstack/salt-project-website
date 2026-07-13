@@ -52,6 +52,8 @@ jobs:
           hugo \
             --minify \
             --baseURL "${{ steps.pages.outputs.base_url }}/"
+      - name: Duplicate security feed to legacy URL
+        run: scripts/duplicate-security-feed.sh
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

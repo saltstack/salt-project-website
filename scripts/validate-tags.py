@@ -2,9 +2,8 @@
 """
 Validate that every blog post uses only the approved tag taxonomy.
 
-Approved tags:
-  release, release-candidate, security, community, case-study,
-  salt-extensions, announcement, enterprise, guest-post
+Approved tags are defined in scripts/tags.toml — edit that file to add
+or remove tags from the taxonomy.
 
 Exit code: 0 if all posts are clean, 1 if any violations are found.
 Usage: python3 scripts/validate-tags.py
@@ -13,22 +12,18 @@ Usage: python3 scripts/validate-tags.py
 import os
 import re
 import sys
+import tomllib
 
 BLOG_DIR = os.path.join(os.path.dirname(__file__), "..", "content", "blog")
-
-APPROVED_TAGS = {
-    "release",
-    "release-candidate",
-    "security",
-    "community",
-    "case-study",
-    "salt-extensions",
-    "announcement",
-    "enterprise",
-    "guest-post",
-}
+TAGS_FILE = os.path.join(os.path.dirname(__file__), "tags.toml")
 
 SKIP_FILES = {"_index.md"}
+
+
+def load_approved_tags() -> set[str]:
+    with open(TAGS_FILE, "rb") as f:
+        data = tomllib.load(f)
+    return set(data["approved_tags"])
 
 
 def parse_tags(content: str) -> list[str]:
@@ -44,6 +39,8 @@ def parse_tags(content: str) -> list[str]:
 
 
 def main() -> int:
+    approved_tags = load_approved_tags()
+
     blog_dir = os.path.abspath(BLOG_DIR)
     if not os.path.isdir(blog_dir):
         print(f"ERROR: blog directory not found: {blog_dir}", file=sys.stderr)
@@ -68,7 +65,7 @@ def main() -> int:
             no_tags.append(fname)
             continue
 
-        bad = [t for t in tags if t not in APPROVED_TAGS]
+        bad = [t for t in tags if t not in approved_tags]
         if bad:
             violations.append((fname, bad))
 
@@ -94,7 +91,7 @@ def main() -> int:
 
     if ok:
         print(f"OK — all {total} posts use approved tags only.")
-        print(f"\nApproved tags: {', '.join(sorted(APPROVED_TAGS))}")
+        print(f"\nApproved tags: {', '.join(sorted(approved_tags))}")
     else:
         print(f"Summary: {clean}/{total} posts clean, "
               f"{len(violations)} unapproved tag(s), {len(no_tags)} missing tags.")
