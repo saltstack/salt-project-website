@@ -7,6 +7,41 @@ title = 'My New Hugo Project'
     extended = true
     min      = '0.162.1'
 
+  # Declaring any [[module.mounts]] disables Hugo's implicit default mounts
+  # for this module, so the standard component dirs must be re-declared
+  # explicitly alongside the new npm-sourced vendor mounts below.
+  [[module.mounts]]
+    source = "content"
+    target = "content"
+  [[module.mounts]]
+    source = "static"
+    target = "static"
+  [[module.mounts]]
+    source = "layouts"
+    target = "layouts"
+  [[module.mounts]]
+    source = "data"
+    target = "data"
+  [[module.mounts]]
+    source = "assets"
+    target = "assets"
+  [[module.mounts]]
+    source = "i18n"
+    target = "i18n"
+  [[module.mounts]]
+    source = "archetypes"
+    target = "archetypes"
+
+  # Build-time-only npm deps (FontAwesome JS+SVG icon kit, Bootstrap JS
+  # bundle). Requires `npm install` in themes/pydata before
+  # `hugo build`/`hugo server`. See themes/pydata/package.json.
+  [[module.mounts]]
+    source = "node_modules/@fortawesome/fontawesome-free/js/all.min.js"
+    target = "assets/vendor/fontawesome/all.min.js"
+  [[module.mounts]]
+    source = "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+    target = "assets/vendor/bootstrap/bootstrap.bundle.min.js"
+
 # ---------------------------------------------------------------------------
 # Default menus (overridable by site hugo.toml)
 # ---------------------------------------------------------------------------

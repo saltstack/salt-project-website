@@ -1,0 +1,15 @@
+{{- /*
+  FontAwesome's JS+SVG icon kit, mounted from node_modules via
+  [[module.mounts]] in hugo.toml (see themes/pydata/package.json). It's
+  already a prebuilt minified bundle, so no js.Build step is needed — just
+  fingerprint it in production.
+*/ -}}
+{{- with resources.Get "vendor/fontawesome/all.min.js" }}
+  {{- if hugo.IsDevelopment }}
+    <script src="{{ .RelPermalink }}" defer></script>
+  {{- else }}
+    {{- with . | fingerprint }}
+      <script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous" defer></script>
+    {{- end }}
+  {{- end }}
+{{- end }}

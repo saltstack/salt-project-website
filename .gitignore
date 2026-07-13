@@ -14,3 +14,5 @@ static/images/.DS_Store
 .env.*
 *.pem
 *.key
+sandbox/
+node_modules/
