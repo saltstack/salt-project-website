@@ -61,6 +61,11 @@ TRACK_FULL_NAME = {
     "STS": "Short-Term Support (STS)",
 }
 
+TRACK_PLAIN_NAME = {
+    "LTS": "Long-Term Support",
+    "STS": "Short-Term Support",
+}
+
 MONTH_ABBR = [
     "JAN", "FEB", "MAR", "APR", "MAY", "JUN",
     "JUL", "AUG", "SEP", "OCT", "NOV", "DEC",
@@ -211,11 +216,12 @@ def cmd_release(args: argparse.Namespace, releases: dict[str, str]) -> str:
             body = render_template("release-bugfix-body", version=version, track=track, major=major)
 
         body += "\n" + render_template("install-upgrade-notes-versioned", version=version)
-        # Only "reporting-feedback-ga" for an actual x.0 GA promotion --
-        # crediting RC testers and calling it a "GA release" would be
-        # factually wrong on a routine bugfix release, which never goes
-        # through a Release Candidate cycle of its own.
-        body += "\n" + render_template("reporting-feedback-ga" if is_ga else "reporting-feedback-generic")
+        # Every single-version release post uses this same "thanks to our
+        # RC testers"/"this GA release" wording, whether it's an actual x.0
+        # GA promotion or a routine bugfix patch -- confirmed against every
+        # real post since this house style was adopted (3008.0/.1/.2,
+        # 3006.26/.27), so this isn't a per-GA-status choice.
+        body += "\n" + render_template("reporting-feedback")
         slug = f"salt-{dashed(version)}-available"
     else:
         joined = " and ".join(f"{v} {t}" for v, t in zip(versions, tracks))
@@ -223,11 +229,14 @@ def cmd_release(args: argparse.Namespace, releases: dict[str, str]) -> str:
         summary = f"The Salt Project has just released {joined}."
 
         body = "\n".join(
-            render_template("release-multi-version-block", version=v, track=t, major=major_of(v))
+            render_template(
+                "release-multi-version-block", version=v, track=t, major=major_of(v),
+                full_name=TRACK_PLAIN_NAME.get(t, t),
+            )
             for v, t in zip(versions, tracks)
         )
-        body += "\n" + render_template("install-upgrade-notes-generic")
-        body += "\n" + render_template("reporting-feedback-generic")
+        body += "\n" + render_template("installation-notes-simple")
+        body += "\n" + render_template("reporting-issues-simple")
         slug = "salt-" + "-and-".join(dashed(v) for v in versions) + "-available"
 
     front_matter = build_front_matter(
@@ -253,21 +262,20 @@ def cmd_rc(args: argparse.Namespace, releases: dict[str, str]) -> str:
     n = args.rc
     post_date = parse_date(args.date)
 
-    title = f"Salt {major} RC{n} is now available"
-    summary = (
-        f"The Salt Project has just released RC{n} (release candidate {n}) "
-        f"of the Salt {major} {track}."
-    )
+    title = f"Salt {major} RC{n} Now Available"
+    summary = f"The Salt Project has just released {major}.0rc{n} (Release Candidate {n})."
     slug = f"salt-{major}-rc{n}-available"
-    body = render_template("rc-body", major=major, track=track, n=str(n))
+    body = render_template("rc-intro-block", major=major, track=track, n=str(n))
+    body += "\n" + render_template("installation-notes-simple")
+    body += "\n" + render_template("reporting-issues-simple")
 
     front_matter = build_front_matter(
         draft=not args.publish,
         title=title,
         summary=summary,
         post_date=post_date,
-        url=f"blog/{slug}",
-        image="images/blog/new-update.png",
+        author="Salt Project Team",
+        image="images/blog/new-release.png",
         tags=["release", "release-candidate"],
     )
     return write_post(post_date, slug, front_matter, body, allow_suffix=False)
