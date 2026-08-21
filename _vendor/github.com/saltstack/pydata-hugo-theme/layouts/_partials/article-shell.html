@@ -32,8 +32,10 @@
     </footer>
     {{- end }}
 
-    {{- /* Prev / Next navigation */ -}}
-    {{- if site.Params.show_prev_next }}
+    {{- /* Prev / Next navigation. Per-page override: set `show_prev_next:
+         true/false` in frontmatter to override the site.Params default. */ -}}
+    {{- $showPrevNext := $page.Params.show_prev_next | default site.Params.show_prev_next -}}
+    {{- if $showPrevNext }}
     <footer class="prev-next-footer d-print-none">
       {{ partial "prev-next.html" $page }}
     </footer>

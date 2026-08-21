@@ -1,1 +1,1 @@
-# github.com/saltstack/pydata-hugo-theme v0.3.0
+# github.com/saltstack/pydata-hugo-theme v0.4.0
