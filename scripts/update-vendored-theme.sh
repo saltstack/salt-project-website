@@ -34,6 +34,10 @@ echo "==> Vendoring"
 hugo mod vendor
 
 echo "==> Re-copying LICENSE/README.md (hugo mod vendor skips non-Hugo files)"
+# `go list -m` needs the module in Go's own module cache, which Hugo's
+# internal module client doesn't necessarily populate -- fetch it
+# explicitly first.
+go mod download "$MODULE_PATH"
 module_dir="$(go list -m -f '{{.Dir}}' "$MODULE_PATH")"
 vendor_dir="_vendor/${MODULE_PATH}"
 cp "$module_dir/LICENSE" "$vendor_dir/LICENSE"
