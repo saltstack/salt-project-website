@@ -56,6 +56,19 @@ fi
 echo "==> Vendoring"
 hugo mod vendor
 
+# `hugo mod get`/`hugo mod vendor` don't prune go.sum the way a plain `go
+# mod tidy` does for a normal buildable module -- old versions' checksums
+# just accumulate across bumps. A bare `go mod tidy` isn't safe here either
+# (this repo has no .go source files, so it tries to resolve importable Go
+# packages across the whole tree instead of just tidying go.sum), so prune
+# by hand: drop any line for this module that isn't the version we just
+# resolved.
+if [[ -f go.sum ]]; then
+  awk -v mod="$MODULE_PATH" -v ver="$resolved_version" \
+    '$1 != mod || $2 == ver || $2 == ver"/go.mod" { print }' \
+    go.sum > go.sum.tmp && mv go.sum.tmp go.sum
+fi
+
 echo "==> Re-copying LICENSE/README.md (hugo mod vendor skips non-Hugo files)"
 vendor_dir="_vendor/${MODULE_PATH}"
 cp "$module_dir/LICENSE" "$vendor_dir/LICENSE"
