@@ -1,4 +1,0 @@
-{{ define "main" }}
-  {{ $content := printf "<h1>%s</h1>%s" .Title .Content | safeHTML }}
-  {{ partial "article-shell.html" (dict "page" . "content" $content) }}
-{{ end }}
