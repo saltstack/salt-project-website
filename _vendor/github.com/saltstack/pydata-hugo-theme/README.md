@@ -48,6 +48,8 @@ To keep this from becoming a manual chore, wrap the update in a small script tha
 
 ## Contributing
 
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for environment setup, coding conventions, commit/PR/release workflow, and how upstream re-scans against `.pydata-sphinx-source-version` work.
+
 `docs/` is this theme's own documentation site — it resolves the theme via a local `replace => ../` in `docs/go.mod`, so it's always in sync with whatever's currently in `layouts/`/`hugo.toml`, live, with no vendoring step:
 
 ```sh
