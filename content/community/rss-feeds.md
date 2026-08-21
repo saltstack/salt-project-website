@@ -2,6 +2,7 @@
 title: "RSS Feeds"
 date: 2024-01-01
 summary: "Subscribe to Salt Project RSS feeds to stay up to date."
+show_prev_next: false
 ---
 
 ## What are RSS Feeds?
