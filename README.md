@@ -1,24 +1,21 @@
 # Salt Project Website
 
-This repository is for the main static site of https://saltproject.io, built with [Hugo](https://gohugo.io/) using a custom Hugo port of the [PyData Sphinx Theme](https://pydata-sphinx-theme.readthedocs.io/) (vendored in `themes/pydata`). The site is built and deployed to **GitHub Pages** via GitHub Actions.
+This repository is for the main static site of https://saltproject.io, built with [Hugo](https://gohugo.io/) using [`pydata-hugo-theme`](https://github.com/saltstack/pydata-hugo-theme), a generic Hugo port of the [PyData Sphinx Theme](https://pydata-sphinx-theme.readthedocs.io/), consumed as a [Hugo Module](https://gohugo.io/hugo-modules/). The site is built and deployed to **GitHub Pages** via GitHub Actions.
 
 ## Install prerequisites
 
 - [Install Hugo](https://gohugo.io/installation/)
   - The exact version pinned for this project is tracked in the root `.hugo-version` file. The devcontainer and CI both install that exact version automatically (see `.devcontainer/Dockerfile` and `.github/actions/setup-hugo`), so it only needs to be updated in one place.
-  - Must be the `extended` version, and at least the minimum declared in the vendored `themes/pydata` theme's `hugo.toml` (`module.hugoVersion.min`).
-  - This was built with the `extended` version of Hugo, which is required.
-- Node.js — version pinned in the root `.node-version` file, same single-source-of-truth pattern as `.hugo-version`. Needed to install the theme's FontAwesome/Bootstrap build-time dependencies (see [FontAwesome and Bootstrap](#fontawesome-and-bootstrap-npm-at-build-time)).
+  - Must be the `extended` version, and at least the minimum declared in the theme module's `hugo.toml` (`module.hugoVersion.min`).
 - Git
 - Python 3.14+ (only needed to run `scripts/validate-tags.py` locally)
+- Go — version pinned in the root `.go-version` file. Only needed if you're updating the vendored theme module (see [The theme module](#the-theme-module)); not required for a normal build/serve.
+
+No Go toolchain and no Node/npm install are required to build or serve this site: the theme module and its build-time JS dependencies (FontAwesome/Bootstrap) are vendored in `_vendor/` and checked into this repository (see [The theme module](#the-theme-module) below), so `hugo` resolves everything from disk.
 
 ### Build a local preview
 
 ```bash
-# Install the theme's build-time npm dependencies (FontAwesome/Bootstrap) —
-# only needs to be re-run when themes/pydata/package.json changes.
-cd themes/pydata && npm ci && cd -
-
 # Serves for viewing changes locally
 # Dynamically loads updates when changes happen in repo
 hugo serve
@@ -119,7 +116,7 @@ This same check runs automatically on every pull request via the `PR checks` wor
 
 Hugo is a static site generator, which means it compiles the raw content (Markdown files) and uses the layout and style code to generate HTML files that can be stored on a web server.
 
-This site uses a custom theme — a Hugo port of the PyData Sphinx Theme — vendored under `themes/pydata` and referenced by the `theme` key in `hugo.toml` (Hugo's configuration file). The theme is tracked directly in this repository, so it can be edited like any other part of the site.
+This site uses `pydata-hugo-theme` — a generic Hugo port of the PyData Sphinx Theme — imported as a [Hugo Module](https://gohugo.io/hugo-modules/) via `[module.imports]` in `hugo.toml`. See [The theme module](#the-theme-module) for how that module is resolved in this repo.
 
 ### Content
 
@@ -135,12 +132,12 @@ Hugo treats `_index.md` pages inside a folder as a "list" page, which is useful 
 
 The `layouts` folder contains the raw HTML files that explain how Hugo should render content when it's transformed (compiled) into HTML, using Hugo's templating language (Go templates).
 
-Most of the site's layout logic lives in the theme (`themes/pydata/layouts`). The top-level `layouts` folder holds project-specific overrides and additions that go beyond (or intentionally diverge from) the theme's defaults — for example:
+Most of the site's layout logic lives in the theme module (`_vendor/github.com/saltstack/pydata-hugo-theme/layouts`). The top-level `layouts` folder holds project-specific overrides and additions that go beyond (or intentionally diverge from) the theme's defaults — for example:
 
 - `layouts/page.html` — overrides the theme's default page template to automatically render the page title as an `<h1>`, so individual pages don't need a duplicate Markdown heading.
 - `layouts/community/event-calendar.html` and `layouts/community/working-groups.html` — custom layouts for those two community pages, selected via the `layout` front matter field on their respective content files.
 
-When Hugo looks for a template, it checks the project's `layouts` folder first and falls back to the theme's `layouts` folder if there's no project-level override. This means the theme can be updated/upstreamed while site-specific customizations stay isolated in the top-level `layouts` folder — only touch files under `themes/pydata` directly when the fix belongs in the theme itself (e.g. a genuine theme bug), not when it's a site-specific behavior change.
+When Hugo looks for a template, it checks the project's `layouts` folder first and falls back to the theme module's `layouts` folder if there's no project-level override. This means the theme can be updated/upstreamed while site-specific customizations stay isolated in the top-level `layouts` folder — a fix that belongs in the theme itself (e.g. a genuine theme bug or a generically useful option) should be made in the `pydata-hugo-theme` module's own repository, not by editing the vendored copy under `_vendor/` directly (those edits are overwritten the next time the module is re-vendored).
 
 ### Partials
 
@@ -160,7 +157,7 @@ When you reference these files in content or templates, you leave off the `stati
 
 ### The baseof file
 
-`themes/pydata/layouts/baseof.html` defines the baseline HTML structure for all pages on the site. It calls the `head.html`, `header.html`, and `footer.html` partials, and defines the `main` block that individual page layouts fill in.
+`_vendor/github.com/saltstack/pydata-hugo-theme/layouts/baseof.html` defines the baseline HTML structure for all pages on the site. It calls the `head.html`, `header.html`, and `footer.html` partials, and defines the `main` block that individual page layouts fill in.
 
 ### Markdown file front matter
 
@@ -198,23 +195,36 @@ The `scripts` folder holds standalone helper scripts used in local development a
 
 - `.github/workflows/pr-checks.yml` — runs on every pull request; builds the site with Hugo and validates blog post tags. Only ever requests `contents: read` — see the security note at the top of `gh-pages.yml` for why it must stay that way.
 - `.github/workflows/gh-pages.yml` — builds the site on every push, and deploys it to GitHub Pages when the push is a tag matching `v**` (see [Push the current `main` branch to the live site](#push-the-current-main-branch-to-the-live-site)). Deploy-time (`pages`/`id-token` write) permissions are scoped to just the `deploy` job; it never triggers on `pull_request`.
-- `.github/actions/setup-hugo` — local composite action shared by both workflows above to install the Hugo CLI. Defaults to the version pinned in the root `.hugo-version` file — the same file the devcontainer's `Dockerfile` reads — so the required Hugo version only needs to be maintained in that one place.
+- `.github/workflows/check-theme-updates.yml` — runs weekly (and on-demand via `workflow_dispatch`) to check for a newer `pydata-hugo-theme` module release; opens a PR if `scripts/update-vendored-theme.sh` finds changes to vendor. Never triggers on `pull_request`, since it needs `contents: write`/`pull-requests: write` to open that PR.
+- `.github/actions/setup-hugo` — local composite action shared by the workflows above to install the Hugo CLI. Defaults to the version pinned in the root `.hugo-version` file — the same file the devcontainer's `Dockerfile` reads — so the required Hugo version only needs to be maintained in that one place.
 
-### FontAwesome and Bootstrap (npm, at build time)
+### The theme module
 
-`themes/pydata` doesn't vendor FontAwesome or Bootstrap as committed files. `themes/pydata/package.json` pins the exact versions (FontAwesome's JS+SVG icon kit, Bootstrap's JS bundle); Hugo's `[[module.mounts]]` (in `themes/pydata/hugo.toml`) mounts the relevant prebuilt files straight out of `node_modules` into the asset pipeline, and `themes/pydata/layouts/_partials/head/{fontawesome,bootstrap-js}.html` load them through Hugo Pipes (fingerprinted in production builds). This means:
+`pydata-hugo-theme` is a standalone, generic Hugo Module — it carries no Salt Project branding or content, so it can be reused by any Hugo site. This repo consumes it via `[[module.imports]]` in `hugo.toml` and a `require`/`replace` pair in the root `go.mod`.
 
-- You need to run `npm ci` inside `themes/pydata` before `hugo build`/`hugo server` will work — the devcontainer does this automatically via `postCreateCommand`; CI does it via an `actions/setup-node` + `npm ci` step in both workflows.
-- Their license text isn't duplicated anywhere in this repo — it ships inside the respective (gitignored) npm packages under `themes/pydata/node_modules/.../LICENSE*`.
-- The Node.js version used for this is pinned in the root `.node-version` file, following the same single-source-of-truth pattern as `.hugo-version`.
+The module (including its FontAwesome/Bootstrap build-time JS, mounted via `[[module.mounts]]` in the module's own `hugo.toml`) is checked into this repo under `_vendor/github.com/saltstack/pydata-hugo-theme/` via `hugo mod vendor`. This means:
+
+- No Go toolchain, npm, or network access is needed to build or serve this site — `hugo` reads everything it needs straight out of `_vendor/`.
+- `_vendor/` is **generated** — never hand-edit files under it. To pick up a theme change, run:
+
+  ```bash
+  scripts/update-vendored-theme.sh          # update to the latest module version
+  scripts/update-vendored-theme.sh v0.2.0   # or pin a specific version
+  ```
+
+  This bumps the module (`hugo mod get`), re-vendors it (`hugo mod vendor`), and re-copies `LICENSE`/`README.md` — the two non-Hugo files `hugo mod vendor` doesn't carry over — into `_vendor/github.com/saltstack/pydata-hugo-theme/`. Review the resulting diff, then commit it.
+
+  A scheduled GitHub Actions workflow (`.github/workflows/check-theme-updates.yml`) runs this same script weekly and opens a PR if anything changed, so updates don't rely on someone remembering to check. It can also be run on demand from the **Actions** tab (`workflow_dispatch`). Either way, updates are never auto-merged — re-vendoring the theme stays a deliberate, human-reviewed action.
+
+- Their license text isn't duplicated anywhere else in this repo — see `_vendor/github.com/saltstack/pydata-hugo-theme/LICENSE`.
 
 ## Credits
 
-The `themes/pydata` theme vendored in this repository is a Hugo port of the [PyData Sphinx Theme](https://github.com/pydata/pydata-sphinx-theme) ([docs](https://pydata-sphinx-theme.readthedocs.io/en/stable/)), originally built for Sphinx documentation sites. Credit to the PyData Sphinx Theme authors and contributors for the design and functionality this port is based on.
+`pydata-hugo-theme` is a Hugo port of the [PyData Sphinx Theme](https://github.com/pydata/pydata-sphinx-theme) ([docs](https://pydata-sphinx-theme.readthedocs.io/en/stable/)), originally built for Sphinx documentation sites. Credit to the PyData Sphinx Theme authors and contributors for the design and functionality this port is based on. See the module's own `README.md` (`_vendor/github.com/saltstack/pydata-hugo-theme/README.md`) for the full attribution notice.
 
 ## License
 
 This repository as a whole is **not** released under an open source or Creative Commons license — all rights reserved except as noted below.
 
-The one exception is `themes/pydata`: that directory is licensed under the **BSD 3-Clause License**, matching the license used by the upstream [PyData Sphinx Theme](https://github.com/pydata/pydata-sphinx-theme). See `themes/pydata/LICENSE` for the full text.
+The one exception is the vendored `pydata-hugo-theme` module: it is licensed under the **BSD 3-Clause License**, matching the license used by the upstream [PyData Sphinx Theme](https://github.com/pydata/pydata-sphinx-theme). See `_vendor/github.com/saltstack/pydata-hugo-theme/LICENSE` for the full text.
 
