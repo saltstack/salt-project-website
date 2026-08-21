@@ -98,7 +98,12 @@ To create a new blog post:
 
 `scripts/new-blog-post.py` generates a new, fully-populated blog post file
 for the three most common (and most repetitive) post types, so you don't
-have to hand-copy the closest prior post:
+have to hand-copy the closest prior post. Its body content comes from the
+plain Markdown files in `scripts/blog-templates/` — each `$placeholder`
+(e.g. `$version`) is the only non-literal part of the file, so you can also
+open one of those templates directly (as a human or an AI) and write a post
+by hand from it without using this script at all, or edit a template to
+change the wording for every future post of that type.
 
 ```bash
 # New GA release (one or more versions)
@@ -246,8 +251,9 @@ Depending on the type of content, it may need different front matter. See the ex
 The `scripts` folder holds standalone helper scripts used in local development and CI:
 
 - `scripts/validate-tags.py` — validates blog post tags against the approved taxonomy in `scripts/tags.toml`.
-- `scripts/new-blog-post.py` — generates a new release, RC, security, or announcement blog post (see [Generate a release, RC, or security post](#generate-a-release-rc-or-security-post)). Release track lookups come from `scripts/releases.toml`; duplicate/sequence checks and history come from `scripts/release-log.toml`.
-- `scripts/_blog_common.py` — small shared helper module (`scripts/tags.toml`/`scripts/releases.toml`/`scripts/release-log.toml` loaders) used by both `validate-tags.py` and `new-blog-post.py`.
+- `scripts/new-blog-post.py` — generates a new release, RC, security, or announcement blog post (see [Generate a release, RC, or security post](#generate-a-release-rc-or-security-post)). Release track lookups come from `scripts/releases.toml`; duplicate/sequence checks and history come from `scripts/release-log.toml`; post body content comes from `scripts/blog-templates/`.
+- `scripts/blog-templates/` — plain Markdown template files (one `$placeholder`-style variable per substitution, e.g. `$version`) for each generated post's body. Usable directly by a human or an AI without `new-blog-post.py` at all, or as the single place to edit the wording for a post type going forward.
+- `scripts/_blog_common.py` — small shared helper module (`scripts/tags.toml`/`scripts/releases.toml`/`scripts/release-log.toml` loaders, plus `render_template()` for `scripts/blog-templates/`) used by both `validate-tags.py` and `new-blog-post.py`.
 - `scripts/duplicate-security-feed.sh` — copies the built `tags/security` RSS feed to the legacy `/security-announcements/` URL after a Hugo build.
 
 ### GitHub Actions workflows

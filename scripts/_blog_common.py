@@ -1,10 +1,12 @@
 """
 Shared helpers for blog-post tooling (scripts/validate-tags.py,
 scripts/new-blog-post.py) — approved tag taxonomy, release-track lookup,
-and the release-log (scripts/release-log.toml).
+the release-log (scripts/release-log.toml), and body templates
+(scripts/blog-templates/).
 """
 
 import os
+import string
 import tomllib
 
 SCRIPTS_DIR = os.path.dirname(__file__)
@@ -12,6 +14,7 @@ TAGS_FILE = os.path.join(SCRIPTS_DIR, "tags.toml")
 RELEASES_FILE = os.path.join(SCRIPTS_DIR, "releases.toml")
 RELEASE_LOG_FILE = os.path.join(SCRIPTS_DIR, "release-log.toml")
 HUGO_CONFIG_FILE = os.path.join(SCRIPTS_DIR, "..", "hugo.toml")
+BLOG_TEMPLATES_DIR = os.path.join(SCRIPTS_DIR, "blog-templates")
 
 
 def load_approved_tags() -> set[str]:
@@ -47,3 +50,20 @@ def load_base_url() -> str:
     with open(HUGO_CONFIG_FILE, "rb") as f:
         data = tomllib.load(f)
     return data["baseURL"].rstrip("/")
+
+
+def render_template(name: str, /, **substitutions: str) -> str:
+    """Load scripts/blog-templates/<name>.md and fill in its $placeholder
+    variables. These are ordinary Markdown files -- open one directly to
+    write a post by hand, with or without this tooling; `$placeholder`
+    tokens (e.g. $version) are the only thing that's not literal content.
+
+    Uses stdlib string.Template rather than str.format so a template can
+    contain its own literal {curly-brace} placeholders (e.g. the CVE
+    details a human fills in by hand) without colliding with substitution
+    syntax.
+    """
+    path = os.path.join(BLOG_TEMPLATES_DIR, f"{name}.md")
+    with open(path, encoding="utf-8") as f:
+        template = string.Template(f.read())
+    return template.substitute(**substitutions)

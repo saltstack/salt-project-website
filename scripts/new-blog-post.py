@@ -28,6 +28,14 @@ Usage:
   python3 scripts/new-blog-post.py announcement --title "..." --summary "..." --tags community
 
 All generated posts default to `draft: true`. Pass --publish to omit it.
+
+Post bodies are filled in from the Markdown templates in
+scripts/blog-templates/ (via _blog_common.render_template) rather than
+being embedded in this file. Those templates are ordinary, readable
+Markdown with `$placeholder` variables (e.g. $version) -- open one
+directly to see (or copy) what a generated post's body looks like, edit
+one to change the wording for every future post of that type, or write a
+post by hand from one without using this script at all.
 """
 
 import argparse
@@ -43,6 +51,7 @@ from _blog_common import (  # noqa: E402
     load_release_log,
     append_release_log,
     load_base_url,
+    render_template,
 )
 
 BLOG_DIR = os.path.join(os.path.dirname(__file__), "..", "content", "blog")
@@ -176,36 +185,6 @@ def build_front_matter(
 # release
 # ---------------------------------------------------------------------------
 
-INSTALL_UPGRADE_NOTES = """\
-## Installation & Upgrade Notes
-
-Users can install Salt {version} via PyPI or through our official package repositories.
-
-* **Package Repo:** Packages are available here:
-  * [deb](https://packages.broadcom.com/artifactory/saltproject-deb/)
-  * [rpm](https://packages.broadcom.com/artifactory/saltproject-rpm/)
-  * [mac](https://packages.broadcom.com/artifactory/saltproject-generic/macos/{version}/)
-  * [win](https://packages.broadcom.com/artifactory/saltproject-generic/windows/{version}/)
-  * [onedir](https://packages.broadcom.com/artifactory/saltproject-generic/onedir/{version}/)
-* **Install Guide:** Refer to our official instructions for [Installing Salt](https://docs.saltproject.io/salt/install-guide/en/latest/index.html).
-* **PyPI Source:** Download the package directly via [PyPI](https://pypi.org/project/salt/{version}/)
-
-| IMPORTANT |
-| --------- |
-| While Salt supports differing versions between the Master and Minions during transitional periods, it is **highly recommended to upgrade your Salt Master first** to prevent compatibility issues. |
-
-## Reporting Issues & Feedback
-
-A massive thank you to everyone in the community who tested the Release Candidates and helped us cross the finish line!
-
-If you encounter any unexpected behavior, bugs, or packaging issues with this GA release, please let us know right away by opening an issue:
-
-[**Open a GitHub Issue**](https://github.com/saltstack/salt/issues/new/choose)
-
-Thank you for being a vital part of the Salt Project community. Happy automating!
-"""
-
-
 def cmd_release(args: argparse.Namespace, releases: dict[str, str]) -> str:
     versions = args.version
     tracks = [track_of(v, releases) for v in versions]
@@ -225,76 +204,30 @@ def cmd_release(args: argparse.Namespace, releases: dict[str, str]) -> str:
 
         if is_ga:
             full_name = TRACK_FULL_NAME.get(track, track)
-            body = (
-                f"The Salt Project is thrilled to announce the official general "
-                f"availability (GA) release of Salt {version} {track}.\n\n"
-                f"This milestone marks the culmination of extensive development, "
-                f"testing, and invaluable feedback from our community throughout "
-                f"the Release Candidate cycles. Salt {version} is a {full_name} "
-                f"release, bringing a hardened foundation, crucial bug fixes, and "
-                f"performance enhancements designed to power your infrastructure "
-                f"with maximum stability.\n\n"
-                f"## What's New in Salt {version}?\n\n"
-                f"Whether you are prioritizing long-term enterprise stability or "
-                f"eager to leverage the latest optimizations, this release is "
-                f"ready for production environments.\n\n"
-                f"* **The Tag:** Check out the official ``v{version}`` tag on "
-                f"[GitHub](https://github.com/saltstack/salt/releases/tag/v{version})\n"
-                f"* **Release Notes:** View the release notes on "
-                f"[GitHub](https://github.com/saltstack/salt/blob/{major}.x/doc/topics/releases/{version}.md)\n\n"
+            body = render_template(
+                "release-ga-body", version=version, track=track, major=major, full_name=full_name,
             )
         else:
-            body = (
-                f"The Salt Project has just released the {version} {track} "
-                f"bugfix version of Salt.\n\n"
-                f"* **Release Notes:** View the release notes on "
-                f"[GitHub](https://github.com/saltstack/salt/blob/{major}.x/doc/topics/releases/{version}.md)\n"
-                f"* **Changelogs:** https://github.com/saltstack/salt/blob/v{version}/CHANGELOG.md\n"
-                f"* **The Tag:** Check out the official ``v{version}`` tag on "
-                f"[GitHub](https://github.com/saltstack/salt/releases/tag/v{version})\n\n"
-            )
+            body = render_template("release-bugfix-body", version=version, track=track, major=major)
 
-        body += INSTALL_UPGRADE_NOTES.format(version=version)
+        body += "\n" + render_template("install-upgrade-notes-versioned", version=version)
+        # Only "reporting-feedback-ga" for an actual x.0 GA promotion --
+        # crediting RC testers and calling it a "GA release" would be
+        # factually wrong on a routine bugfix release, which never goes
+        # through a Release Candidate cycle of its own.
+        body += "\n" + render_template("reporting-feedback-ga" if is_ga else "reporting-feedback-generic")
         slug = f"salt-{dashed(version)}-available"
     else:
         joined = " and ".join(f"{v} {t}" for v, t in zip(versions, tracks))
         title = f"Salt {joined} Now Available"
         summary = f"The Salt Project has just released {joined}."
 
-        body = ""
-        for version, track in zip(versions, tracks):
-            major = major_of(version)
-            body += (
-                f"### Salt {version} {track}\n\n"
-                f"* **Release Notes:** View the release notes on "
-                f"[GitHub](https://github.com/saltstack/salt/blob/{major}.x/doc/topics/releases/{version}.md)\n"
-                f"* **Changelogs:** https://github.com/saltstack/salt/blob/v{version}/CHANGELOG.md\n"
-                f"* **The Tag:** Check out the official ``v{version}`` tag on "
-                f"[GitHub](https://github.com/saltstack/salt/releases/tag/v{version})\n\n"
-            )
-
-        body += (
-            "## Installation & Upgrade Notes\n\n"
-            "Users can install Salt via PyPI or through our official package "
-            "repositories.\n\n"
-            "* **Install Guide:** Refer to our official instructions for "
-            "[Installing Salt](https://docs.saltproject.io/salt/install-guide/en/latest/index.html).\n"
-            "* **PyPI Source:** Packages are available via "
-            "[PyPI](https://pypi.org/project/salt/)\n\n"
-            "| IMPORTANT |\n"
-            "| --------- |\n"
-            "| While Salt supports differing versions between the Master and "
-            "Minions during transitional periods, it is **highly recommended "
-            "to upgrade your Salt Master first** to prevent compatibility "
-            "issues. |\n\n"
-            "## Reporting Issues & Feedback\n\n"
-            "If you encounter any unexpected behavior, bugs, or packaging "
-            "issues with this release, please let us know right away by "
-            "opening an issue:\n\n"
-            "[**Open a GitHub Issue**](https://github.com/saltstack/salt/issues/new/choose)\n\n"
-            "Thank you for being a vital part of the Salt Project community. "
-            "Happy automating!\n"
+        body = "\n".join(
+            render_template("release-multi-version-block", version=v, track=t, major=major_of(v))
+            for v, t in zip(versions, tracks)
         )
+        body += "\n" + render_template("install-upgrade-notes-generic")
+        body += "\n" + render_template("reporting-feedback-generic")
         slug = "salt-" + "-and-".join(dashed(v) for v in versions) + "-available"
 
     front_matter = build_front_matter(
@@ -326,21 +259,7 @@ def cmd_rc(args: argparse.Namespace, releases: dict[str, str]) -> str:
         f"of the Salt {major} {track}."
     )
     slug = f"salt-{major}-rc{n}-available"
-    body = (
-        f"The Salt Project has just released RC{n} (release candidate {n}) of the Salt {major}\n"
-        f"{track}. To download and test Salt {major} RC{n}, see\n"
-        f"[Install a release candidate](https://docs.saltproject.io/salt/install-guide/en/latest/topics/other-install-types/release-candidate.html)\n"
-        f"in the Salt install guide.\n\n"
-        f"Users can install via PyPI, packages, or use the Docker containers.\n\n"
-        f"| Note  |\n"
-        f"| ----- |\n"
-        f"| We support differing versions between master and minions, but as "
-        f"always it is recommended to upgrade your master first. |\n\n"
-        f"- The tag: https://github.com/saltstack/salt/tree/v{major}.0rc{n}\n"
-        f"- The PyPI Source: https://pypi.org/project/salt/{major}.0rc{n}/\n\n"
-        f"If you find any issues with Salt or the packaging, open an issue here:\n"
-        f"[https://github.com/saltstack/salt/issues/new/choose](https://github.com/saltstack/salt/issues/new/choose)\n"
-    )
+    body = render_template("rc-body", major=major, track=track, n=str(n))
 
     front_matter = build_front_matter(
         draft=not args.publish,
@@ -385,40 +304,15 @@ def cmd_security(args: argparse.Namespace, releases: dict[str, str]) -> str:
             f"This release addresses {{NUMBER}} CVEs, ranging from "
             f"{{LOWEST_SEVERITY}} to {{HIGHEST_SEVERITY}} in severity."
         )
-        release_notes_block = "".join(
+        release_notes_block = "\n".join(
             _security_release_notes_block(v, t) for v, t in zip(versions, tracks)
         )
 
     packages_list = "\n".join(f"- {v}" for v in versions)
 
-    body = (
-        f"Salt Project Community Members!\n\n"
-        f"{summary}\n\n"
-        f"To download and install the latest versions of Salt, see the "
-        f"[Salt install guide](https://docs.saltproject.io/salt/install-guide/en/latest/).\n\n"
-        f"{release_notes_block}"
-        f"Directory repository locations:\n\n"
-        f"- [Salt Project Repository: Linux (RPM)](https://packages.broadcom.com/artifactory/saltproject-rpm): "
-        f"Where Salt `rpm` packages are officially stored and distributed.\n"
-        f"- [Salt Project Repository: Linux (DEB)](https://packages.broadcom.com/artifactory/saltproject-deb): "
-        f"Where Salt `deb` packages are officially stored and distributed.\n"
-        f"- [Salt Project Repository: GENERIC](https://packages.broadcom.com/artifactory/saltproject-generic): "
-        f"Where Salt Windows, macOS, etc. (non-rpm, non-deb) packages are officially stored and distributed.\n"
-        f"- Best-effort supported versions of Salt (non-relenv) are also available on PyPI: https://pypi.org/project/salt/\n\n"
-        f"## CVE Details\n\n"
-        f"### CVE-{{YYYY}}-{{NNNNN}}\n\n"
-        f"- **Description:** {{Describe the vulnerability.}}\n"
-        f"- **Impact:** {{Describe the impact.}}\n"
-        f"- **Solution:** {{Describe the fix.}}\n"
-        f"- **How to Mitigate:** Upgrade Salt to {{fixed version(s)}}\n"
-        f"- **Attribution:** {{Reporter name/organization}}\n"
-        f"- **Severity Rating:** {{CVSS score and vector, e.g. 7.7 CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:N/A:N}}\n\n"
-        f"## Packages\n\n"
-        f"Updated packages for the versions below can be found at "
-        f"https://repo.saltproject.io for these supported versions of Salt.\n\n"
-        f"{packages_list}\n\n"
-        f"Thank you all for your contributions!\n\n"
-        f"-- Salt Project Team\n"
+    body = render_template(
+        "security-body", summary=summary, release_notes_block=release_notes_block,
+        packages_list=packages_list,
     )
 
     front_matter = build_front_matter(
@@ -434,11 +328,7 @@ def cmd_security(args: argparse.Namespace, releases: dict[str, str]) -> str:
 
 def _security_release_notes_block(version: str, track: str) -> str:
     major = major_of(version)
-    return (
-        f"For more details on the Salt {version} {track} release:\n"
-        f"- Release notes: https://docs.saltproject.io/en/{major}/topics/releases/{version}.html\n"
-        f"- Changelogs: https://github.com/saltstack/salt/blob/{major}.x/CHANGELOG.md\n\n"
-    )
+    return render_template("security-release-notes-block", version=version, track=track, major=major)
 
 
 # ---------------------------------------------------------------------------
@@ -466,7 +356,7 @@ def cmd_announcement(args: argparse.Namespace, approved_tags: set[str]) -> str:
         image=args.image,
         tags=args.tags,
     )
-    body = "Your content goes here\n"
+    body = render_template("announcement-body")
     return write_post(post_date, slug, front_matter, body, allow_suffix=False)
 
 
