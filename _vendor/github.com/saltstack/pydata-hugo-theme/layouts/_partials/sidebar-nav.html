@@ -36,7 +36,7 @@
     {{- end }}
   {{- end }}
 {{- end }}
-<h3><a href="{{ "/" | relURL }}">{{ $title }}</a></h3>
+<h3><a href="{{ .Site.Home.RelPermalink }}">{{ $title }}</a></h3>
 <div id="pst-sidebar-nav">
   {{- range $menu }}
   {{- if .URL }}

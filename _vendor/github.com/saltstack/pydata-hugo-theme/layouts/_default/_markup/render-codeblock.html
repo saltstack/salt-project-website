@@ -1,0 +1,14 @@
+{{- /*
+  Markdown fenced-codeblock render hook — wraps Chroma's highlighted output
+  in a container with a copy-to-clipboard button (see
+  static/scripts/pydata-sphinx-theme.js for the click handler and
+  static/styles/hugo-pydata.css for .highlight-wrapper/.copybtn styling).
+*/ -}}
+{{- $result := transform.HighlightCodeBlock . -}}
+<div class="highlight-wrapper">
+  {{ $result.Wrapped }}
+  <button class="copybtn" type="button" aria-label="Copy to clipboard">
+    <i class="fa-regular fa-copy copybtn-icon-default" aria-hidden="true"></i>
+    <i class="fa-solid fa-check copybtn-icon-copied" aria-hidden="true"></i>
+  </button>
+</div>
