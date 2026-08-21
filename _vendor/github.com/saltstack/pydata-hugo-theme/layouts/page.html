@@ -1,0 +1,5 @@
+{{ define "main" }}
+  {{- $showTitle := $.Params.show_title | default (site.Params.show_title | default true) -}}
+  {{- $content := cond $showTitle (printf "<h1>%s</h1>%s" .Title .Content | safeHTML) .Content -}}
+  {{ partial "article-shell.html" (dict "page" . "content" $content) }}
+{{ end }}
