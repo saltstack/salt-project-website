@@ -3,6 +3,7 @@ title: "Working Groups"
 date: 2024-01-01
 summary: "Salt Project working groups and how to get involved."
 show_toc: false
+show_prev_next: false
 ---
 
 Community members join in collaboration with the Salt Core Team to decide on
