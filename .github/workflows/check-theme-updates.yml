@@ -1,0 +1,62 @@
+# Periodically (and on-demand) checks for a newer pydata-hugo-theme module
+# release, re-vendors it via scripts/update-vendored-theme.sh, and opens a PR
+# if anything changed. Updates are never auto-merged -- vendoring the theme
+# is a deliberate, human-reviewed action, not an unattended build step.
+#
+# SECURITY: this workflow requests `contents: write` / `pull-requests: write`
+# to open its update PR, so -- like gh-pages.yml -- it must never trigger on
+# `pull_request`. It only runs on a schedule or via manual `workflow_dispatch`.
+name: Check theme updates
+
+on:
+  schedule:
+    - cron: '0 9 * * 1'  # Every Monday at 09:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+# Default to bash
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  update:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Hugo CLI
+        uses: ./.github/actions/setup-hugo
+
+      - name: Install Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: '.go-version'
+
+      - name: Update vendored theme
+        env:
+          HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
+        run: scripts/update-vendored-theme.sh
+
+      - name: Build with Hugo (sanity check)
+        env:
+          HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
+        run: hugo --minify
+
+      - name: Open pull request if anything changed
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "chore(theme): update pydata-hugo-theme module"
+          title: "chore(theme): update pydata-hugo-theme module"
+          body: >-
+            Automated update from the `Check theme updates` workflow.
+            Re-vendors the `pydata-hugo-theme` Hugo Module via
+            `scripts/update-vendored-theme.sh`. Review the diff under
+            `_vendor/` before merging.
+          branch: chore/update-pydata-hugo-theme
+          labels: dependencies
+          delete-branch: true
