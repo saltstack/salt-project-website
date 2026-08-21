@@ -37,6 +37,17 @@ jobs:
         with:
           go-version-file: '.go-version'
 
+      - name: Install Node.js
+        # Needed transiently: the theme mounts build-time npm deps
+        # (FontAwesome/Bootstrap) via [[module.mounts]], and
+        # scripts/update-vendored-theme.sh has to `npm ci` them into
+        # Hugo's module cache before it can vendor. Not needed for a
+        # normal `hugo build`, which reads from the already-vendored
+        # _vendor/ -- this is the one workflow that re-populates it.
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
       - name: Update vendored theme
         env:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
