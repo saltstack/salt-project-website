@@ -1,4 +1,8 @@
-{{- $url := "https://pydata-sphinx-theme.readthedocs.io/" }}
+{{- $url := "https://saltstack.github.io/pydata-hugo-theme/" }}
 <p class="theme-version">
-  Built with the <a href="{{ $url }}"{{ partial "link-target-attrs.html" $url | safeHTMLAttr }}>PyData Sphinx Theme</a> (Hugo port).
+  {{- with site.Params.theme_version_text }}
+    {{ . }}
+  {{- else }}
+    Built with the <a href="{{ $url }}"{{ partial "link-target-attrs.html" $url | safeHTMLAttr }}>PyData Hugo Theme</a>.
+  {{- end }}
 </p>
