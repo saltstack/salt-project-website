@@ -2,7 +2,9 @@
 {{- $logoLink := $logo.link | default "/" -}}
 {{- $logoText := $logo.text | default site.Title -}}
 {{- $logoAlt  := $logo.alt_text | default (printf "%s - Home" site.Title) -}}
-<a class="navbar-brand logo" href="{{ $logoLink | relURL }}">
+{{- /* relURL doesn't prepend baseURL's path segment to inputs that already start with "/" -- strip it so subpath deployments resolve correctly */ -}}
+{{- $logoHref := cond (strings.HasPrefix $logoLink "/") (strings.TrimPrefix "/" $logoLink | relURL) ($logoLink | relURL) -}}
+<a class="navbar-brand logo" href="{{ $logoHref }}">
   {{- if $logo.image_light }}
   <img src="{{ $logo.image_light | relURL }}" class="logo__image only-light" alt="{{ $logoAlt }}"/>
   <img src="{{ ($logo.image_dark | default $logo.image_light) | relURL }}" class="logo__image only-dark pst-js-only" alt="{{ $logoAlt }}"/>
