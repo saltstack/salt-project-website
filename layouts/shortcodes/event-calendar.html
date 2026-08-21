@@ -1,0 +1,24 @@
+<script type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.7/jstz.js"
+  integrity="sha512-gPgCxBK1xjsllNvxhv6tdK4IU2lH7c5a/O9kg9y73K1+hDC4TUlkHz0pLfL6jyS7RrghnscJutlzvAiAojHh+w=="
+  crossorigin="anonymous" referrerpolicy="no-referrer">
+</script>
+<iframe id="calendar_container"
+  src="https://calendar.google.com/calendar/embed?src=salt.project%40broadcom.com&ctz="
+  style="border:0" width="800" height="600" frameborder="0" scrolling="no"
+  sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+  referrerpolicy="no-referrer-when-downgrade">
+</iframe>
+<script type="text/javascript">
+  var timezone  = jstz.determine();
+  var pref      = "https://calendar.google.com/calendar/embed?src=salt.project%40broadcom.com&ctz=";
+  document.getElementById("calendar_container").src =
+    pref + encodeURIComponent(timezone.name().replace(" ", ""));
+</script>
+{{- $icsURL := "https://calendar.google.com/calendar/ical/salt.project%40broadcom.com/public/basic.ics" }}
+<p>
+  <strong>Download the ics:</strong>
+  <a href="{{ $icsURL }}"{{ partial "link-target-attrs.html" $icsURL | safeHTMLAttr }}>
+    Salt Project Community Calendar ics
+  </a>
+</p>

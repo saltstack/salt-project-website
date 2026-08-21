@@ -1,0 +1,23 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Working Group</th>
+      <th scope="col">Description</th>
+      <th scope="col">Captain</th>
+      <th scope="col">Discord Channel</th>
+      <th scope="col">Meeting Times</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{ range site.Params.working_groups }}
+    {{ $captainURL := printf "https://github.com/%s" .captain_handle }}
+    <tr>
+      <td>{{ .title }}</td>
+      <td>{{ .description }}</td>
+      <td><a href="{{ $captainURL }}"{{ partial "link-target-attrs.html" $captainURL | safeHTMLAttr }}>{{ .captain }}</a></td>
+      <td>{{ .discord_channel }}</td>
+      <td><a href="{{ "community/event-calendar/" | relURL }}">Community calendar</a></td>
+    </tr>
+    {{ end }}
+  </tbody>
+</table>
