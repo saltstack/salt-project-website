@@ -1,5 +1,5 @@
 {
-  "name": "hugo-pydata-theme",
+  "name": "pydata-hugo-theme",
   "private": true,
   "description": "Build-time npm dependencies for the pydata Hugo theme (FontAwesome icon kit, Bootstrap JS bundle). Run `npm install` here before `hugo build`/`hugo server`.",
   "dependencies": {
