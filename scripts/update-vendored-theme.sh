@@ -6,8 +6,9 @@
 # Usage: scripts/update-vendored-theme.sh [version]
 #   version defaults to latest (`hugo mod get -u`); pass e.g. "v0.2.0" to pin.
 #
-# Requires Go and Hugo (extended) on PATH. This is a maintenance-only
-# operation -- regular `hugo build`/`hugo server` need neither.
+# Requires Go, Hugo (extended), and Node/npm on PATH. This is a
+# maintenance-only operation -- regular `hugo build`/`hugo server` need
+# none of them, since they build from the already-vendored _vendor/.
 set -euo pipefail
 
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -30,15 +31,32 @@ else
   hugo mod get -u "$MODULE_PATH"
 fi
 
+# Hugo maintains its own module cache, separate from Go's (`go list -m`
+# reports a different, unrelated copy under GOMODCACHE) -- resolve the
+# version Hugo actually pinned, then compute its own on-disk cache path
+# directly, so we can `npm ci` the theme's build-time deps into the exact
+# copy `hugo mod vendor` will read from. Without this, vendoring fails on
+# a cold cache (no local copy of the theme with node_modules already
+# installed lying around) -- e.g. any first vendor of a new version, or
+# any CI run, since CI runners are always cold.
+resolved_version="$(hugo mod graph --ignoreVendorPaths '**' | awk -v mod="$MODULE_PATH@" '$2 ~ "^"mod {sub(mod, "", $2); print $2}')"
+if [[ -z "$resolved_version" ]]; then
+  echo "error: could not determine the resolved version of $MODULE_PATH from 'hugo mod graph'" >&2
+  exit 1
+fi
+hugo_cache_dir="${HUGO_CACHEDIR:-${XDG_CACHE_HOME:-$HOME/.cache}/hugo_cache}"
+module_dir="${hugo_cache_dir}/modules/filecache/modules/pkg/mod/${MODULE_PATH}@${resolved_version}"
+
+if [[ -f "$module_dir/package.json" ]]; then
+  echo "==> Installing the theme's build-time npm deps (needed for its"
+  echo "    [[module.mounts]] before vendoring can find them)"
+  ( cd "$module_dir" && npm ci )
+fi
+
 echo "==> Vendoring"
 hugo mod vendor
 
 echo "==> Re-copying LICENSE/README.md (hugo mod vendor skips non-Hugo files)"
-# `go list -m` needs the module in Go's own module cache, which Hugo's
-# internal module client doesn't necessarily populate -- fetch it
-# explicitly first.
-go mod download "$MODULE_PATH"
-module_dir="$(go list -m -f '{{.Dir}}' "$MODULE_PATH")"
 vendor_dir="_vendor/${MODULE_PATH}"
 cp "$module_dir/LICENSE" "$vendor_dir/LICENSE"
 cp "$module_dir/README.md" "$vendor_dir/README.md"
