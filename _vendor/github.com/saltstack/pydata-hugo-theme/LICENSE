@@ -1,9 +1,7 @@
 BSD 3-Clause License
 
-This license applies only to the contents of this `themes/pydata` directory —
-a Hugo port of the PyData Sphinx Theme (https://github.com/pydata/pydata-sphinx-theme).
-It does not apply to the rest of this repository, which is not distributed
-under an open source or Creative Commons license.
+This license applies to this repository in its entirety — a Hugo port of the
+PyData Sphinx Theme (https://github.com/pydata/pydata-sphinx-theme).
 
 Copyright (c) 2018-2026, PyData Sphinx Theme Authors and contributors to this
 Hugo port.
