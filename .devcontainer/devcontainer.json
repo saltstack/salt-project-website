@@ -17,18 +17,15 @@
 	},
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
-	// Node.js itself is installed directly in the Dockerfile (pinned via the
-	// root .node-version file), not via this feature — avoids two divergent
-	// install paths.
 	// "features": {},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 
-	// Install the theme's build-time npm deps (FontAwesome/Bootstrap) after
-	// the workspace is mounted — a Dockerfile RUN step would get shadowed by
-	// the workspace bind mount, since node_modules isn't part of the repo.
-	"postCreateCommand": "cd themes/pydata && npm ci",
+	// The pydata theme now ships as a vendored Hugo Module (see root
+	// _vendor/), so no npm install step is needed here — the module's
+	// build-time JS deps (FontAwesome/Bootstrap) are already resolved and
+	// checked into _vendor/.
 
 	// There is also a postStartCommand that executes every time the container starts.
 	// The parameters behave exactly like postCreateCommand, but the commands execute on start rather than create.
