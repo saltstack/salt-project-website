@@ -15,4 +15,4 @@ static/images/.DS_Store
 *.pem
 *.key
 sandbox/
-node_modules/
+/node_modules/
