@@ -12,18 +12,13 @@ Usage: python3 scripts/validate-tags.py
 import os
 import re
 import sys
-import tomllib
+
+sys.path.insert(0, os.path.dirname(__file__))
+from _blog_common import load_approved_tags  # noqa: E402
 
 BLOG_DIR = os.path.join(os.path.dirname(__file__), "..", "content", "blog")
-TAGS_FILE = os.path.join(os.path.dirname(__file__), "tags.toml")
 
 SKIP_FILES = {"_index.md"}
-
-
-def load_approved_tags() -> set[str]:
-    with open(TAGS_FILE, "rb") as f:
-        data = tomllib.load(f)
-    return set(data["approved_tags"])
 
 
 def parse_tags(content: str) -> list[str]:

@@ -1,0 +1,232 @@
+# Log of every published release/security post's version(s), used by
+# scripts/new-blog-post.py to detect duplicate re-announcements and to
+# verify a new release/security post's version is the next expected
+# patch number for its major line. Entries are appended automatically
+# each time `release` or `security` successfully generates a post —
+# do not edit by hand except to fix a pre-population mistake.
+
+[[releases]]
+version = "3005.1"
+url = "https://saltproject.io/blog/salt-3005-1-4-security-package-update/"
+date = "2023-01-10"
+
+[[releases]]
+version = "3006.0"
+url = "https://saltproject.io/blog/salt-3006-release-is-now-available/"
+date = "2023-04-18"
+
+[[releases]]
+version = "3006.1"
+url = "https://saltproject.io/blog/salt-3006-1-release-is-now-available/"
+date = "2023-05-05"
+
+[[releases]]
+version = "3006.3"
+url = "https://saltproject.io/blog/salt-3006-3-release-is-now-available/"
+date = "2023-09-07"
+
+[[releases]]
+version = "3005.3"
+url = "https://saltproject.io/blog/salt-3005-3-release-is-now-available/"
+date = "2023-09-21"
+
+[[releases]]
+version = "3006.5"
+url = "https://saltproject.io/blog/salt-3006-5-release-is-now-available/"
+date = "2023-12-12"
+
+[[releases]]
+version = "3006.7"
+url = "https://saltproject.io/blog/salt-release-3006-7-is-now-available/"
+date = "2024-02-21"
+
+[[releases]]
+version = "3007.0"
+url = "https://saltproject.io/blog/salt-release-3007-is-now-available/"
+date = "2024-03-06"
+
+[[releases]]
+version = "3006.8"
+url = "https://saltproject.io/blog/salt-release-3006-8-is-now-available/"
+date = "2024-04-30"
+
+[[releases]]
+version = "3007.1"
+url = "https://saltproject.io/blog/salt-release-3007-1-is-now-available/"
+date = "2024-05-22"
+
+[[releases]]
+version = "3006.9"
+url = "https://saltproject.io/blog/salt-release-3006-9-is-now-available/"
+date = "2024-07-30"
+
+[[releases]]
+version = "3006.10"
+url = "https://saltproject.io/blog/2025-03-19-new-release-salt-3006-10/"
+date = "2025-03-19"
+
+[[releases]]
+version = "3007.2"
+url = "https://saltproject.io/blog/2025-05-14-new-release-salt-3007-2/"
+date = "2025-05-14"
+
+[[releases]]
+version = "3006.11"
+url = "https://saltproject.io/blog/2025-06-02-new-release-salt-3006-11/"
+date = "2025-06-02"
+
+[[releases]]
+version = "3007.3"
+url = "https://saltproject.io/blog/2025-06-05-new-release-salt-3007-3/"
+date = "2025-06-05"
+
+[[releases]]
+version = "3006.12"
+url = "https://saltproject.io/blog/2025-06-12-advisory-3006-12-3007-4/"
+date = "2025-06-12"
+
+[[releases]]
+version = "3007.4"
+url = "https://saltproject.io/blog/2025-06-12-advisory-3006-12-3007-4/"
+date = "2025-06-12"
+
+[[releases]]
+version = "3006.13"
+url = "https://saltproject.io/blog/2025-06-26-new-releases-salt-3006-13-3007-5/"
+date = "2025-06-26"
+
+[[releases]]
+version = "3007.5"
+url = "https://saltproject.io/blog/2025-06-26-new-releases-salt-3006-13-3007-5/"
+date = "2025-06-26"
+
+[[releases]]
+version = "3006.14"
+url = "https://saltproject.io/blog/2025-07-10-new-releases-salt-3006-14-3007-6/"
+date = "2025-07-10"
+
+[[releases]]
+version = "3007.6"
+url = "https://saltproject.io/blog/2025-07-10-new-releases-salt-3006-14-3007-6/"
+date = "2025-07-10"
+
+[[releases]]
+version = "3006.15"
+url = "https://saltproject.io/blog/2025-08-28-new-release-salt-3006-15/"
+date = "2025-08-28"
+
+[[releases]]
+version = "3007.7"
+url = "https://saltproject.io/blog/2025-08-28-new-release-salt-3007-7/"
+date = "2025-08-28"
+
+[[releases]]
+version = "3006.16"
+url = "https://saltproject.io/blog/2025-09-18-new-release-salt-3006-16-3007-8/"
+date = "2025-09-18"
+
+[[releases]]
+version = "3007.8"
+url = "https://saltproject.io/blog/2025-09-18-new-release-salt-3006-16-3007-8/"
+date = "2025-09-18"
+
+[[releases]]
+version = "3006.17"
+url = "https://saltproject.io/blog/2025-11-20-advisory-3006-17-3007-9/"
+date = "2025-11-20"
+
+[[releases]]
+version = "3007.9"
+url = "https://saltproject.io/blog/2025-11-20-advisory-3006-17-3007-9/"
+date = "2025-11-20"
+
+[[releases]]
+version = "3006.18"
+url = "https://saltproject.io/blog/2025-12-18-salt-release-3006-18-3007-10/"
+date = "2025-12-18"
+
+[[releases]]
+version = "3007.10"
+url = "https://saltproject.io/blog/2025-12-18-salt-release-3006-18-3007-10/"
+date = "2025-12-18"
+
+[[releases]]
+version = "3006.19"
+url = "https://saltproject.io/blog/2026-01-09-salt-release-3006-19-3007-11/"
+date = "2026-01-09"
+
+[[releases]]
+version = "3007.11"
+url = "https://saltproject.io/blog/2026-01-09-salt-release-3006-19-3007-11/"
+date = "2026-01-09"
+
+[[releases]]
+version = "3006.20"
+url = "https://saltproject.io/blog/2026-02-05-new-releases-salt-3006-20-3007-12/"
+date = "2026-02-05"
+
+[[releases]]
+version = "3007.12"
+url = "https://saltproject.io/blog/2026-02-05-new-releases-salt-3006-20-3007-12/"
+date = "2026-02-05"
+
+[[releases]]
+version = "3006.21"
+url = "https://saltproject.io/blog/2026-02-12-new-releases-salt-3006-21-3007-13/"
+date = "2026-02-12"
+
+[[releases]]
+version = "3007.13"
+url = "https://saltproject.io/blog/2026-02-12-new-releases-salt-3006-21-3007-13/"
+date = "2026-02-12"
+
+[[releases]]
+version = "3006.22"
+url = "https://saltproject.io/blog/2026-02-21-new-releases-salt-3006-22/"
+date = "2026-02-21"
+
+[[releases]]
+version = "3006.23"
+url = "https://saltproject.io/blog/2026-02-23-new-releases-salt-3006-23/"
+date = "2026-02-23"
+
+[[releases]]
+version = "3006.24"
+url = "https://saltproject.io/blog/2026-04-23-new-release-salt-3006-24/"
+date = "2026-04-23"
+
+[[releases]]
+version = "3007.14"
+url = "https://saltproject.io/blog/2026-04-29-new-releases-salt-3007-14/"
+date = "2026-04-29"
+
+[[releases]]
+version = "3006.25"
+url = "https://saltproject.io/blog/2026-05-13-salt-3006-25-3008-rc3-available/"
+date = "2026-05-13"
+
+[[releases]]
+version = "3008.0"
+url = "https://saltproject.io/blog/2026-05-27-salt-3008-0-available/"
+date = "2026-05-27"
+
+[[releases]]
+version = "3008.1"
+url = "https://saltproject.io/blog/2026-06-07-salt-3008-1-available/"
+date = "2026-06-07"
+
+[[releases]]
+version = "3006.26"
+url = "https://saltproject.io/blog/2026-06-24-salt-3006-26-available/"
+date = "2026-06-24"
+
+[[releases]]
+version = "3006.27"
+url = "https://saltproject.io/blog/2026-07-01-salt-3006-27-available/"
+date = "2026-07-01"
+
+[[releases]]
+version = "3008.2"
+url = "https://saltproject.io/blog/2026-07-01-salt-3008-2-available/"
+date = "2026-07-01"
+

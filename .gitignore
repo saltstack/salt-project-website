@@ -16,3 +16,5 @@ static/images/.DS_Store
 *.key
 sandbox/
 /node_modules/
+__pycache__/
+*.pyc

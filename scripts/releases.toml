@@ -1,0 +1,13 @@
+# Tracks which release track each Salt major version is on: LTS, STS, or RC
+# (for a version not yet promoted to a permanent track). Used by
+# scripts/new-blog-post.py to fill in the type label in generated release,
+# RC, and security blog posts.
+#
+# Add a new major version here before generating a blog post for it — the
+# script errors out otherwise.
+
+[releases]
+"3006" = "LTS"
+"3007" = "STS"
+"3008" = "LTS"
+"3009" = "RC"
